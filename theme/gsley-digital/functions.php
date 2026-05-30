@@ -24,10 +24,29 @@ function gsley_setup() {
 	add_theme_support( 'html5', array( 'style', 'script', 'navigation-widgets' ) );
 
 	// Load the component stylesheet inside the block editor too, so locked
-	// patterns render on-brand in the Site Editor.
-	add_editor_style( 'assets/css/gsley.css' );
+	// patterns render on-brand in the Site Editor. editor.css neutralises
+	// front-end-only behaviours (scroll-reveal, sticky header) for editing.
+	add_editor_style( array( 'assets/css/gsley.css', 'assets/css/editor.css' ) );
 }
 add_action( 'after_setup_theme', 'gsley_setup' );
+
+/**
+ * Register the GSLEY pattern category so the theme's block patterns group
+ * together in the editor inserter. Pattern files live in /patterns and are
+ * auto-registered by WordPress from their header comments.
+ */
+function gsley_register_pattern_category() {
+	if ( function_exists( 'register_block_pattern_category' ) ) {
+		register_block_pattern_category(
+			'gsley',
+			array(
+				'label'       => __( 'GSLEY Digital', 'gsley-digital' ),
+				'description' => __( 'On-brand, structure-locked sections for the GSLEY Digital site.', 'gsley-digital' ),
+			)
+		);
+	}
+}
+add_action( 'init', 'gsley_register_pattern_category' );
 
 /**
  * Enqueue the supplemental component stylesheet on the front end.
