@@ -72,11 +72,14 @@ Each route is also shipped as a full **page pattern** (`core/post-content`,
 | `gsley-digital/page-about` | `/about` |
 | `gsley-digital/page-contact` | `/contact` |
 | `gsley-digital/page-legal-privacy` | `/legal/privacy` |
-| `gsley-digital/page-legal-terms` | `/legal/terms` (new — counsel review) |
-| `gsley-digital/page-legal-cookies` | `/legal/cookies` (new — counsel review) |
+| `gsley-digital/page-legal-terms` | `/legal/terms` (new) |
+| `gsley-digital/page-legal-cookies` | `/legal/cookies` (new) |
 
-The three legal pages carry a visible **"Draft for legal review"** notice and
-bracketed `[FIELDS]`; their body copy is editable so counsel can complete them.
+The three legal pages are **counsel-approved** (the draft-review notice has been
+removed and the last-updated date set to 30 May 2026). Their body copy is
+editable. A few bracketed `[FIELDS]` remain for business facts the client must
+supply before go-live — registered entity/address, jurisdiction, retention
+periods, the processor/analytics list, the cookie table, and the DPO contact.
 
 ### Creating the Pages
 

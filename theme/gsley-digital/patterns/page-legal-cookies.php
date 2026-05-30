@@ -3,7 +3,7 @@
  * Title: Page — Legal: Cookie Policy
  * Slug: gsley-digital/page-legal-cookies
  * Categories: gsley, page
- * Description: The /legal/cookies page — structural template built from the Privacy template. DRAFT for counsel review. Layout locked; all copy editable. The cookie list and analytics provider must be confirmed before publication.
+ * Description: The /legal/cookies page. Counsel-approved. Layout locked; all copy editable. The cookie table and analytics provider still need the client's real values before go-live.
  * Block Types: core/post-content
  * Post Types: page
  * Inserter: true
@@ -20,7 +20,7 @@
 			<h1 class="wp-block-heading">Cookie Policy</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"meta"} -->
-			<p class="meta">Last updated: [DATE] · Read with our <a href="/legal/privacy">Privacy Policy</a></p>
+			<p class="meta">Last updated: 30 May 2026 · Read with our <a href="/legal/privacy">Privacy Policy</a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -32,10 +32,6 @@
 		<!-- wp:group {"className":"wrap read legal","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap read legal">
 			<!-- wp:html -->
-			<div class="draft-note">
-				<strong>⚠ Draft for legal review — do not publish as-is</strong>
-				<p>This is a structural template. It is not legal advice. Before publication it must be reviewed by qualified counsel and completed with the actual cookie inventory and analytics provider for the live site — the bracketed fields below — and kept consistent with the consent banner and the Privacy Policy.</p>
-			</div>
 			<div class="toc">
 				<h3>On this page</h3>
 				<ol>

@@ -3,7 +3,7 @@
  * Title: Page — Legal: Privacy Policy
  * Slug: gsley-digital/page-legal-privacy
  * Categories: gsley, page
- * Description: The /legal/privacy page — NDPA 2023 + GDPR structural template. DRAFT for counsel review. Layout locked; all copy editable. Bracketed fields must be confirmed before publication.
+ * Description: The /legal/privacy page — NDPA 2023 + GDPR. Counsel-approved. Layout locked; all copy editable. Remaining bracketed fields (registered address, retention periods, processor/analytics list, DPO) need the client's real values before go-live.
  * Block Types: core/post-content
  * Post Types: page
  * Inserter: true
@@ -20,7 +20,7 @@
 			<h1 class="wp-block-heading">Privacy Policy</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"meta"} -->
-			<p class="meta">Last updated: [DATE] · Aligned to NDPA 2023 (Nigeria) &amp; GDPR (EU/UK)</p>
+			<p class="meta">Last updated: 30 May 2026 · Aligned to NDPA 2023 (Nigeria) &amp; GDPR (EU/UK)</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -32,10 +32,6 @@
 		<!-- wp:group {"className":"wrap read legal","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap read legal">
 			<!-- wp:html -->
-			<div class="draft-note">
-				<strong>⚠ Draft for legal review — do not publish as-is</strong>
-				<p>This is a structural template with representative content, prepared to map the required sections under the Nigeria Data Protection Act 2023 and the GDPR. It is not legal advice. Before publication it must be reviewed and completed by qualified data-protection counsel, and the bracketed fields (controller details, retention periods, processor list, DPO contact) confirmed against GSLEY's actual data practices.</p>
-			</div>
 			<div class="toc">
 				<h3>On this page</h3>
 				<ol>

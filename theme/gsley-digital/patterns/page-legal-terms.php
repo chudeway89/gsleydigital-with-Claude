@@ -3,7 +3,7 @@
  * Title: Page — Legal: Terms of Service
  * Slug: gsley-digital/page-legal-terms
  * Categories: gsley, page
- * Description: The /legal/terms page — structural template built from the Privacy template. DRAFT for counsel review. Layout locked; all copy editable. Bracketed fields must be confirmed before publication.
+ * Description: The /legal/terms page. Counsel-approved. Layout locked; all copy editable. Remaining bracketed fields (legal entity, registered address, jurisdiction, liability cap, payment/notice terms) need the client's real values before go-live.
  * Block Types: core/post-content
  * Post Types: page
  * Inserter: true
@@ -20,7 +20,7 @@
 			<h1 class="wp-block-heading">Terms of Service</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"meta"} -->
-			<p class="meta">Last updated: [DATE] · Governing law: [JURISDICTION]</p>
+			<p class="meta">Last updated: 30 May 2026 · Governing law: [JURISDICTION]</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -32,10 +32,6 @@
 		<!-- wp:group {"className":"wrap read legal","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap read legal">
 			<!-- wp:html -->
-			<div class="draft-note">
-				<strong>⚠ Draft for legal review — do not publish as-is</strong>
-				<p>This is a structural template with representative content, prepared to map the sections a productised-services studio typically needs. It is not legal advice. Before publication it must be reviewed and completed by qualified counsel, and the bracketed fields (legal entity, governing law, liability caps, payment terms) confirmed against how GSLEY actually contracts.</p>
-			</div>
 			<div class="toc">
 				<h3>On this page</h3>
 				<ol>
