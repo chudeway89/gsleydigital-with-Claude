@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Automation — GSLEY Market</title>
+<meta name="description" content="Lifecycle and nurture orchestration wired to a single source of truth on the customer. Built on The Orchestration Archetype™.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink-900:#0F1B2D;--ink-700:#1F2C3F;--ink-500:#4A5568;--ink-300:#8895A7;--paper:#FAF9F5;--bone:#F1EFE7;--line:#E5E2D8;--accent-digital:#16B8A6;--teal-900:#0B4F49;--success:#15803D;--focus:#16B8A6;--font-display:"Source Serif 4",Georgia,serif;--font-body:"Inter",-apple-system,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--fs-h1:clamp(2.25rem,5vw,3.5rem);--fs-h2:clamp(1.6rem,3.5vw,2.5rem);--fs-h3:clamp(1.2rem,2.5vw,1.5rem);--fs-body:clamp(1rem,1.1vw,1.0625rem);--fs-small:.875rem;--fs-mono:.75rem;--lh-tight:1.1;--lh-snug:1.3;--lh-base:1.55;--lh-loose:1.7;--sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-6:1.5rem;--sp-8:2rem;--sp-12:3rem;--sp-16:4rem;--sp-24:6rem;--r-sm:6px;--r-md:10px;--r-pill:999px;--ease-out:cubic-bezier(.22,1,.36,1);--dur-base:240ms;--dur-slow:480ms;--container-max:1200px;--container-narrow:780px;--gutter:clamp(1rem,4vw,2rem);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-base);color:var(--ink-900);background:var(--paper);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}button{font-family:inherit;cursor:pointer;border:none;background:none;}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+.wrap{max-width:var(--container-max);margin-inline:auto;padding-inline:var(--gutter);}.narrow{max-width:var(--container-narrow);}
+.section{padding-block:var(--sp-24);border-top:1px solid var(--line);}
+.section--bone{background:var(--bone);}.section--ink{background:var(--ink-900);color:var(--paper);border-top-color:var(--ink-700);}
+.marker{display:flex;align-items:center;gap:var(--sp-3);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-500);margin-bottom:var(--sp-8);}
+.marker__rule{height:1px;width:48px;background:currentColor;opacity:.4;}.section--ink .marker{color:var(--accent-digital);}
+.h2{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-snug);font-weight:400;letter-spacing:-.015em;}
+.h3{font-family:var(--font-display);font-size:var(--fs-h3);line-height:var(--lh-snug);font-weight:600;}
+.lede{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--ink-700);line-height:var(--lh-base);}
+.btn{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-6);border-radius:var(--r-sm);font-size:var(--fs-small);font-weight:500;transition:transform 120ms var(--ease-out),background var(--dur-base);}
+.btn:hover{transform:translateY(-1px);}.btn--solid{background:var(--ink-900);color:var(--paper);}.btn--solid:hover{background:var(--ink-700);}
+.btn--ghost{border:1px solid var(--line);color:var(--ink-900);}.btn--ghost:hover{border-color:var(--ink-900);}.btn--digital{background:var(--accent-digital);color:var(--ink-900);}
+.section--ink .btn--ghost{border-color:rgba(250,249,245,.3);color:var(--paper);}.page-hero .btn--ghost{border-color:rgba(250,249,245,.3);color:var(--paper);}
+.arrow{transition:transform var(--dur-base) var(--ease-out);}.btn:hover .arrow{transform:translate(2px,-2px);}
+.open-link{display:inline-flex;align-items:center;gap:var(--sp-2);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.1em;text-transform:uppercase;}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+.brand{display:flex;align-items:baseline;gap:var(--sp-2);font-family:var(--font-display);font-weight:600;font-size:1.25rem;}
+.brand__g{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--ink-900);border-radius:50%;font-size:1rem;}
+.brand__digital{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-500);font-family:var(--font-mono);align-self:center;}
+.nav{display:none;}.nav a{font-size:var(--fs-small);color:var(--ink-700);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-sm);}.nav a:hover,.nav a[aria-current="page"]{color:var(--ink-900);}.nav a[aria-current="page"]{background:var(--bone);}
+.header-cta{display:none;}.nav-toggle{display:flex;flex-direction:column;gap:5px;padding:var(--sp-2);}.nav-toggle span{width:22px;height:1.5px;background:var(--ink-900);}
+.mobile-nav{display:none;flex-direction:column;padding:var(--sp-4) 0 var(--sp-8);}.mobile-nav.open{display:flex;}.mobile-nav a{font-size:1.125rem;padding:var(--sp-3) 0;border-top:1px solid var(--line);}
+.page-hero{background:var(--ink-900);color:var(--paper);padding-block:var(--sp-16);}.page-hero--teal{background:var(--teal-900);}
+.crumb{font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-300);margin-bottom:var(--sp-8);}.crumb a:hover{color:var(--paper);}
+.page-hero__glyph{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1.5px solid currentColor;border-radius:var(--r-sm);margin-bottom:var(--sp-6);}
+.page-hero h1{font-family:var(--font-display);font-size:var(--fs-h1);line-height:var(--lh-tight);font-weight:400;letter-spacing:-.02em;margin-bottom:var(--sp-6);max-width:20ch;}
+.page-hero .lede{color:rgba(250,249,245,.82);max-width:54ch;margin-bottom:var(--sp-8);}
+.page-hero__ctas{display:flex;flex-wrap:wrap;gap:var(--sp-3);}
+.page-hero__meta{display:flex;flex-wrap:wrap;gap:var(--sp-6);margin-top:var(--sp-12);padding-top:var(--sp-8);border-top:1px solid rgba(250,249,245,.15);}
+.page-hero__meta div{display:flex;flex-direction:column;gap:2px;}
+.page-hero__meta .k{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,249,245,.5);}
+.page-hero__meta .v{font-size:var(--fs-small);color:var(--paper);}
+.prose p{color:var(--ink-700);margin-bottom:var(--sp-6);max-width:64ch;}.prose p.first{font-size:1.125rem;color:var(--ink-900);}
+.phases{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-top:var(--sp-8);}
+.phase{background:var(--paper);padding:var(--sp-8);}
+.phase .no{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--accent-digital);letter-spacing:.12em;}
+.phase h3{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin:var(--sp-3) 0;}
+.phase p{font-size:var(--fs-small);color:var(--ink-500);}
+.incl{list-style:none;display:grid;gap:var(--sp-3);margin-top:var(--sp-8);}
+.incl li{display:flex;gap:var(--sp-3);align-items:flex-start;font-size:var(--fs-small);color:var(--ink-700);padding-bottom:var(--sp-3);border-bottom:1px solid var(--line);}
+.incl li .tick{color:var(--accent-digital);font-weight:600;flex-shrink:0;}
+.out{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+.out__item{background:var(--paper);padding:var(--sp-8);}
+.out__item .big{font-family:var(--font-display);font-size:1.75rem;font-weight:600;letter-spacing:-.01em;}
+.out__item p{font-size:var(--fs-small);color:var(--ink-500);margin-top:var(--sp-2);}
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.faq details{border-bottom:1px solid var(--line);}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-6) 0;font-family:var(--font-display);font-size:1.125rem;font-weight:600;list-style:none;cursor:pointer;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq .pm{font-family:var(--font-mono);color:var(--accent-digital);font-size:1.25rem;transition:transform var(--dur-base);}
+.faq details[open] .pm{transform:rotate(45deg);}
+.faq .a{padding-bottom:var(--sp-6);color:var(--ink-700);font-size:var(--fs-small);line-height:var(--lh-loose);max-width:68ch;}
+.matched{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-6);padding:var(--sp-8);background:var(--bone);border:1px solid var(--line);border-radius:var(--r-md);}
+.matched h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;}
+.matched p{font-size:var(--fs-small);color:var(--ink-500);margin-top:var(--sp-2);max-width:48ch;}
+.cta-band{text-align:center;}.cta-band .display{font-family:var(--font-display);font-weight:400;font-size:var(--fs-h2);max-width:22ch;margin:0 auto var(--sp-8);color:var(--paper);letter-spacing:-.015em;}
+.cta-band__btns{display:flex;flex-wrap:wrap;gap:var(--sp-3);justify-content:center;}
+.site-footer{background:var(--bone);border-top:1px solid var(--line);padding-block:var(--sp-16) var(--sp-8);}
+.footer-grid{display:grid;gap:var(--sp-12);margin-bottom:var(--sp-16);}
+.footer-brand p{color:var(--ink-500);font-size:var(--fs-small);max-width:30ch;margin:var(--sp-4) 0;}
+.footer-brand .contact{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-700);line-height:var(--lh-loose);}
+.footer-col h4{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-small);font-weight:600;margin-bottom:var(--sp-4);}
+.footer-col h4 .dot{width:7px;height:7px;border-radius:1px;}.footer-col h4 .dot--m{background:var(--ink-900);}.footer-col h4 .dot--d{background:var(--accent-digital);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--sp-2);}.footer-col a{font-size:var(--fs-small);color:var(--ink-500);}.footer-col a:hover{color:var(--ink-900);}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;padding-top:var(--sp-8);border-top:1px solid var(--line);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.08em;color:var(--ink-500);text-transform:uppercase;}
+.whatsapp-pill{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-4);background:var(--success);color:#fff;border-radius:var(--r-pill);font-family:var(--font-body);font-size:var(--fs-small);text-transform:none;letter-spacing:0;}
+.wa-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:transform .2s var(--ease-out);}
+.wa-fab:hover{transform:scale(1.06);}.wa-fab::after{content:"Chat with us";position:absolute;right:68px;white-space:nowrap;background:var(--ink-900);color:#fff;font-size:.8rem;padding:.4rem .7rem;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none;}.wa-fab:hover::after{opacity:1;transform:translateX(0);}
+.reveal{opacity:0;transform:translateY(8px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out);}.reveal.in{opacity:1;transform:none;}
+@media(min-width:768px){.nav{display:flex;gap:var(--sp-1);}.header-cta{display:inline-flex;}.nav-toggle{display:none;}.phases{grid-template-columns:repeat(4,1fr);}.incl{grid-template-columns:1fr 1fr;column-gap:var(--sp-8);}.out{grid-template-columns:repeat(3,1fr);}.footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr;}.two-col{display:grid;grid-template-columns:1fr 1.3fr;gap:var(--sp-16);align-items:start;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<a href="#main" class="btn btn--solid" style="position:absolute;left:-999px;top:0;z-index:100" onfocus="this.style.left='8px';this.style.top='8px'" onblur="this.style.left='-999px'">Skip to content</a>
+<header class="site-header"><div class="wrap site-header__inner">
+  <a href="/" class="brand"><span class="brand__g">G</span><span>SLEY</span><span class="brand__digital">Digital</span></a>
+  <nav class="nav" aria-label="Primary"><a href="/">Home</a><a href="/services" aria-current="page">Services</a><a href="/tools">Tools</a><a href="/about">About</a><a href="/contact">Contact</a></nav>
+  <a href="/contact" class="btn btn--solid header-cta">Book a Discovery Call <span class="arrow">↗</span></a>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="var m=document.getElementById('mnav');this.setAttribute('aria-expanded',m.classList.toggle('open'))"><span></span><span></span><span></span></button>
+</div><div class="wrap"><div class="mobile-nav" id="mnav"><a href="/">Home</a><a href="/services">Services</a><a href="/tools">Tools</a><a href="/about">About</a><a href="/contact">Contact</a></div></div></header>
+
+<main id="main">
+<section class="page-hero"><div class="wrap">
+  <div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Marketing Automation</div>
+  <div class="page-hero__glyph">▲</div>
+  <h1>One view of the customer — and a lifecycle that acts on it.</h1>
+  <p class="lede">Most "automation" is just scheduled blasts on top of scattered data. The Orchestration Archetype™ unifies the customer into a single source of truth and runs cross-channel lifecycle journeys on it — so personalisation is real and reporting can be trusted.</p>
+  <div class="page-hero__ctas">
+    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/marketing-maturity-scorecard" class="btn btn--ghost">Score your marketing maturity ↗</a>
+  </div>
+  <div class="page-hero__meta">
+    <div><span class="k">Engagement</span><span class="v">Sprint → retainer</span></div>
+    <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
+    <div><span class="k">Archetype</span><span class="v">Orchestration™</span></div>
+    <div><span class="k">Pillar</span><span class="v">▲ GSLEY Market</span></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap narrow prose reveal">
+  <div class="marker"><span>§ 01</span><span class="marker__rule"></span><span>The gap</span></div>
+  <p class="first">Automation is sold as sophistication and bought as scheduling. The tools are powerful; the way most teams use them is not.</p>
+  <p>Data sits in silos — the CRM, the email platform, the ad accounts, the support desk — with no shared view of the customer. So "personalisation" means a first-name token, journeys don't reflect what the customer has actually done, and every report tells a slightly different story because every system counts differently. The platform licence is paid in full; perhaps a tenth of it is used.</p>
+</div></section>
+
+<section class="section section--bone"><div class="wrap">
+  <div class="marker reveal"><span>§ 02</span><span class="marker__rule"></span><span>The method</span></div>
+  <div class="narrow reveal" style="max-width:720px"><p class="h2">The Orchestration Archetype™</p><p class="lede" style="margin-top:var(--sp-4)">A documented method that builds the customer source of truth first, then orchestrates the lifecycle on top of it.</p></div>
+  <div class="phases reveal">
+    <div class="phase"><div class="no">01</div><h3>Diagnose</h3><p>Audit the stack, the data model, and the existing flows. Find where the single customer view breaks.</p></div>
+    <div class="phase"><div class="no">02</div><h3>Architect</h3><p>Design the single source of truth and the cross-channel lifecycle journeys that run on it — mapped to the real customer path.</p></div>
+    <div class="phase"><div class="no">03</div><h3>Deploy</h3><p>Build and launch the flows with segmentation, deliverability governance, and measurement that reconciles.</p></div>
+    <div class="phase"><div class="no">04</div><h3>Transfer</h3><p>An automation playbook and the data model your team maintains — so the system stays coherent as it grows.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="two-col">
+    <div class="reveal"><div class="marker"><span>§ 03</span><span class="marker__rule"></span><span>What's included</span></div><p class="h2">Data model, then journeys.</p><p class="lede" style="margin-top:var(--sp-4)">Built in the right order.</p></div>
+    <ul class="incl reveal">
+      <li><span class="tick">✓</span> Stack &amp; data audit</li>
+      <li><span class="tick">✓</span> Single source of truth design</li>
+      <li><span class="tick">✓</span> Lifecycle journey mapping</li>
+      <li><span class="tick">✓</span> Cross-channel flow build</li>
+      <li><span class="tick">✓</span> Segmentation model</li>
+      <li><span class="tick">✓</span> Deliverability &amp; governance</li>
+      <li><span class="tick">✓</span> Unified reporting</li>
+      <li><span class="tick">✓</span> Automation playbook</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="section section--bone"><div class="wrap">
+  <div class="marker reveal"><span>§ 04</span><span class="marker__rule"></span><span>Outcomes</span></div>
+  <div class="out reveal">
+    <div class="out__item"><div class="big">Unified</div><p>One source of truth on the customer.</p></div>
+    <div class="out__item"><div class="big">Orchestrated</div><p>Journeys that respond to real behaviour.</p></div>
+    <div class="out__item"><div class="big">Reconciled</div><p>Reporting that finally agrees with itself.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap narrow">
+  <div class="marker reveal"><span>§ 05</span><span class="marker__rule"></span><span>Questions</span></div>
+  <div class="faq reveal">
+    <details open><summary>How is this different from Email Marketing?<span class="pm">+</span></summary><div class="a">Email is one channel. Marketing Automation is the orchestration layer above all channels — email, SMS, ads, in-product — running on a unified customer record. Many clients start with the Email Sprint and graduate here when the lifecycle outgrows a single channel.</div></details>
+    <details><summary>And how is it different from Automation &amp; RevOps?<span class="pm">+</span></summary><div class="a">This is marketing-owned, customer-facing lifecycle orchestration. <a href="/services/digital/automation-and-revops" style="text-decoration:underline">Automation &amp; RevOps</a> in the Digital pillar is the back-office, revenue-operations counterpart. They share a data philosophy and are often deployed together.</div></details>
+    <details><summary>Do we need to change platforms?<span class="pm">+</span></summary><div class="a">Usually not. The Diagnose phase works with what you have wherever possible; the value is in the data model and orchestration logic, not the vendor. If a platform genuinely can't support the design, we'll say so and explain why.</div></details>
+  </div>
+</div></section>
+
+<section class="section section--bone"><div class="wrap reveal">
+  <div class="matched">
+    <div><h3>How mature is your marketing engine?</h3><p>The Marketing Maturity Scorecard places your function on a curve from ad hoc to orchestrated system — and shows whether automation is the right next step.</p></div>
+    <a href="/tools/marketing-maturity-scorecard" class="btn btn--solid">Score your maturity <span class="arrow">↗</span></a>
+  </div>
+</div></section>
+
+<section class="section section--ink"><div class="wrap cta-band reveal">
+  <p class="display">Stop scheduling blasts. Start orchestrating the lifecycle.</p>
+  <div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+</div></section>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="/" class="brand"><span class="brand__g">G</span><span>SLEY</span><span class="brand__digital">Digital</span></a><p>A productised growth and AI studio. Two pillars, one commercial system — engineered for ambitious institutions worldwide.</p><div class="contact">brief@gsleydigital.com<br>+234 902 476 7079<br>Lagos, Nigeria</div><a href="https://wa.me/2349024767079" class="whatsapp-pill" style="margin-top:var(--sp-4)">WhatsApp us ↗</a></div>
+    <div class="footer-col"><h4><span class="dot dot--m"></span>GSLEY Market</h4><ul><li><a href="/services/market/demand-generation">Demand Generation</a></li><li><a href="/services/market/b2b-sales-enablement">B2B Sales Enablement</a></li><li><a href="/services/market/marketing-automation">Marketing Automation</a></li><li><a href="/services/market/institutional-brand-and-reputation">Brand &amp; Reputation</a></li><li><a href="/services/market">All Market services ↗</a></li></ul></div>
+    <div class="footer-col"><h4><span class="dot dot--d"></span>GSLEY Digital</h4><ul><li><a href="/services/digital/ai-agent-deployment">AI Agent Deployment</a></li><li><a href="/services/digital/automation-and-revops">Automation &amp; RevOps</a></li><li><a href="/services/digital/ai-adoption-programmes">AI Adoption</a></li><li><a href="/services/digital">All Digital services ↗</a></li></ul></div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="/tools">Tools</a></li><li><a href="/about">About</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/legal/privacy">Privacy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 GSLEY Digital · All rights reserved</span><span>Engineered Precision</span></div>
+</div></footer>
+<a href="https://wa.me/2349024767079?text=Hi%20GSLEY%2C%20I%27d%20like%20to%20talk%20about%20marketing%20automation." class="wa-fab" target="_blank" rel="noopener" aria-label="Chat with GSLEY on WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.16 1.6 5.98L4 29l8.2-1.55a12 12 0 0 0 3.84.63h.01c6.63 0 12.03-5.4 12.03-12.04C28.08 8.4 22.68 3 16.04 3zm0 21.9c-1.2 0-2.39-.2-3.51-.6l-.25-.1-4.87.92.93-4.74-.16-.26a9.86 9.86 0 0 1-1.51-5.22c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.13 1.03 7 2.9a9.82 9.82 0 0 1 2.9 7c0 5.47-4.45 9.9-9.92 9.9zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg></a>
+<script>var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});</script>
+</body>
+</html>

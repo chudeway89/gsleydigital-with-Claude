@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About GSLEY Digital — The Archetype System™</title>
+<meta name="description" content="A board-level commercial systems studio. Two pillars, one operating method, documented archetypes — never opinions.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink-900:#0F1B2D;--ink-700:#1F2C3F;--ink-500:#4A5568;--ink-300:#8895A7;--paper:#FAF9F5;--bone:#F1EFE7;--line:#E5E2D8;--accent-market:#0F1B2D;--accent-digital:#16B8A6;--teal-900:#0B4F49;--success:#15803D;--focus:#16B8A6;--font-display:"Source Serif 4",Georgia,serif;--font-body:"Inter",-apple-system,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;--fs-h1:clamp(2.25rem,5vw,3.75rem);--fs-h2:clamp(1.75rem,4vw,2.75rem);--fs-h3:clamp(1.25rem,2.5vw,1.5rem);--fs-body:clamp(1rem,1.1vw,1.0625rem);--fs-small:.875rem;--fs-mono:.75rem;--lh-tight:1.1;--lh-snug:1.3;--lh-base:1.55;--lh-loose:1.7;--sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-6:1.5rem;--sp-8:2rem;--sp-12:3rem;--sp-16:4rem;--sp-24:6rem;--r-sm:6px;--r-md:10px;--r-pill:999px;--ease-out:cubic-bezier(.22,1,.36,1);--dur-base:240ms;--dur-slow:480ms;--container-max:1200px;--container-narrow:780px;--gutter:clamp(1rem,4vw,2rem);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-base);color:var(--ink-900);background:var(--paper);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}button{font-family:inherit;cursor:pointer;border:none;background:none;}
+img{max-width:100%;display:block;}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+.wrap{max-width:var(--container-max);margin-inline:auto;padding-inline:var(--gutter);}
+.narrow{max-width:var(--container-narrow);}
+.section{padding-block:var(--sp-24);border-top:1px solid var(--line);}
+.section--bone{background:var(--bone);}
+.section--ink{background:var(--ink-900);color:var(--paper);border-top-color:var(--ink-700);}
+.marker{display:flex;align-items:center;gap:var(--sp-3);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-500);margin-bottom:var(--sp-8);}
+.marker__rule{height:1px;width:48px;background:currentColor;opacity:.4;}
+.section--ink .marker{color:var(--accent-digital);}
+.display{font-family:var(--font-display);line-height:var(--lh-tight);font-weight:400;letter-spacing:-.02em;}
+.h2{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-snug);font-weight:400;letter-spacing:-.015em;}
+.h3{font-family:var(--font-display);font-size:var(--fs-h3);line-height:var(--lh-snug);font-weight:600;}
+.lede{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--ink-700);line-height:var(--lh-base);}
+.section--ink .lede{color:var(--ink-300);}
+.mono-tag{font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);}
+.glyph{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1.5px solid currentColor;border-radius:var(--r-sm);font-size:.8rem;}
+.glyph--market{color:var(--accent-market);}.glyph--digital{color:var(--accent-digital);}
+.btn{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-6);border-radius:var(--r-sm);font-size:var(--fs-small);font-weight:500;transition:transform 120ms var(--ease-out),background var(--dur-base),color var(--dur-base);}
+.btn:hover{transform:translateY(-1px);}
+.btn--solid{background:var(--ink-900);color:var(--paper);}.btn--solid:hover{background:var(--ink-700);}
+.btn--ghost{border:1px solid var(--line);color:var(--ink-900);}.btn--ghost:hover{border-color:var(--ink-900);}
+.btn--digital{background:var(--accent-digital);color:var(--ink-900);}
+.btn--paper{background:var(--paper);color:var(--ink-900);}
+.section--ink .btn--ghost{border-color:rgba(250,249,245,.3);color:var(--paper);}.section--ink .btn--ghost:hover{border-color:var(--paper);}
+.arrow{transition:transform var(--dur-base) var(--ease-out);}.btn:hover .arrow{transform:translate(2px,-2px);}
+.open-link{display:inline-flex;align-items:center;gap:var(--sp-2);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.1em;text-transform:uppercase;}
+.open-link--digital{color:var(--accent-digital);}
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+.brand{display:flex;align-items:baseline;gap:var(--sp-2);font-family:var(--font-display);font-weight:600;font-size:1.25rem;}
+.brand__g{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--ink-900);border-radius:50%;font-size:1rem;}
+.brand__digital{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-500);font-family:var(--font-mono);align-self:center;}
+.nav{display:none;}.nav a{font-size:var(--fs-small);color:var(--ink-700);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-sm);}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink-900);}.nav a[aria-current="page"]{background:var(--bone);}
+.header-cta{display:none;}.nav-toggle{display:flex;flex-direction:column;gap:5px;padding:var(--sp-2);}
+.nav-toggle span{width:22px;height:1.5px;background:var(--ink-900);}
+.mobile-nav{display:none;flex-direction:column;padding:var(--sp-4) 0 var(--sp-8);}
+.mobile-nav.open{display:flex;}.mobile-nav a{font-size:1.125rem;padding:var(--sp-3) 0;border-top:1px solid var(--line);}
+/* page hero contrast band */
+.page-hero{background:var(--ink-900);color:var(--paper);padding-block:var(--sp-16);}
+.page-hero--teal{background:var(--teal-900);}
+.crumb{font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-300);margin-bottom:var(--sp-8);}
+.crumb a:hover{color:var(--paper);}.page-hero--teal .crumb{color:rgba(250,249,245,.6);}
+.page-hero h1{font-family:var(--font-display);font-size:var(--fs-h1);line-height:var(--lh-tight);font-weight:400;letter-spacing:-.02em;margin-bottom:var(--sp-6);max-width:18ch;}
+.page-hero .lede{color:rgba(250,249,245,.8);max-width:54ch;}
+.page-hero__glyph{margin-bottom:var(--sp-6);color:var(--accent-digital);}
+/* prose */
+.prose p{color:var(--ink-700);margin-bottom:var(--sp-6);max-width:64ch;}
+.prose p.first{font-size:1.125rem;color:var(--ink-900);}
+.prose .h2{margin-bottom:var(--sp-6);}
+/* steps (archetype) */
+.steps{display:grid;gap:1px;background:var(--ink-700);border:1px solid var(--ink-700);border-radius:var(--r-md);overflow:hidden;margin-top:var(--sp-8);}
+.step{background:var(--ink-900);padding:var(--sp-8);}
+.step__no{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--accent-digital);letter-spacing:.12em;margin-bottom:var(--sp-4);}
+.step h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;margin-bottom:var(--sp-3);color:var(--paper);}
+.step p{font-size:var(--fs-small);color:var(--ink-300);}
+/* principles */
+.principles{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;}
+.principle{background:var(--paper);padding:var(--sp-8);}
+.principle .no{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-300);letter-spacing:.1em;}
+.principle h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;margin:var(--sp-3) 0;}
+.principle p{font-size:var(--fs-small);color:var(--ink-500);}
+/* founder */
+.founder{display:grid;gap:var(--sp-12);align-items:start;}
+.founder__photo{border-radius:var(--r-md);overflow:hidden;background:var(--bone);aspect-ratio:4/5;}
+.founder__photo--ph{display:flex;align-items:center;justify-content:center;color:var(--ink-300);font-family:var(--font-mono);font-size:var(--fs-mono);text-align:center;padding:var(--sp-8);}
+.founder__body p{color:var(--ink-700);margin-bottom:var(--sp-4);max-width:56ch;}
+.founder__creds{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-500);line-height:var(--lh-loose);margin:var(--sp-6) 0;}
+.founder__sign{display:flex;align-items:center;gap:var(--sp-4);}
+.founder__sign .name{font-family:var(--font-display);font-size:1.125rem;}
+/* proof */
+.proof{display:flex;flex-wrap:wrap;gap:var(--sp-3);}
+.proof__item{display:flex;flex-direction:column;gap:2px;padding:var(--sp-4) var(--sp-6);border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);}
+.proof__item .org{font-weight:600;font-size:var(--fs-small);}
+.proof__item .what{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-500);}
+/* cta band */
+.cta-band{text-align:center;}
+.cta-band .display{font-size:var(--fs-h2);max-width:20ch;margin:0 auto var(--sp-8);color:var(--paper);}
+.cta-band__btns{display:flex;flex-wrap:wrap;gap:var(--sp-3);justify-content:center;}
+/* footer */
+.site-footer{background:var(--bone);border-top:1px solid var(--line);padding-block:var(--sp-16) var(--sp-8);}
+.footer-grid{display:grid;gap:var(--sp-12);margin-bottom:var(--sp-16);}
+.footer-brand p{color:var(--ink-500);font-size:var(--fs-small);max-width:30ch;margin:var(--sp-4) 0;}
+.footer-brand .contact{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-700);line-height:var(--lh-loose);}
+.footer-col h4{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-small);font-weight:600;margin-bottom:var(--sp-4);}
+.footer-col h4 .dot{width:7px;height:7px;border-radius:1px;}.footer-col h4 .dot--m{background:var(--ink-900);}.footer-col h4 .dot--d{background:var(--accent-digital);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--sp-2);}
+.footer-col a{font-size:var(--fs-small);color:var(--ink-500);}.footer-col a:hover{color:var(--ink-900);}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;padding-top:var(--sp-8);border-top:1px solid var(--line);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.08em;color:var(--ink-500);text-transform:uppercase;}
+.whatsapp-pill{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-4);background:var(--success);color:#fff;border-radius:var(--r-pill);font-family:var(--font-body);font-size:var(--fs-small);text-transform:none;letter-spacing:0;}
+/* wa fab */
+.wa-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:transform .2s var(--ease-out),box-shadow .2s;}
+.wa-fab:hover{transform:scale(1.06);}
+.wa-fab::after{content:"Chat with us";position:absolute;right:68px;white-space:nowrap;background:var(--ink-900);color:#fff;font-size:.8rem;padding:.4rem .7rem;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none;}
+.wa-fab:hover::after{opacity:1;transform:translateX(0);}
+.reveal{opacity:0;transform:translateY(8px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out);}
+.reveal.in{opacity:1;transform:none;}
+@media(min-width:768px){
+  .nav{display:flex;gap:var(--sp-1);}.header-cta{display:inline-flex;}.nav-toggle{display:none;}
+  .steps{grid-template-columns:repeat(4,1fr);}
+  .principles{grid-template-columns:repeat(2,1fr);}
+  .founder{grid-template-columns:320px 1fr;}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-16);align-items:start;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}.reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<a href="#main" class="btn btn--solid" style="position:absolute;left:-999px;top:0;z-index:100" onfocus="this.style.left='8px';this.style.top='8px'" onblur="this.style.left='-999px'">Skip to content</a>
+
+<header class="site-header"><div class="wrap site-header__inner">
+  <a href="/" class="brand"><span class="brand__g">G</span><span>SLEY</span><span class="brand__digital">Digital</span></a>
+  <nav class="nav" aria-label="Primary"><a href="/">Home</a><a href="/services">Services</a><a href="/tools">Tools</a><a href="/about" aria-current="page">About</a><a href="/contact">Contact</a></nav>
+  <a href="/contact" class="btn btn--solid header-cta">Book a Discovery Call <span class="arrow">↗</span></a>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="var m=document.getElementById('mnav');this.setAttribute('aria-expanded',m.classList.toggle('open'))"><span></span><span></span><span></span></button>
+</div><div class="wrap"><div class="mobile-nav" id="mnav"><a href="/">Home</a><a href="/services">Services</a><a href="/tools">Tools</a><a href="/about">About</a><a href="/contact">Contact</a></div></div></header>
+
+<main id="main">
+
+<!-- HERO (ink contrast band) -->
+<section class="page-hero"><div class="wrap">
+  <div class="crumb"><a href="/">Home</a> › About</div>
+  <h1>A commercial systems studio. Engineered, not opinionated.</h1>
+  <p class="lede">GSLEY exists to close one specific gap: the distance between capability and commercial outcome. Most organisations are capable. Few have engineered the system that turns capability into compounding revenue, reputation, and category position.</p>
+</div></section>
+
+<!-- THESIS -->
+<section class="section"><div class="wrap narrow prose reveal">
+  <div class="marker"><span>§ A</span><span class="marker__rule"></span><span>The thesis</span></div>
+  <p class="first">Capability is common. Commercial outcomes are not. The difference is rarely talent — it is whether the work is run as a documented system or as a series of disposable campaigns and one-off projects.</p>
+  <p>GSLEY is built for organisations that intend to compound. Two pillars, composed as one commercial system: GSLEY Market engineers predictable demand, brand authority, and the commercial spine that converts attention into booked revenue. GSLEY Digital builds the AI-native operating systems — agents, automation, and data infrastructure — that release capacity and make the whole machine faster.</p>
+  <p>We do not sell hours of opinion. We install methods. Every engagement runs on a documented archetype, and the archetype is transferred to your team at the end — so the system stays in the organisation rather than walking out the door with a consultant.</p>
+</div></section>
+
+<!-- ARCHETYPE SYSTEM -->
+<section class="section section--ink"><div class="wrap">
+  <div class="marker"><span>§ B</span><span class="marker__rule"></span><span>The method</span></div>
+  <div class="narrow" style="max-width:720px">
+    <p class="h2" style="color:var(--paper)">The Archetype System™</p>
+    <p class="lede" style="margin-top:var(--sp-6)">An archetype is a named, repeatable method with defined inputs, a defined sequence, and defined outputs. It is the opposite of bespoke improvisation. Four phases run every engagement.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="step__no">01</div><h3>Diagnose</h3><p>A scored read-out of where the commercial system is leaking — revenue, reputation, or capacity. Often via one of our eight free diagnostics.</p></div>
+    <div class="step"><div class="step__no">02</div><h3>Architect</h3><p>The named archetype mapped to your context, your data, and your constraints. You see the full method before work begins.</p></div>
+    <div class="step"><div class="step__no">03</div><h3>Deploy</h3><p>AI-native delivery against an explicit governance protocol — bias review, data-residency posture, human override. Built to be audited.</p></div>
+    <div class="step"><div class="step__no">04</div><h3>Transfer</h3><p>A documented operating manual your team owns and runs after we leave. No black boxes. No vendor lock-in.</p></div>
+  </div>
+</div></section>
+
+<!-- PILLARS -->
+<section class="section section--bone"><div class="wrap">
+  <div class="marker"><span>§ C</span><span class="marker__rule"></span><span>Two pillars</span></div>
+  <div class="two-col reveal">
+    <div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)"><span class="glyph glyph--market">▲</span><span class="h3">GSLEY Market</span></div>
+      <p style="color:var(--ink-700);margin-bottom:var(--sp-6)">An integrated growth studio engineering predictable demand and brand authority — composed as one compounding system, not disposable campaigns.</p>
+      <a href="/services/market" class="open-link">Explore Market ↗</a>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)"><span class="glyph glyph--digital">◇</span><span class="h3">GSLEY Digital</span></div>
+      <p style="color:var(--ink-700);margin-bottom:var(--sp-6)">AI-native operating systems for institutions in transition. We architect infrastructure, deploy agents, and rewire workflows around proven outcomes — under explicit governance.</p>
+      <a href="/services/digital" class="open-link open-link--digital">Explore Digital ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOUNDER -->
+<section class="section"><div class="wrap">
+  <div class="marker"><span>§ D</span><span class="marker__rule"></span><span>Founder</span></div>
+  <div class="founder reveal">
+    <div class="founder__photo"><div class="founder__photo--ph">[ Founder photo<br>Chukwudi Eze<br>4:5 portrait<br>→ /assets/img/chukwudi-eze.jpg ]</div></div>
+    <div class="founder__body">
+      <p class="h2" style="margin-bottom:var(--sp-6)">Chukwudi Kingsley Eze, MCIPR</p>
+      <p>A decade engineering board-level strategy for institutions where trust is the operating asset: structuring multi-stakeholder partnerships involving Tier-1 financial institutions, international medical groups, and sovereign-backed investment vehicles; building corporate communications and public-relations functions from the ground up; designing thought-leadership programmes for C-suite spokespeople and key stakeholders; authoring the executive messaging frameworks and media governance that institutional brands deploy across national and international press.</p>
+      <p style="font-style:italic;color:var(--ink-900)">GSLEY is the productised studio version of that work — engineered for institutions that intend to compound, not campaign.</p>
+      <div class="founder__creds">Chartered Public Relations Practitioner (MCIPR, UK)<br>London Business School — Brand Management<br>Lagos Business School — Executive Programme<br>IBM — Enterprise Design Thinking Practitioner</div>
+      <div class="founder__sign"><span class="name">— Chukwudi</span><a href="https://www.linkedin.com/in/chukwudihex" class="open-link">LinkedIn ↗</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PRINCIPLES -->
+<section class="section section--bone"><div class="wrap">
+  <div class="marker"><span>§ E</span><span class="marker__rule"></span><span>Operating principles</span></div>
+  <div class="principles reveal">
+    <div class="principle"><div class="no">01</div><h3>Documented, not improvised</h3><p>Every engagement runs on a named archetype with defined inputs and outputs. Method over opinion.</p></div>
+    <div class="principle"><div class="no">02</div><h3>Owned, not rented</h3><p>The system is transferred to your team. You keep the operating manual when the engagement ends.</p></div>
+    <div class="principle"><div class="no">03</div><h3>Governed, not guessed</h3><p>AI delivery runs against explicit governance — bias review, data residency, human override. Auditable by design.</p></div>
+    <div class="principle"><div class="no">04</div><h3>Compounding, not disposable</h3><p>Two pillars composed as one system, built to compound quarter over quarter — not one-off campaigns.</p></div>
+  </div>
+</div></section>
+
+<!-- PROOF -->
+<section class="section"><div class="wrap">
+  <div class="marker"><span>§ F</span><span class="marker__rule"></span><span>Credentials, not claims</span></div>
+  <div class="proof reveal">
+    <div class="proof__item"><span class="org">MCIPR</span><span class="what">Chartered Institute of PR, UK</span></div>
+    <div class="proof__item"><span class="org">London Business School</span><span class="what">Brand Management</span></div>
+    <div class="proof__item"><span class="org">Lagos Business School</span><span class="what">Executive Programme</span></div>
+    <div class="proof__item"><span class="org">IBM</span><span class="what">Enterprise Design Thinking</span></div>
+    <div class="proof__item"><span class="org">Google</span><span class="what">Digital Marketing &amp; E-Commerce</span></div>
+  </div>
+  <p class="mono-tag" style="margin-top:var(--sp-8)">Client roster — disclosed on request, under NDA.</p>
+</div></section>
+
+<!-- CTA -->
+<section class="section section--ink"><div class="wrap cta-band reveal">
+  <p class="display">Bring us a gap between capability and outcome. We will engineer the bridge.</p>
+  <div class="cta-band__btns">
+    <a href="/tools/growth-diagnostic" class="btn btn--digital">Run the Growth Diagnostic ↗</a>
+    <a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a>
+  </div>
+</div></section>
+
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="/" class="brand"><span class="brand__g">G</span><span>SLEY</span><span class="brand__digital">Digital</span></a>
+      <p>A productised growth and AI studio. Two pillars, one commercial system — engineered for ambitious institutions worldwide.</p>
+      <div class="contact">brief@gsleydigital.com<br>+234 902 476 7079<br>Lagos, Nigeria</div>
+      <a href="https://wa.me/2349024767079" class="whatsapp-pill" style="margin-top:var(--sp-4)">WhatsApp us ↗</a></div>
+    <div class="footer-col"><h4><span class="dot dot--m"></span>GSLEY Market</h4><ul><li><a href="/services/market/website-design">Website Design</a></li><li><a href="/services/market/google-ads">Google Ads</a></li><li><a href="/services/market/email-marketing">Email Marketing</a></li><li><a href="/services/market/social-media-marketing">Social Media</a></li><li><a href="/services/market">All Market services ↗</a></li></ul></div>
+    <div class="footer-col"><h4><span class="dot dot--d"></span>GSLEY Digital</h4><ul><li><a href="/services/digital/ai-agent-deployment">AI Agent Deployment</a></li><li><a href="/services/digital/automation-and-revops">Automation &amp; RevOps</a></li><li><a href="/services/digital/ai-adoption-programmes">AI Adoption</a></li><li><a href="/services/digital">All Digital services ↗</a></li></ul></div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a href="/tools">Tools</a></li><li><a href="/about">About</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/legal/privacy">Privacy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 GSLEY Digital · All rights reserved</span><span>Engineered Precision</span></div>
+</div></footer>
+
+<a href="https://wa.me/2349024767079?text=Hi%20GSLEY%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="wa-fab" target="_blank" rel="noopener" aria-label="Chat with GSLEY on WhatsApp"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" fill="currentColor"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.16 1.6 5.98L4 29l8.2-1.55a12 12 0 0 0 3.84.63h.01c6.63 0 12.03-5.4 12.03-12.04C28.08 8.4 22.68 3 16.04 3zm0 21.9c-1.2 0-2.39-.2-3.51-.6l-.25-.1-4.87.92.93-4.74-.16-.26a9.86 9.86 0 0 1-1.51-5.22c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.13 1.03 7 2.9a9.82 9.82 0 0 1 2.9 7c0 5.47-4.45 9.9-9.92 9.9zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg></a>
+
+<script>
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
