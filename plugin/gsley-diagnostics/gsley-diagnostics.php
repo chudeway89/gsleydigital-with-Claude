@@ -25,6 +25,20 @@ require_once GSLEY_DIAGNOSTICS_DIR . 'includes/configs.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/render.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/rest.php';
 
+// Backend: database, email, persistence, dashboard.
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/db.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/resend.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/leads.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/report.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/submissions.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/contact.php';
+if ( is_admin() ) {
+	require_once GSLEY_DIAGNOSTICS_DIR . 'includes/admin.php';
+}
+
+// Create the custom tables on activation.
+register_activation_hook( __FILE__, 'gsley_install_tables' );
+
 /**
  * Register front-end assets (enqueued on demand by the render callback).
  */

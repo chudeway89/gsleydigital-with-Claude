@@ -49,19 +49,57 @@ One shell (intro → steps → answer-first result → email gate) serves all th
 - **Instance-safe.** Multiple tools can sit on one page; each reads its own
   config and manages its own state.
 
-## Backend contract (wired here, fulfilled by the data task)
+## Backend
 
-On the email step the engine POSTs to `POST /wp-json/gsley/v1/tools/{id}` with
-the payload from `diagnostics-tool-spec.md §3`. The endpoint validates (email,
-honeypot, per-IP rate limit) and fires:
+The plugin now includes the full data layer.
 
-```php
-do_action( 'gsley_diagnostics_submission', $submission, $tool );
-```
+**Database tables** (created on activation; `dbDelta`, re-run on version bump):
+- `{prefix}gsley_leads` — one row per capture event (contact brief or tool
+  completion): source, name, email, organisation, need, message, tool, ip,
+  user agent, and the notification-email delivery status.
+- `{prefix}gsley_tool_submissions` — one row per completed diagnostic, linked to
+  a lead: tool, overall/total, band, priority, the full result JSON, and the
+  report-email delivery status (`pending` / `sent` / `failed` + Resend id/error).
 
-The backend task hooks this to persist (`gsley_leads` / `gsley_tool_submissions`)
-and send the report via **Resend**. Until then the endpoint acknowledges so the
-answer-first flow works end to end.
+**Tool reports.** On the email step the engine POSTs the
+`diagnostics-tool-spec.md §3` payload to `POST /wp-json/gsley/v1/tools/{id}`
+(validated: email + honeypot + per-IP rate limit). That fires
+`do_action( 'gsley_diagnostics_submission', … )`, which persists the lead +
+submission, builds the report (the §3 skeleton, tokenised per tool/engine), and
+sends it via **Resend** — logging delivery status on the row.
+
+**Contact form.** The theme's no-JS contact form posts to `/api/contact`; the
+plugin intercepts that path, validates (honeypot + email + rate limit), stores
+the lead, emails the brief to the notification inbox via Resend (reply-to the
+enquirer), and redirects back to `/contact?sent=1` (POST/redirect/GET).
+
+**Resend, not wp_mail.** All transactional email goes through Resend. The report
+and contact emails share the on-brand HTML skeleton in `includes/report.php` /
+`includes/contact.php`.
+
+**Admin dashboard** (`GSLEY Leads` menu, `manage_options`):
+- Summary cards: leads captured (+ unique emails), contact briefs, tool
+  completions, reports sent (+ delivery rate / failures).
+- Tool analytics: completions, average score (or estimate), reports sent, per tool.
+- Recent leads table with source, contact details, tool/need, message snippet,
+  and per-row email delivery status (failures show the Resend error on hover),
+  paginated.
+- **Settings** subpage: Resend API key, From address, notification inbox.
+
+## What's needed to run it (on hosting)
+
+1. **Activate the plugin** — this creates the two tables.
+2. **Add a Resend API key** — either set `define( 'GSLEY_RESEND_API_KEY', '…' );`
+   in `wp-config.php` (preferred), or paste it under **GSLEY Leads → Settings**.
+3. **Verify the From domain/sender in Resend** and set the From address +
+   notification inbox in Settings (defaults to `brief@gsleydigital.com`).
+4. Leads are captured **even without a key** — only email sending is skipped, and
+   the row is logged as `failed` with the reason, so nothing is lost.
+
+> Email delivery genuinely can't be exercised here — it needs the site on
+> hosting with a verified Resend domain and outbound HTTPS. The persistence,
+> validation, report rendering, and dashboard are all in place and unit-checked;
+> wiring the live key is the only remaining step.
 
 ## Try it
 
