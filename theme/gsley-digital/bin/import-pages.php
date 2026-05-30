@@ -58,6 +58,27 @@ $gsley_pages = array(
 	array( 'slug' => 'digital',                'title' => 'Digital',              'parent' => 'services', 'pattern' => 'gsley-digital/page-services-digital' ),
 	array( 'slug' => 'automation-and-revops',  'title' => 'Automation & RevOps',  'parent' => 'digital',  'pattern' => 'gsley-digital/page-service-automation-revops' ),
 	array( 'slug' => 'ai-adoption-programmes', 'title' => 'AI Adoption Programmes','parent' => 'digital',  'pattern' => 'gsley-digital/page-service-ai-adoption' ),
+
+	// Market service detail pages.
+	array( 'slug' => 'website-design',                  'title' => 'Website Design & Development',            'parent' => 'market', 'pattern' => 'gsley-digital/page-service-website-design' ),
+	array( 'slug' => 'google-ads',                      'title' => 'Google Ads',                              'parent' => 'market', 'pattern' => 'gsley-digital/page-service-google-ads' ),
+	array( 'slug' => 'email-marketing',                 'title' => 'Email Marketing',                         'parent' => 'market', 'pattern' => 'gsley-digital/page-service-email-marketing' ),
+	array( 'slug' => 'social-media-marketing',          'title' => 'Social Media Marketing',                  'parent' => 'market', 'pattern' => 'gsley-digital/page-service-social-media-marketing' ),
+	array( 'slug' => 'social-media-management',         'title' => 'Social Media Management',                 'parent' => 'market', 'pattern' => 'gsley-digital/page-service-social-media-management' ),
+	array( 'slug' => 'content-development',             'title' => 'Content Development',                     'parent' => 'market', 'pattern' => 'gsley-digital/page-service-content-development' ),
+	array( 'slug' => 'demand-generation',               'title' => 'Demand Generation Systems',               'parent' => 'market', 'pattern' => 'gsley-digital/page-service-demand-generation' ),
+	array( 'slug' => 'b2b-sales-enablement',            'title' => 'B2B Sales Enablement & Commercialisation','parent' => 'market', 'pattern' => 'gsley-digital/page-service-b2b-sales-enablement' ),
+	array( 'slug' => 'strategic-partnerships',          'title' => 'Strategic Partnerships',                  'parent' => 'market', 'pattern' => 'gsley-digital/page-service-strategic-partnerships' ),
+	array( 'slug' => 'institutional-brand-and-reputation','title' => 'Institutional Brand & Reputation',      'parent' => 'market', 'pattern' => 'gsley-digital/page-service-institutional-brand-and-reputation' ),
+	array( 'slug' => 'thought-leadership-programmes',   'title' => 'Thought-Leadership Programmes',           'parent' => 'market', 'pattern' => 'gsley-digital/page-service-thought-leadership-programmes' ),
+	array( 'slug' => 'marketing-automation',            'title' => 'Marketing Automation',                    'parent' => 'market', 'pattern' => 'gsley-digital/page-service-marketing-automation' ),
+
+	// Digital service detail pages.
+	array( 'slug' => 'ai-agent-deployment',             'title' => 'AI Agent Deployment',                     'parent' => 'digital','pattern' => 'gsley-digital/page-service-ai-agent-deployment' ),
+	array( 'slug' => 'digital-transformation',          'title' => 'Digital Transformation',                  'parent' => 'digital','pattern' => 'gsley-digital/page-service-digital-transformation' ),
+	array( 'slug' => 'data-infrastructure',             'title' => 'Data Infrastructure',                     'parent' => 'digital','pattern' => 'gsley-digital/page-service-data-infrastructure' ),
+	array( 'slug' => 'revenue-optimisation',            'title' => 'Revenue Optimisation',                    'parent' => 'digital','pattern' => 'gsley-digital/page-service-revenue-optimisation' ),
+
 	array( 'slug' => 'tools',                  'title' => 'Tools',                'parent' => null,       'pattern' => 'gsley-digital/page-tools' ),
 	array( 'slug' => 'contact',                'title' => 'Contact',              'parent' => null,       'pattern' => 'gsley-digital/page-contact' ),
 	array( 'slug' => 'legal',                  'title' => 'Legal',                'parent' => null,       'content' => $gsley_legal_index ),

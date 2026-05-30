@@ -460,6 +460,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .u-italic{font-style:italic;}
 .u-fs-small{font-size:var(--fs-small);}
 .u-block{display:block;}
+.u-mt-3{margin-top:var(--sp-3);}
 .u-mt-4{margin-top:var(--sp-4);}
 .u-mt-6{margin-top:var(--sp-6);}
 .u-mt-8{margin-top:var(--sp-8);}

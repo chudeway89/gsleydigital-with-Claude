@@ -94,9 +94,27 @@ automation-and-revops`), and assigns the full-width template. Idempotent —
 re-running updates in place. Or create each Page by hand and insert the
 matching pattern.
 
-> **Still to port (follow-up):** the 15 existing service detail pages
-> (`/services/market/*` and the other `/services/digital/*`). The components
-> and locking pattern they need already exist in this theme.
+**Service detail pages** — all 17 are built as `page-service-*` patterns and
+wired into the importer under their pillar parent:
+
+- **Market:** website-design, google-ads, email-marketing,
+  social-media-marketing, social-media-management, content-development,
+  demand-generation, b2b-sales-enablement, strategic-partnerships,
+  institutional-brand-and-reputation, thought-leadership-programmes,
+  marketing-automation.
+- **Digital:** ai-agent-deployment, automation-and-revops (*RevOps Spine™*),
+  ai-adoption-programmes (*Governed Adoption™*), digital-transformation,
+  data-infrastructure, revenue-optimisation.
+
+Fifteen were ported from the Phase 1 reference HTML. **Social Media Management**
+had no Phase 1 source — it is authored here (kept separate from Social Media
+Marketing per decision) on *The Owned-Channel Archetype™*. Each carries its
+named archetype in the hero meta; editable copy is the H1, hero lede, the gap
+prose, the method archetype + lede, the FAQ and the closing line — dense grids
+(phases, included scope, outcomes, companion tool, CTA buttons) are locked.
+
+> **Note:** `media-management` is intentionally not a standalone page — it is
+> consolidated into Institutional Brand & Reputation (`#media-management`).
 
 ## Design tokens
 
