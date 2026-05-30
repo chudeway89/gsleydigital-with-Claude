@@ -1,0 +1,183 @@
+/* ============================================================
+   GSLEY DIGITAL · COMPONENT STYLESHEET
+   ------------------------------------------------------------
+   Design TOKENS live in theme.json. This file holds only the
+   components theme.json cannot express: header, nav, footer,
+   buttons, section helpers, WhatsApp FAB, scroll-reveal.
+
+   The block :root below aliases the short token names used in
+   the Phase 1 design reference to the custom properties that
+   theme.json generates, so the ported component CSS stays
+   byte-identical to the approved design.
+   ============================================================ */
+:root{
+  --ink-900:var(--wp--preset--color--ink-900);
+  --ink-700:var(--wp--preset--color--ink-700);
+  --ink-500:var(--wp--preset--color--ink-500);
+  --ink-300:var(--wp--preset--color--ink-300);
+  --paper:var(--wp--preset--color--paper);
+  --bone:var(--wp--preset--color--bone);
+  --line:var(--wp--preset--color--line);
+  --accent-market:var(--wp--preset--color--accent-market);
+  --accent-digital:var(--wp--preset--color--accent-digital);
+  --danger:var(--wp--preset--color--danger);
+  --success:var(--wp--preset--color--success);
+  --warning:var(--wp--preset--color--warning);
+
+  --font-display:var(--wp--preset--font-family--display);
+  --font-body:var(--wp--preset--font-family--body);
+  --font-mono:var(--wp--preset--font-family--mono);
+
+  --fs-h1:var(--wp--preset--font-size--h1);
+  --fs-h2:var(--wp--preset--font-size--h2);
+  --fs-h3:var(--wp--preset--font-size--h3);
+  --fs-body:var(--wp--preset--font-size--body);
+  --fs-small:var(--wp--preset--font-size--small);
+  --fs-mono:var(--wp--preset--font-size--mono);
+
+  --lh-tight:var(--wp--custom--line-height--tight);
+  --lh-snug:var(--wp--custom--line-height--snug);
+  --lh-base:var(--wp--custom--line-height--base);
+  --lh-loose:var(--wp--custom--line-height--loose);
+
+  --sp-1:var(--wp--preset--spacing--1);
+  --sp-2:var(--wp--preset--spacing--2);
+  --sp-3:var(--wp--preset--spacing--3);
+  --sp-4:var(--wp--preset--spacing--4);
+  --sp-6:var(--wp--preset--spacing--6);
+  --sp-8:var(--wp--preset--spacing--8);
+  --sp-12:var(--wp--preset--spacing--12);
+  --sp-16:var(--wp--preset--spacing--16);
+  --sp-24:var(--wp--preset--spacing--24);
+  --sp-32:var(--wp--preset--spacing--32);
+
+  --r-sm:var(--wp--custom--radius--sm);
+  --r-md:var(--wp--custom--radius--md);
+  --r-lg:var(--wp--custom--radius--lg);
+  --r-pill:var(--wp--custom--radius--pill);
+
+  --ease-out:var(--wp--custom--ease--out);
+  --dur-fast:var(--wp--custom--duration--fast);
+  --dur-base:var(--wp--custom--duration--base);
+  --dur-slow:var(--wp--custom--duration--slow);
+
+  --focus:var(--wp--custom--focus--color);
+  --container-max:1200px;
+  --container-narrow:var(--wp--custom--container--narrow);
+  --gutter:var(--wp--custom--gutter);
+}
+
+/* ============================================================ RESET (theme-scoped) */
+body{
+  font-family:var(--font-body);font-size:var(--fs-body);
+  line-height:var(--lh-base);color:var(--ink-900);background:var(--paper);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px;}
+
+/* ============================================================ LAYOUT */
+.wrap{max-width:var(--container-max);margin-inline:auto;padding-inline:var(--gutter);}
+.narrow{max-width:var(--container-narrow);}
+.section{padding-block:var(--sp-24);border-top:1px solid var(--line);}
+.section--bone{background:var(--bone);}
+.section--ink{background:var(--ink-900);color:var(--paper);border-top-color:var(--ink-700);}
+
+/* Section marker:  § 01  ————  ARCHITECTURE */
+.marker{
+  display:flex;align-items:center;gap:var(--sp-3);
+  font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-500);margin-bottom:var(--sp-8);
+}
+.marker__rule{height:1px;width:48px;background:currentColor;opacity:.4;}
+.section--ink .marker{color:var(--accent-digital);}
+
+/* Typography helpers */
+.display{font-family:var(--font-display);line-height:var(--lh-tight);font-weight:400;letter-spacing:-.02em;}
+.h2{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-snug);font-weight:400;letter-spacing:-.015em;}
+.h3{font-family:var(--font-display);font-size:var(--fs-h3);line-height:var(--lh-snug);font-weight:600;}
+.lede{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--ink-700);line-height:var(--lh-base);}
+.mono-tag{font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);}
+
+/* ============================================================ BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--sp-2);
+  padding:var(--sp-3) var(--sp-6);border-radius:var(--r-sm);
+  font-size:var(--fs-small);font-weight:500;letter-spacing:.01em;
+  transition:transform var(--dur-fast) var(--ease-out),background var(--dur-base) var(--ease-out),color var(--dur-base);
+}
+.btn:hover{transform:translateY(-1px);}
+.btn--solid{background:var(--ink-900);color:var(--paper);}
+.btn--solid:hover{background:var(--ink-700);}
+.btn--ghost{border:1px solid var(--line);color:var(--ink-900);}
+.btn--ghost:hover{border-color:var(--ink-900);}
+.btn--digital{background:var(--accent-digital);color:var(--ink-900);}
+.section--ink .btn--ghost{border-color:rgba(250,249,245,.25);color:var(--paper);}
+.section--ink .btn--ghost:hover{border-color:var(--paper);}
+.arrow{transition:transform var(--dur-base) var(--ease-out);}
+.btn:hover .arrow{transform:translate(2px,-2px);}
+
+/* Skip-link */
+.skip-link{position:absolute;left:-999px;top:0;z-index:100;}
+.skip-link:focus{left:8px;top:8px;}
+
+/* ============================================================ HEADER */
+.site-header{
+  position:sticky;top:0;z-index:50;background:rgba(250,249,245,.85);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+}
+.site-header__inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+.brand{display:flex;align-items:baseline;gap:var(--sp-2);font-family:var(--font-display);font-weight:600;font-size:1.25rem;letter-spacing:-.01em;}
+.brand__g{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--ink-900);border-radius:50%;font-size:1rem;line-height:1;}
+.brand__digital{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-500);font-family:var(--font-mono);align-self:center;}
+.nav{display:none;}
+.nav a{font-size:var(--fs-small);color:var(--ink-700);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-sm);transition:color var(--dur-base);}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--ink-900);}
+.nav a[aria-current="page"]{background:var(--bone);}
+.header-cta{display:none;}
+.nav-toggle{display:flex;flex-direction:column;gap:5px;padding:var(--sp-2);}
+.nav-toggle span{width:22px;height:1.5px;background:var(--ink-900);transition:var(--dur-base);}
+.mobile-nav{display:none;flex-direction:column;gap:var(--sp-2);padding:var(--sp-4) 0 var(--sp-8);border-top:1px solid var(--line);}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:1.125rem;padding:var(--sp-3) 0;border-bottom:1px solid var(--line);}
+
+/* ============================================================ FOOTER */
+.site-footer{background:var(--bone);border-top:1px solid var(--line);padding-block:var(--sp-16) var(--sp-8);}
+.footer-grid{display:grid;gap:var(--sp-12);margin-bottom:var(--sp-16);}
+.footer-brand p{color:var(--ink-500);font-size:var(--fs-small);max-width:30ch;margin:var(--sp-4) 0;}
+.footer-brand .contact{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-700);line-height:var(--lh-loose);}
+.footer-col h4{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-small);font-weight:600;margin-bottom:var(--sp-4);}
+.footer-col h4 .dot{width:7px;height:7px;border-radius:1px;}
+.footer-col h4 .dot--m{background:var(--ink-900);}
+.footer-col h4 .dot--d{background:var(--accent-digital);}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--sp-2);}
+.footer-col a{font-size:var(--fs-small);color:var(--ink-500);transition:color var(--dur-base);}
+.footer-col a:hover{color:var(--ink-900);}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;align-items:center;padding-top:var(--sp-8);border-top:1px solid var(--line);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.08em;color:var(--ink-500);text-transform:uppercase;}
+.whatsapp-pill{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-4);background:var(--success);color:#fff;border-radius:var(--r-pill);font-family:var(--font-body);font-size:var(--fs-small);text-transform:none;letter-spacing:0;}
+
+/* ============================================================ WHATSAPP FAB (site-wide) */
+.wa-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:transform .2s var(--ease-out),box-shadow .2s;}
+.wa-fab:hover{transform:scale(1.06);box-shadow:0 8px 26px rgba(0,0,0,.24);}
+.wa-fab::after{content:"Chat with us";position:absolute;right:68px;white-space:nowrap;background:var(--ink-900);color:#fff;font-family:var(--font-body);font-size:.8rem;padding:.4rem .7rem;border-radius:8px;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none;}
+.wa-fab:hover::after{opacity:1;transform:translateX(0);}
+
+/* ============================================================ REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(8px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ============================================================ RESPONSIVE */
+@media(min-width:768px){
+  .nav{display:flex;gap:var(--sp-1);}
+  .header-cta{display:inline-flex;}
+  .nav-toggle{display:none;}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  .wa-fab,.wa-fab::after{transition:none;}
+  *{scroll-behavior:auto;}
+}
