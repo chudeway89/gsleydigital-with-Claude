@@ -13,6 +13,8 @@
 .editor-styles-wrapper .site-header{position:static;}
 .editor-styles-wrapper .wa-fab{position:static;display:none;}
 
-/* Dark bands render white-on-ink; make sure editor rich-text inherits colour. */
+/* Dark bands render white-on-ink/teal; make sure editor rich-text inherits colour. */
 .editor-styles-wrapper .section--ink,
-.editor-styles-wrapper .section--ink :where(h1,h2,h3,p,span){color:inherit;}
+.editor-styles-wrapper .section--teal,
+.editor-styles-wrapper .page-hero,
+.editor-styles-wrapper :where(.section--ink,.section--teal,.page-hero) :where(h1,h2,h3,p,span,a){color:inherit;}

@@ -23,6 +23,8 @@
 				{ "slug": "line", "name": "Line", "color": "#E5E2D8" },
 				{ "slug": "accent-market", "name": "Accent · Market", "color": "#0F1B2D" },
 				{ "slug": "accent-digital", "name": "Accent · Digital", "color": "#16B8A6" },
+				{ "slug": "teal-900", "name": "Teal 900 (Digital band)", "color": "#0B4F49" },
+				{ "slug": "teal-700", "name": "Teal 700", "color": "#0d6b62" },
 				{ "slug": "danger", "name": "Danger", "color": "#C0392B" },
 				{ "slug": "success", "name": "Success", "color": "#15803D" },
 				{ "slug": "warning", "name": "Warning", "color": "#B7791F" }
@@ -251,7 +253,8 @@
 				"slow": "480ms"
 			},
 			"container": {
-				"narrow": "780px"
+				"narrow": "780px",
+				"read": "720px"
 			},
 			"gutter": "clamp(1rem, 4vw, 2rem)",
 			"focus": {
@@ -302,5 +305,11 @@
 		{ "name": "header", "title": "Header", "area": "header" },
 		{ "name": "footer", "title": "Footer", "area": "footer" }
 	],
-	"customTemplates": []
+	"customTemplates": [
+		{
+			"name": "page-wide",
+			"title": "Full-width (pattern) page",
+			"postTypes": [ "page" ]
+		}
+	]
 }
