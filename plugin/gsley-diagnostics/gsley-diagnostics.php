@@ -34,6 +34,7 @@ require_once GSLEY_DIAGNOSTICS_DIR . 'includes/submissions.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/contact.php';
 if ( is_admin() ) {
 	require_once GSLEY_DIAGNOSTICS_DIR . 'includes/admin.php';
+	require_once GSLEY_DIAGNOSTICS_DIR . 'includes/setup.php';
 }
 
 // Create the custom tables on activation.
