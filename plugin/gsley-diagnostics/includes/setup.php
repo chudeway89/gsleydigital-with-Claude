@@ -66,6 +66,15 @@ function gsley_setup_page_defs() {
 		array( 'data-infrastructure', 'Data Infrastructure', 'digital', 'gsley-digital/page-service-data-infrastructure', null ),
 		array( 'revenue-optimisation', 'Revenue Optimisation', 'digital', 'gsley-digital/page-service-revenue-optimisation', null ),
 		array( 'tools', 'Tools', null, 'gsley-digital/page-tools', null ),
+		// Individual tool pages — each embeds its diagnostic block (dynamic, rendered by the plugin).
+		array( 'growth-diagnostic', 'The Gsley Growth Diagnostic™', 'tools', null, '<!-- wp:gsley/tool-growth-diagnostic /-->' ),
+		array( 'ai-adoption-assessment-organisation', 'AI Adoption Assessment — Organisation', 'tools', null, '<!-- wp:gsley/tool-ai-adoption-assessment-organisation /-->' ),
+		array( 'ai-adoption-assessment-individual', 'AI Adoption Assessment — Individual', 'tools', null, '<!-- wp:gsley/tool-ai-adoption-assessment-individual /-->' ),
+		array( 'brand-authority-audit', 'Brand Authority Audit', 'tools', null, '<!-- wp:gsley/tool-brand-authority-audit /-->' ),
+		array( 'revenue-leakage-calculator', 'Revenue Leakage Calculator', 'tools', null, '<!-- wp:gsley/tool-revenue-leakage-calculator /-->' ),
+		array( 'marketing-maturity-scorecard', 'Marketing Maturity Scorecard', 'tools', null, '<!-- wp:gsley/tool-marketing-maturity-scorecard /-->' ),
+		array( 'automation-opportunity-finder', 'Automation Opportunity Finder', 'tools', null, '<!-- wp:gsley/tool-automation-opportunity-finder /-->' ),
+		array( 'partnership-readiness-quiz', 'Partnership Readiness Quiz', 'tools', null, '<!-- wp:gsley/tool-partnership-readiness-quiz /-->' ),
 		array( 'contact', 'Contact', null, 'gsley-digital/page-contact', null ),
 		array( 'legal', 'Legal', null, null, $legal_index ),
 		array( 'privacy', 'Privacy Policy', 'legal', 'gsley-digital/page-legal-privacy', null ),
@@ -179,7 +188,7 @@ function gsley_render_setup() {
 
 	echo '<hr><h2>After importing</h2><ol>';
 	echo '<li>Go to <strong>Settings → Permalinks</strong> and click <strong>Save Changes</strong> once (refreshes the URL rules).</li>';
-	echo '<li>Add the individual tool pages where you want them: create a page under <em>Tools</em> and insert a <strong>GSLEY Diagnostics</strong> block.</li>';
+	echo '<li>All eight diagnostic tool pages are created automatically under <em>/tools/</em> — visit <a href="' . esc_url( home_url( '/tools/growth-diagnostic' ) ) . '" target="_blank">/tools/growth-diagnostic</a> to confirm.</li>';
 	echo '<li>Set up Resend under <a href="' . esc_url( admin_url( 'admin.php?page=gsley-diagnostics-settings' ) ) . '">Settings</a> so emails send.</li>';
 	echo '</ol></div>';
 }

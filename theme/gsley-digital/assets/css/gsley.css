@@ -11,63 +11,63 @@
    byte-identical to the approved design.
    ============================================================ */
 :root{
-  --ink-900:var(--wp--preset--color--ink-900);
-  --ink-700:var(--wp--preset--color--ink-700);
-  --ink-500:var(--wp--preset--color--ink-500);
-  --ink-300:var(--wp--preset--color--ink-300);
-  --paper:var(--wp--preset--color--paper);
-  --bone:var(--wp--preset--color--bone);
-  --line:var(--wp--preset--color--line);
-  --accent-market:var(--wp--preset--color--accent-market);
-  --accent-digital:var(--wp--preset--color--accent-digital);
-  --teal-900:var(--wp--preset--color--teal-900);
-  --teal-700:var(--wp--preset--color--teal-700);
-  --danger:var(--wp--preset--color--danger);
-  --success:var(--wp--preset--color--success);
-  --warning:var(--wp--preset--color--warning);
+  --ink-900:var(--wp--preset--color--ink-900, #0F1B2D);
+  --ink-700:var(--wp--preset--color--ink-700, #1F2C3F);
+  --ink-500:var(--wp--preset--color--ink-500, #4A5568);
+  --ink-300:var(--wp--preset--color--ink-300, #8895A7);
+  --paper:var(--wp--preset--color--paper, #FAF9F5);
+  --bone:var(--wp--preset--color--bone, #F1EFE7);
+  --line:var(--wp--preset--color--line, #E5E2D8);
+  --accent-market:var(--wp--preset--color--accent-market, #0F1B2D);
+  --accent-digital:var(--wp--preset--color--accent-digital, #16B8A6);
+  --teal-900:var(--wp--preset--color--teal-900, #0B4F49);
+  --teal-700:var(--wp--preset--color--teal-700, #0d6b62);
+  --danger:var(--wp--preset--color--danger, #C0392B);
+  --success:var(--wp--preset--color--success, #15803D);
+  --warning:var(--wp--preset--color--warning, #B7791F);
 
-  --font-display:var(--wp--preset--font-family--display);
-  --font-body:var(--wp--preset--font-family--body);
-  --font-mono:var(--wp--preset--font-family--mono);
+  --font-display:var(--wp--preset--font-family--display, "Source Serif 4",Georgia,serif);
+  --font-body:var(--wp--preset--font-family--body, "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);
+  --font-mono:var(--wp--preset--font-family--mono, "JetBrains Mono",ui-monospace,monospace);
 
-  --fs-h1:var(--wp--preset--font-size--h1);
-  --fs-h2:var(--wp--preset--font-size--h2);
-  --fs-h3:var(--wp--preset--font-size--h3);
-  --fs-body:var(--wp--preset--font-size--body);
-  --fs-small:var(--wp--preset--font-size--small);
-  --fs-mono:var(--wp--preset--font-size--mono);
+  --fs-h1:var(--wp--preset--font-size--h1, clamp(2.5rem,6vw,4.5rem));
+  --fs-h2:var(--wp--preset--font-size--h2, clamp(1.75rem,4vw,2.75rem));
+  --fs-h3:var(--wp--preset--font-size--h3, clamp(1.25rem,2.5vw,1.5rem));
+  --fs-body:var(--wp--preset--font-size--body, clamp(1rem,1.1vw,1.0625rem));
+  --fs-small:var(--wp--preset--font-size--small, .875rem);
+  --fs-mono:var(--wp--preset--font-size--mono, .75rem);
 
-  --lh-tight:var(--wp--custom--line-height--tight);
-  --lh-snug:var(--wp--custom--line-height--snug);
-  --lh-base:var(--wp--custom--line-height--base);
-  --lh-loose:var(--wp--custom--line-height--loose);
+  --lh-tight:var(--wp--custom--line-height--tight, 1.1);
+  --lh-snug:var(--wp--custom--line-height--snug, 1.3);
+  --lh-base:var(--wp--custom--line-height--base, 1.55);
+  --lh-loose:var(--wp--custom--line-height--loose, 1.7);
 
-  --sp-1:var(--wp--preset--spacing--1);
-  --sp-2:var(--wp--preset--spacing--2);
-  --sp-3:var(--wp--preset--spacing--3);
-  --sp-4:var(--wp--preset--spacing--4);
-  --sp-6:var(--wp--preset--spacing--6);
-  --sp-8:var(--wp--preset--spacing--8);
-  --sp-12:var(--wp--preset--spacing--12);
-  --sp-16:var(--wp--preset--spacing--16);
-  --sp-24:var(--wp--preset--spacing--24);
-  --sp-32:var(--wp--preset--spacing--32);
+  --sp-1:var(--wp--preset--spacing--1, .25rem);
+  --sp-2:var(--wp--preset--spacing--2, .5rem);
+  --sp-3:var(--wp--preset--spacing--3, .75rem);
+  --sp-4:var(--wp--preset--spacing--4, 1rem);
+  --sp-6:var(--wp--preset--spacing--6, 1.5rem);
+  --sp-8:var(--wp--preset--spacing--8, 2rem);
+  --sp-12:var(--wp--preset--spacing--12, 3rem);
+  --sp-16:var(--wp--preset--spacing--16, 4rem);
+  --sp-24:var(--wp--preset--spacing--24, 6rem);
+  --sp-32:var(--wp--preset--spacing--32, 8rem);
 
-  --r-sm:var(--wp--custom--radius--sm);
-  --r-md:var(--wp--custom--radius--md);
-  --r-lg:var(--wp--custom--radius--lg);
-  --r-pill:var(--wp--custom--radius--pill);
+  --r-sm:var(--wp--custom--radius--sm, 6px);
+  --r-md:var(--wp--custom--radius--md, 10px);
+  --r-lg:var(--wp--custom--radius--lg, 16px);
+  --r-pill:var(--wp--custom--radius--pill, 999px);
 
-  --ease-out:var(--wp--custom--ease--out);
-  --dur-fast:var(--wp--custom--duration--fast);
-  --dur-base:var(--wp--custom--duration--base);
-  --dur-slow:var(--wp--custom--duration--slow);
+  --ease-out:var(--wp--custom--ease--out, cubic-bezier(.22,1,.36,1));
+  --dur-fast:var(--wp--custom--duration--fast, 120ms);
+  --dur-base:var(--wp--custom--duration--base, 240ms);
+  --dur-slow:var(--wp--custom--duration--slow, 480ms);
 
-  --focus:var(--wp--custom--focus--color);
+  --focus:var(--wp--custom--focus--color, #16B8A6);
   --container-max:1200px;
-  --container-narrow:var(--wp--custom--container--narrow);
-  --container-read:var(--wp--custom--container--read);
-  --gutter:var(--wp--custom--gutter);
+  --container-narrow:var(--wp--custom--container--narrow, 780px);
+  --container-read:var(--wp--custom--container--read, 720px);
+  --gutter:var(--wp--custom--gutter, clamp(1rem,4vw,2rem));
 }
 
 /* ============================================================ RESET (theme-scoped) */
@@ -515,3 +515,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .wa-fab,.wa-fab::after{transition:none;}
   *{scroll-behavior:auto;}
 }
+
+/* ============================================================ HERO SCALE SAFETY
+   Guarantee the hero headline renders at display scale even if the design
+   tokens fail to resolve on a given host/plugin stack. */
+.hero h1,.page-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;}
+@media(max-width:480px){.hero h1,.page-hero h1{font-size:clamp(2rem,9vw,2.75rem);}}
