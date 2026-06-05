@@ -53,6 +53,22 @@ function gsley_update_lead_delivery( $lead_id, $result ) {
 }
 
 /**
+ * Update a lead's follow-up status and/or notes.
+ */
+function gsley_update_lead_status( $lead_id, $status, $notes ) {
+	global $wpdb;
+	$allowed = array( 'new', 'contacted', 'qualified', 'won', 'lost' );
+	if ( ! in_array( $status, $allowed, true ) ) {
+		$status = 'new';
+	}
+	return $wpdb->update(
+		gsley_table_leads(),
+		array( 'status' => $status, 'notes' => $notes ),
+		array( 'id' => (int) $lead_id )
+	); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+}
+
+/**
  * Insert a tool submission row.
  *
  * @return int Submission id.

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GSLEY_DIAGNOSTICS_DB_VER', '1.0.0' );
+define( 'GSLEY_DIAGNOSTICS_DB_VER', '1.1.0' );
 
 function gsley_table_leads() {
 	global $wpdb;
@@ -50,10 +50,13 @@ function gsley_install_tables() {
 		delivery_status varchar(20) NOT NULL DEFAULT 'pending',
 		delivery_id varchar(190) NOT NULL DEFAULT '',
 		delivery_error text NULL,
+		status varchar(20) NOT NULL DEFAULT 'new',
+		notes text NULL,
 		PRIMARY KEY  (id),
 		KEY email (email),
 		KEY created (created),
-		KEY source (source)
+		KEY source (source),
+		KEY status (status)
 	) $charset;";
 
 	$sql_subs = "CREATE TABLE $subs (
