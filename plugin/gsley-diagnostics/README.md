@@ -107,3 +107,40 @@ Activate the plugin, create a page, and insert any **GSLEY Diagnostics** block
 (e.g. *The Gsley Growth Diagnostic™*), then view the page and click through.
 The block shows a labelled placeholder in the editor; the live tool renders on
 the front end.
+
+## Paid audit tools (Phase 3)
+
+Two answer-first tools that score real, server-side checks for free, then unlock
+detailed recommendations after online payment (Paystack):
+
+- **Social Media Audit** — `/tools/social-media-audit` — **$10**.
+- **Digital Presence & ORM Audit** — `/tools/digital-presence-orm-audit` — **$20**.
+
+### Owned analysis engine (no paid APIs, no fabricated scores)
+`includes/audit.php` + `includes/audit-run.php` fetch and parse the brand's live
+properties and score only verifiable signals: website technical (HTTPS, title,
+meta description, canonical, single H1, mobile viewport, image alt coverage,
+Open Graph, structured data, lang, favicon, HTML weight, robots.txt, XML
+sitemap), SEO, social-profile reachability/public completeness, whether the site
+links its socials, handle consistency, and reputation (on-site review schema +
+clearly-labelled Google rating/volume the user supplies). Anything not readable
+server-side is taken as a labelled input or reported as "not automatically
+verifiable" — never invented. Recommendations are rule-based from real findings.
+
+### Payments (Paystack)
+`includes/paystack.php` + `includes/audit-rest.php`. Flow: `POST /gsley/v1/audit/{tool}`
+(free report) → `POST /gsley/v1/pay/init` (Paystack redirect) → buyer pays →
+return to the tool page → `POST /gsley/v1/pay/confirm` (verify by reference) →
+recommendations unlock on screen **and** are emailed. `POST /gsley/v1/pay/webhook`
+is the durable backstop (verifies the `x-paystack-signature` HMAC-SHA512).
+Detailed recommendations are never released until payment is verified server-side.
+No account needed; the buyer is captured as a lead.
+
+### Setup (owner)
+1. Create a **Paystack** account; enable the currency you'll charge in (USD/NGN).
+2. Add keys: `define( 'GSLEY_PAYSTACK_SECRET_KEY', 'sk_...' );` in `wp-config.php`
+   (preferred), or paste under **GSLEY Leads → Settings**. Optionally the public key.
+3. In the Paystack dashboard, set the **webhook URL** to
+   `https://gsleydigital.com/wp-json/gsley/v1/pay/webhook`.
+4. Test with Paystack **test keys** first (test card), confirm the lead + paid
+   status appear under **GSLEY Leads → View**, then switch to live keys.
