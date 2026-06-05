@@ -32,6 +32,11 @@ require_once GSLEY_DIAGNOSTICS_DIR . 'includes/leads.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/report.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/submissions.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/contact.php';
+// Paid audit tools: payments + owned analysis engine.
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/paystack.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/audit.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/audit-run.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/audit-rest.php';
 if ( is_admin() ) {
 	require_once GSLEY_DIAGNOSTICS_DIR . 'includes/admin.php';
 	require_once GSLEY_DIAGNOSTICS_DIR . 'includes/setup.php';

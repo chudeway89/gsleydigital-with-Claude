@@ -18,6 +18,8 @@ $gsley_tools = array(
 	array( 'Marketing Maturity Scorecard', '5 min · scored', '/tools/marketing-maturity-scorecard' ),
 	array( 'Automation Opportunity Finder', '4 min · mapped', '/tools/automation-opportunity-finder' ),
 	array( 'Partnership Readiness Quiz', '3 min · scored', '/tools/partnership-readiness-quiz' ),
+	array( 'Social Media Audit', '$10 · audit', '/tools/social-media-audit' ),
+	array( 'Digital Presence &amp; ORM Audit', '$20 · audit', '/tools/digital-presence-orm-audit' ),
 );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--bone","templateLock":"contentOnly","layout":{"type":"default"}} -->
@@ -31,7 +33,7 @@ $gsley_tools = array(
 		<!-- wp:group {"className":"start-head reveal","layout":{"type":"default"}} -->
 		<div class="wp-block-group start-head reveal">
 			<!-- wp:paragraph {"className":"h2"} -->
-			<p class="h2">Eight diagnostics. Each ends in a scored read-out and a recommendation.</p>
+			<p class="h2">Ten tools. Each ends in a scored read-out and a clear next step.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"className":"lede u-mt-4"} -->
 			<p class="lede u-mt-4">Free, instant, no call required. The fastest way to see where your commercial system is leaking.</p>

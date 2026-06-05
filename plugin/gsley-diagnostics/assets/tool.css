@@ -140,3 +140,19 @@
 .gt-restart{text-align:center;margin-top:3rem;}
 
 @media(prefers-reduced-motion:reduce){.gsley-tool *{transition:none!important;animation:none!important;}}
+
+/* ============================================================ AUDIT (paid tools) */
+.gt-hint2{font-size:.75rem;color:var(--ink-500);}
+.gt-find-h{font-family:var(--font-display);font-weight:600;font-size:1.1rem;margin:1.5rem 0 .5rem;}
+.gt-finds{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.gt-find{display:grid;grid-template-columns:64px 1fr;gap:.25rem .75rem;padding:.7rem 0;border-bottom:1px solid var(--line);align-items:start;}
+.gt-find__s{grid-row:1 / span 2;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;font-weight:600;padding-top:2px;}
+.gt-find__l{font-weight:500;font-size:.92rem;}
+.gt-find__d{font-size:.82rem;color:var(--ink-500);}
+.gt-recs{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0;}
+.gt-rec-item{border:1px solid var(--line);border-left:3px solid var(--ink-500);border-radius:var(--r-md);padding:1rem 1.1rem;background:var(--paper);}
+.gt-rec-item .gt-mono{font-size:.6rem;letter-spacing:.08em;}
+.gt-rec-item strong{display:block;color:var(--ink-900);margin:.2rem 0;}
+.gt-rec-item p{font-size:.9rem;color:var(--ink-700);}
+.gt-rec-ev{display:block;font-size:.75rem;color:var(--ink-300);margin-top:.4rem;}
+@media(min-width:560px){.gt-find{grid-template-columns:72px 1.2fr 1.6fr;}.gt-find__s{grid-row:auto;}}

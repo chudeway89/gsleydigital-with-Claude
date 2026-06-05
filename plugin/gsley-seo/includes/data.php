@@ -46,6 +46,8 @@ function gsley_seo_tools() {
 		'marketing-maturity-scorecard' => 'Marketing Maturity Scorecard',
 		'automation-opportunity-finder' => 'Automation Opportunity Finder',
 		'partnership-readiness-quiz' => 'Partnership Readiness Quiz',
+		'social-media-audit' => 'Social Media Audit',
+		'digital-presence-orm-audit' => 'Digital Presence & ORM Audit',
 	);
 }
 function gsley_seo_legal() {

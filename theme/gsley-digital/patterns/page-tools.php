@@ -17,7 +17,7 @@
 		<div class="wp-block-group wrap">
 			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › Tools</div><!-- /wp:html -->
 			<!-- wp:heading {"level":1} -->
-			<h1 class="wp-block-heading">Eight diagnostics. One scored read-out each.</h1>
+			<h1 class="wp-block-heading">Ten tools. One clear read-out each.</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"lede"} -->
 			<p class="lede">Free, instant, no call required. Each tool ends in a score, a short interpretation, and one clear recommendation — and an emailed report you can take to your team. The fastest way to see where your commercial system is leaking.</p>
@@ -47,6 +47,8 @@
 				<a class="tool" href="/tools/marketing-maturity-scorecard"><div class="tool__top"><span class="tool__code">T-06</span><span class="tool__meta">5 min</span></div><h3>Marketing Maturity Scorecard</h3><p>Where your marketing function sits — from ad hoc to a compounding system.</p><div class="tool__foot"><span class="tool__get">→ Scored read-out</span><span class="open-link">Start ↗</span></div></a>
 				<a class="tool" href="/tools/automation-opportunity-finder"><div class="tool__top"><span class="tool__code">T-07</span><span class="tool__meta">4 min</span></div><h3>Automation Opportunity Finder</h3><p>The workflows in your operation with the highest automation return.</p><div class="tool__foot"><span class="tool__get">→ Mapped opportunities</span><span class="open-link open-link--digital">Start ↗</span></div></a>
 				<a class="tool" href="/tools/partnership-readiness-quiz"><div class="tool__top"><span class="tool__code">T-08</span><span class="tool__meta">3 min</span></div><h3>Partnership Readiness Quiz</h3><p>Whether your organisation is ready to structure and land institutional partnerships.</p><div class="tool__foot"><span class="tool__get">→ Scored read-out</span><span class="open-link">Start ↗</span></div></a>
+				<a class="tool" href="/tools/social-media-audit"><div class="tool__top"><span class="tool__code">T-09</span><span class="tool__meta">$10 · paid fixes</span></div><h3>Social Media Audit</h3><p>A live audit of your brand’s social presence — reachability, completeness, site integration, consistency. Free score; detailed fixes for $10.</p><div class="tool__foot"><span class="tool__get">→ Free score + paid fix list</span><span class="open-link open-link--digital">Start ↗</span></div></a>
+				<a class="tool" href="/tools/digital-presence-orm-audit"><div class="tool__top"><span class="tool__code">T-10</span><span class="tool__meta">$20 · paid plan</span></div><h3>Digital Presence &amp; ORM Audit</h3><p>Website, SEO, social and reputation scored across four pillars from real checks. Free score; full remediation plan for $20.</p><div class="tool__foot"><span class="tool__get">→ Free score + paid plan</span><span class="open-link open-link--digital">Start ↗</span></div></a>
 			</div>
 			<!-- /wp:html -->
 		</div>

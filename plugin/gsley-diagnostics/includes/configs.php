@@ -354,5 +354,36 @@ function gsley_diagnostics_configs() {
 		'reportLines' => array( 'Your readiness across all four conditions', 'The specific gaps to close before approaching a partner', 'A sequenced path from foundations to first deal' ),
 	);
 
+	/* ---------------- Paid audit tools (variant engine: audit) ---------------- */
+	$configs['social-media-audit'] = array(
+		'id' => 'social-media-audit', 'engine' => 'audit', 'subtype' => 'social', 'code' => 'Audit · T-09 · Paid',
+		'title' => 'Social Media Audit',
+		'lede' => 'A real audit of your brand’s social presence — which platforms you’re on, whether each profile is reachable and complete, whether your website connects them, and how consistent your handle is. Free scored report; unlock the detailed, platform-by-platform fix list for $10.',
+		'startLabel' => 'Start the audit', 'scoreLabel' => 'Your social presence score',
+		'price' => 10, 'currency' => 'USD', 'priceLabel' => '$10',
+		'facts' => array( array( 'v' => '4 min', 'k' => 'To complete' ), array( 'v' => 'Live', 'k' => 'Real checks' ), array( 'v' => '$10', 'k' => 'Detailed fixes' ) ),
+		'inputs' => array(
+			array( 'id' => 'website', 'type' => 'url', 'label' => 'Your website (optional)', 'placeholder' => 'https://yourbrand.com' ),
+			array( 'id' => 'socials', 'type' => 'urls', 'label' => 'Your social profile links', 'placeholder' => 'https://instagram.com/yourbrand' ),
+		),
+		'reportLines' => array( 'Every platform we checked, and what’s missing', 'A prioritised, platform-by-platform fix list', 'Quick wins you can action this week' ),
+	);
+
+	$configs['digital-presence-orm-audit'] = array(
+		'id' => 'digital-presence-orm-audit', 'engine' => 'audit', 'subtype' => 'orm', 'code' => 'Audit · T-10 · Paid',
+		'title' => 'Digital Presence & ORM Audit',
+		'lede' => 'A full read on how your brand shows up online — website, SEO, social presence, and reputation — scored across four pillars from real checks on your live properties. Free scored report; unlock the detailed remediation plan for $20.',
+		'startLabel' => 'Start the audit', 'scoreLabel' => 'Your digital presence score',
+		'price' => 20, 'currency' => 'USD', 'priceLabel' => '$20',
+		'facts' => array( array( 'v' => '5 min', 'k' => 'To complete' ), array( 'v' => '4 pillars', 'k' => 'Scored' ), array( 'v' => '$20', 'k' => 'Full plan' ) ),
+		'inputs' => array(
+			array( 'id' => 'website', 'type' => 'url', 'label' => 'Your website', 'placeholder' => 'https://yourbrand.com', 'required' => true ),
+			array( 'id' => 'socials', 'type' => 'urls', 'label' => 'Your social profile links (optional)', 'placeholder' => 'https://facebook.com/yourbrand' ),
+			array( 'id' => 'google_rating', 'type' => 'number', 'label' => 'Your Google rating, 0–5 (optional)', 'placeholder' => '4.6', 'step' => '0.1', 'min' => '0', 'max' => '5' ),
+			array( 'id' => 'google_reviews', 'type' => 'number', 'label' => 'Your Google review count (optional)', 'placeholder' => '120', 'step' => '1', 'min' => '0' ),
+		),
+		'reportLines' => array( 'Every check across website, SEO, social and reputation', 'A prioritised remediation plan (high → low impact)', 'The evidence behind each score' ),
+	);
+
 	return $configs;
 }

@@ -24,6 +24,9 @@ function gsley_diagnostics_register_settings() {
 	register_setting( 'gsley_diagnostics_settings', 'gsley_resend_api_key', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
 	register_setting( 'gsley_diagnostics_settings', 'gsley_resend_from', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'GSLEY Digital <brief@gsleydigital.com>' ) );
 	register_setting( 'gsley_diagnostics_settings', 'gsley_notify_email', array( 'sanitize_callback' => 'sanitize_email', 'default' => 'brief@gsleydigital.com' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_secret', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_public', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_currency', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'USD' ) );
 }
 
 function gsley_card( $label, $value, $sub = '' ) {
@@ -167,6 +170,14 @@ function gsley_render_settings() {
 	echo '<tr><th scope="row"><label for="gsley_notify_email">Notification inbox</label></th>'
 		. '<td><input type="email" id="gsley_notify_email" name="gsley_notify_email" value="' . esc_attr( get_option( 'gsley_notify_email', 'brief@gsleydigital.com' ) ) . '" class="regular-text">'
 		. '<p class="description">Where new contact briefs are sent. Tool reports go to the person who took the diagnostic.</p></td></tr>';
+	echo '<tr><th scope="row"><label for="gsley_paystack_secret">Paystack secret key</label></th>'
+		. '<td><input type="password" autocomplete="off" id="gsley_paystack_secret" name="gsley_paystack_secret" value="' . esc_attr( get_option( 'gsley_paystack_secret', '' ) ) . '" class="regular-text">'
+		. '<p class="description">For the paid audit tools. Prefer <code>GSLEY_PAYSTACK_SECRET_KEY</code> in <code>wp-config.php</code>. Set your webhook URL in Paystack to <code>' . esc_html( rest_url( 'gsley/v1/pay/webhook' ) ) . '</code>.</p></td></tr>';
+	echo '<tr><th scope="row"><label for="gsley_paystack_public">Paystack public key</label></th>'
+		. '<td><input type="text" id="gsley_paystack_public" name="gsley_paystack_public" value="' . esc_attr( get_option( 'gsley_paystack_public', '' ) ) . '" class="regular-text"></td></tr>';
+	echo '<tr><th scope="row"><label for="gsley_paystack_currency">Payment currency</label></th>'
+		. '<td><input type="text" id="gsley_paystack_currency" name="gsley_paystack_currency" value="' . esc_attr( get_option( 'gsley_paystack_currency', 'USD' ) ) . '" class="small-text" maxlength="3">'
+		. '<p class="description">Must be enabled on your Paystack account (e.g. USD or NGN).</p></td></tr>';
 	echo '</tbody></table>';
 	submit_button();
 	echo '</form></div>';
@@ -323,6 +334,36 @@ function gsley_format_result( $s ) {
 				$out .= '<tr><td>' . esc_html( $lab ) . '</td><td style="text-align:right;font-family:monospace">' . esc_html( (string) $v ) . '</td></tr>';
 			}
 			$out .= '</tbody></table></details>';
+		}
+	} elseif ( 'audit' === $engine ) {
+		$run = isset( $r['run'] ) ? $r['run'] : $r;
+		$inp = isset( $r['inputs'] ) ? $r['inputs'] : array();
+		$paidbadge = (int) $s->paid ? '<span style="color:#15803D;font-weight:600">PAID</span>' : '<span style="color:#8c8f94">free (unpaid)</span>';
+		$out .= '<p style="font-size:22px;font-weight:600;color:#0F1B2D">' . (int) ( $run['overall'] ?? 0 ) . '<span style="font-size:13px;color:#646970">/100</span> &nbsp; ' . $paidbadge . '</p>';
+		if ( ! empty( $inp['website'] ) ) {
+			$out .= '<p style="font-size:13px;color:#646970">' . esc_html( $inp['website'] ) . '</p>';
+		}
+		if ( ! empty( $run['pillars'] ) ) {
+			$out .= '<table class="widefat striped" style="margin:10px 0"><tbody>';
+			foreach ( $run['pillars'] as $p ) {
+				$out .= '<tr><td>' . esc_html( $p['label'] ) . '</td><td style="text-align:right;font-family:monospace">' . (int) $p['pct'] . '%</td></tr>';
+			}
+			$out .= '</tbody></table>';
+		}
+		if ( ! empty( $run['findings'] ) ) {
+			$out .= '<details><summary style="cursor:pointer;font-weight:600">Findings (' . count( $run['findings'] ) . ')</summary><table class="widefat striped" style="margin:10px 0"><tbody>';
+			foreach ( $run['findings'] as $f ) {
+				$col = 'pass' === $f['status'] ? '#15803D' : ( 'fail' === $f['status'] ? '#C0392B' : ( 'warn' === $f['status'] ? '#B7791F' : '#8c8f94' ) );
+				$out .= '<tr><td>' . esc_html( $f['label'] ) . '</td><td style="color:' . $col . '">' . esc_html( strtoupper( $f['status'] ) ) . '</td><td style="color:#646970">' . esc_html( $f['detail'] ) . '</td></tr>';
+			}
+			$out .= '</tbody></table></details>';
+		}
+		if ( ! empty( $run['recommendations'] ) ) {
+			$out .= '<details><summary style="cursor:pointer;font-weight:600">Recommendations (' . count( $run['recommendations'] ) . ')</summary><ol style="margin:10px 0 0 18px">';
+			foreach ( $run['recommendations'] as $rc ) {
+				$out .= '<li style="margin-bottom:6px"><strong>' . esc_html( $rc['title'] ) . '</strong> — ' . esc_html( $rc['detail'] ) . '</li>';
+			}
+			$out .= '</ol></details>';
 		}
 	} else { // finder
 		$arealabels = array();

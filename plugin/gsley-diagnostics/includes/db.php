@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GSLEY_DIAGNOSTICS_DB_VER', '1.1.0' );
+define( 'GSLEY_DIAGNOSTICS_DB_VER', '1.2.0' );
 
 function gsley_table_leads() {
 	global $wpdb;
@@ -72,10 +72,16 @@ function gsley_install_tables() {
 		delivery_id varchar(190) NOT NULL DEFAULT '',
 		delivery_error text NULL,
 		delivered_at datetime NULL,
+		amount int(11) NOT NULL DEFAULT 0,
+		currency varchar(8) NOT NULL DEFAULT '',
+		paid tinyint(1) NOT NULL DEFAULT 0,
+		payment_ref varchar(190) NOT NULL DEFAULT '',
+		token varchar(64) NOT NULL DEFAULT '',
 		PRIMARY KEY  (id),
 		KEY lead_id (lead_id),
 		KEY tool (tool),
-		KEY created (created)
+		KEY created (created),
+		KEY payment_ref (payment_ref)
 	) $charset;";
 
 	dbDelta( $sql_leads );

@@ -75,6 +75,8 @@ function gsley_setup_page_defs() {
 		array( 'marketing-maturity-scorecard', 'Marketing Maturity Scorecard', 'tools', null, '<!-- wp:gsley/tool-marketing-maturity-scorecard /-->' ),
 		array( 'automation-opportunity-finder', 'Automation Opportunity Finder', 'tools', null, '<!-- wp:gsley/tool-automation-opportunity-finder /-->' ),
 		array( 'partnership-readiness-quiz', 'Partnership Readiness Quiz', 'tools', null, '<!-- wp:gsley/tool-partnership-readiness-quiz /-->' ),
+		array( 'social-media-audit', 'Social Media Audit', 'tools', null, '<!-- wp:gsley/tool-social-media-audit /-->' ),
+		array( 'digital-presence-orm-audit', 'Digital Presence & ORM Audit', 'tools', null, '<!-- wp:gsley/tool-digital-presence-orm-audit /-->' ),
 		array( 'contact', 'Contact', null, 'gsley-digital/page-contact', null ),
 		array( 'legal', 'Legal', null, null, $legal_index ),
 		array( 'privacy', 'Privacy Policy', 'legal', 'gsley-digital/page-legal-privacy', null ),

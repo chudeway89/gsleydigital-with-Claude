@@ -86,10 +86,27 @@ function gsley_insert_submission( $data ) {
 			'priority'        => '',
 			'result'          => '',
 			'delivery_status' => 'pending',
+			'amount'          => 0,
+			'currency'        => '',
+			'paid'            => 0,
+			'payment_ref'     => '',
+			'token'           => '',
 		)
 	);
 	$ok = $wpdb->insert( gsley_table_submissions(), $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 	return $ok ? (int) $wpdb->insert_id : 0;
+}
+
+/** Fetch a submission row by id. */
+function gsley_get_submission( $id ) {
+	global $wpdb;
+	return $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . gsley_table_submissions() . ' WHERE id = %d', (int) $id ) ); // phpcs:ignore WordPress.DB
+}
+
+/** Update arbitrary submission columns (sanitised by caller). */
+function gsley_update_submission( $id, $fields ) {
+	global $wpdb;
+	return $wpdb->update( gsley_table_submissions(), $fields, array( 'id' => (int) $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 }
 
 /**

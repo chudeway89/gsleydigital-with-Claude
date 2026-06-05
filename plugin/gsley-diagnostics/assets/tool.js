@@ -389,6 +389,169 @@
 		intro( ui, cfg, stepSelect );
 	}
 
+	/* ============================================================ AUDIT ENGINE (paid) */
+	function audit( root, ui, cfg ) {
+		var base = ( SETTINGS.rest || '/wp-json/gsley/v1/tools/' ).replace( /tools\/$/, '' );
+		var lsKey = 'gsleyAudit_' + cfg.id;
+		var ringSvg = function () {
+			var circ = 2 * Math.PI * 80;
+			return '<div class="gt-ring"><svg width="180" height="180" viewBox="0 0 180 180">' +
+				'<circle cx="90" cy="90" r="80" fill="none" stroke="var(--bone)" stroke-width="12"/>' +
+				'<circle class="gt-ring__arc" cx="90" cy="90" r="80" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + circ + '" stroke-dashoffset="' + circ + '"/>' +
+				'</svg><div class="gt-ring__num"><span class="n">0</span><span class="s">out of 100</span></div></div>';
+		};
+		var bandWord = function ( n ) {
+			return n >= 80 ? 'Strong' : ( n >= 60 ? 'Solid' : ( n >= 40 ? 'Developing' : 'Needs work' ) );
+		};
+
+		function start() { stepInputs(); }
+
+		function stepInputs() {
+			var fields = cfg.inputs.map( function ( inp ) {
+				if ( 'urls' === inp.type ) {
+					return '<div class="gt-field"><label>' + esc( inp.label ) + '<textarea class="gt-in" data-id="' + esc( inp.id ) + '" data-type="urls" rows="3" placeholder="' + esc( inp.placeholder || '' ) + '"></textarea></label><span class="gt-hint2">One link per line.</span></div>';
+				}
+				if ( 'number' === inp.type ) {
+					return '<div class="gt-field"><label>' + esc( inp.label ) + '<input class="gt-in" data-id="' + esc( inp.id ) + '" data-type="number" type="number"' + ( inp.step ? ' step="' + esc( inp.step ) + '"' : '' ) + ( null != inp.min ? ' min="' + esc( inp.min ) + '"' : '' ) + ( null != inp.max ? ' max="' + esc( inp.max ) + '"' : '' ) + ' placeholder="' + esc( inp.placeholder || '' ) + '"></label></div>';
+				}
+				return '<div class="gt-field"><label>' + esc( inp.label ) + '<input class="gt-in" data-id="' + esc( inp.id ) + '" data-type="url" type="url" placeholder="' + esc( inp.placeholder || '' ) + '"' + ( inp.required ? ' required' : '' ) + '></label></div>';
+			} ).join( '' );
+			ui.step.innerHTML =
+				'<span class="gt-mono gt-q__dim">' + esc( cfg.code || 'Audit' ) + '</span>' +
+				'<h2 class="gt-q__text">Tell us what to audit</h2>' +
+				fields +
+				'<div class="gt-hp"><label>Leave blank<input type="text" class="gt-company" tabindex="-1" autocomplete="off"></label></div>' +
+				'<div class="gt-err gt-run-err"></div>' +
+				'<div class="gt-nav"><span></span><button class="gt-btn gt-btn--solid gt-run">Run the audit →</button></div>';
+			ui.step.querySelector( '.gt-run' ).addEventListener( 'click', run );
+			showScreen( ui, 'step' );
+		}
+
+		function collect() {
+			var out = { socials: [] };
+			ui.step.querySelectorAll( '.gt-in' ).forEach( function ( el ) {
+				var id = el.getAttribute( 'data-id' ), t = el.getAttribute( 'data-type' ), v = el.value.trim();
+				if ( 'urls' === t ) { out.socials = v.split( /[\n,]+/ ).map( function ( x ) { return x.trim(); } ).filter( Boolean ); }
+				else if ( 'number' === t ) { if ( '' !== v ) { out[ id ] = parseFloat( v ); } }
+				else if ( '' !== v ) { out[ id ] = v; }
+			} );
+			out.company_website = ui.step.querySelector( '.gt-company' ).value;
+			return out;
+		}
+
+		function run() {
+			var payload = collect();
+			var errEl = ui.step.querySelector( '.gt-run-err' );
+			var missing = cfg.inputs.filter( function ( i ) { return i.required && ! payload[ i.id ]; } );
+			if ( missing.length ) { errEl.textContent = 'Please enter your ' + missing[ 0 ].label.replace( /\s*\(.*\)/, '' ).toLowerCase() + '.'; return; }
+			if ( ! payload.website && ( ! payload.socials || ! payload.socials.length ) ) { errEl.textContent = 'Enter your website or at least one social link.'; return; }
+			errEl.textContent = '';
+			var btn = ui.step.querySelector( '.gt-run' );
+			btn.disabled = true; btn.textContent = 'Auditing… (up to ~20s)';
+			fetch( base + 'audit/' + encodeURIComponent( cfg.id ), {
+				method: 'POST', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': SETTINGS.nonce || '' }, body: JSON.stringify( payload )
+			} ).then( function ( r ) { return r.ok ? r.json() : Promise.reject( r ); } )
+			.then( function ( d ) {
+				try { localStorage.setItem( lsKey, JSON.stringify( { audit_id: d.audit_id, token: d.token } ) ); } catch ( e ) {}
+				renderReport( d );
+			} )
+			.catch( function () { btn.disabled = false; btn.textContent = 'Run the audit →'; errEl.textContent = 'The audit could not complete. Check the URLs and try again.'; } );
+		}
+
+		function renderReport( d ) {
+			var rep = d.report, circ = 2 * Math.PI * 80;
+			var pillars = ( rep.pillars || [] ).map( function ( p ) {
+				return '<div><div class="gt-dim__top"><span class="gt-dim__label">' + esc( p.label ) + '</span><span class="gt-dim__pct">' + p.pct + '%</span></div><div class="gt-track"><div class="gt-fill" data-pct="' + p.pct + '"></div></div></div>';
+			} ).join( '' );
+			var finds = ( rep.findings || [] ).map( function ( f ) {
+				var c = 'pass' === f.status ? 'var(--success)' : ( 'fail' === f.status ? 'var(--danger)' : ( 'warn' === f.status ? 'var(--warning)' : 'var(--ink-300)' ) );
+				return '<div class="gt-find"><span class="gt-find__s" style="color:' + c + '">' + esc( f.status.toUpperCase() ) + '</span><span class="gt-find__l">' + esc( f.label ) + '</span><span class="gt-find__d">' + esc( f.detail ) + '</span></div>';
+			} ).join( '' );
+			ui.results.innerHTML =
+				'<div class="gt-score"><span class="gt-mono">' + esc( cfg.scoreLabel || 'Your score' ) + '</span>' + ringSvg() +
+					'<div class="gt-band">' + esc( bandWord( rep.overall ) ) + '</div><p class="gt-band__blurb">' + esc( rep.summary ) + '</p></div>' +
+				'<div class="gt-dims">' + pillars + '</div>' +
+				'<h3 class="gt-find-h">What we checked</h3><div class="gt-finds">' + finds + '</div>' +
+				unlockPanel( d );
+			showScreen( ui, 'results' );
+			animateScore( ui, rep.overall, circ );
+			ui.results.querySelectorAll( '.gt-fill' ).forEach( function ( f ) { setTimeout( function () { f.style.width = f.getAttribute( 'data-pct' ) + '%'; }, 120 ); } );
+			wireUnlock( d );
+			restartButton( ui, stepInputs );
+		}
+
+		function unlockPanel( d ) {
+			if ( ! d.report.reco_count ) {
+				return '<div class="gt-report"><h3>No issues found</h3><p>Your audit came back clean across every check — nothing to unlock. Want a deeper, human review? <a href="/contact">Talk to us</a>.</p></div>';
+			}
+			var li = ( cfg.reportLines || [] ).map( function ( t ) { return '<li><span class="tick">✓</span> ' + esc( t ) + '</li>'; } ).join( '' );
+			return '<div class="gt-report"><h3>Unlock your ' + d.report.reco_count + ' detailed recommendations</h3>' +
+				'<p>Your score shows <em>where</em> you stand. The paid report tells you exactly <em>what to fix</em>, in priority order, with the evidence behind each.</p>' +
+				'<ul>' + li + '</ul>' +
+				'<div class="gt-field"><label>Work email<input type="email" class="gt-email" placeholder="you@brand.com"></label><span class="gt-err"></span></div>' +
+				'<button class="gt-btn gt-btn--solid gt-pay">Unlock for ' + esc( d.priceLabel ) + ' →</button>' +
+				'<p class="gt-consent">Secure payment via Paystack. We email your recommendations and a copy of this report. See our <a href="/legal/privacy" style="text-decoration:underline">privacy policy</a>.</p></div>';
+		}
+
+		function wireUnlock( d ) {
+			var pay = ui.results.querySelector( '.gt-pay' );
+			if ( ! pay ) { return; }
+			pay.addEventListener( 'click', function () {
+				var email = ( ui.results.querySelector( '.gt-email' ).value || '' ).trim();
+				var errEl = ui.results.querySelector( '.gt-report .gt-err' );
+				if ( ! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test( email ) ) { errEl.textContent = 'Please enter a valid email.'; return; }
+				errEl.textContent = ''; pay.disabled = true; pay.textContent = 'Starting secure checkout…';
+				fetch( base + 'pay/init', {
+					method: 'POST', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': SETTINGS.nonce || '' },
+					body: JSON.stringify( { audit_id: d.audit_id, token: d.token, email: email, callback: location.href.split( '?' )[ 0 ] } )
+				} ).then( function ( r ) { return r.ok ? r.json() : r.json().then( function ( j ) { return Promise.reject( j ); } ); } )
+				.then( function ( res ) {
+					if ( res.authorization_url ) { window.location = res.authorization_url; }
+					else if ( res.paid ) { confirmPayment( d.audit_id, d.token, '' ); }
+					else { throw res; }
+				} )
+				.catch( function ( j ) { pay.disabled = false; pay.textContent = 'Unlock for ' + cfg.priceLabel + ' →'; errEl.textContent = ( j && j.message ) ? j.message : 'Could not start checkout. Please try again.'; } );
+			} );
+		}
+
+		function confirmPayment( id, token, ref ) {
+			ui.results.innerHTML = '<p class="gt-mono" style="padding:2rem 0">Confirming your payment…</p>';
+			showScreen( ui, 'results' );
+			fetch( base + 'pay/confirm', {
+				method: 'POST', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': SETTINGS.nonce || '' },
+				body: JSON.stringify( { audit_id: id, token: token, reference: ref } )
+			} ).then( function ( r ) { return r.json(); } )
+			.then( function ( d ) {
+				if ( d.paid ) { try { localStorage.removeItem( lsKey ); } catch ( e ) {} renderUnlocked( d.recommendations ); }
+				else { ui.results.innerHTML = '<div class="gt-report"><h3>Payment not confirmed</h3><p>' + esc( d.error || 'We could not confirm the payment.' ) + ' If you were charged, your recommendations have also been emailed to you.</p></div>'; }
+			} )
+			.catch( function () { ui.results.innerHTML = '<div class="gt-report"><h3>Could not confirm right now</h3><p>Please check your inbox — we email your recommendations there too.</p></div>'; } );
+		}
+
+		function renderUnlocked( recs ) {
+			var items = ( recs || [] ).map( function ( r ) {
+				var c = 'high' === r.priority ? 'var(--danger)' : ( 'medium' === r.priority ? 'var(--warning)' : 'var(--ink-500)' );
+				return '<div class="gt-rec-item" style="border-left-color:' + c + '"><div class="gt-mono" style="color:' + c + '">' + esc( ( r.priority || '' ).toUpperCase() ) + '</div><strong>' + esc( r.title ) + '</strong><p>' + esc( r.detail ) + '</p><span class="gt-rec-ev">Why: ' + esc( r.evidence || '' ) + '</span></div>';
+			} ).join( '' );
+			ui.results.innerHTML =
+				'<div class="gt-score"><span class="gt-mono">Unlocked</span><h2 class="gt-band" style="margin-top:.4rem">Your detailed recommendations</h2><p class="gt-band__blurb">We’ve emailed a copy too.</p></div>' +
+				'<div class="gt-recs">' + items + '</div>' +
+				'<div class="gt-rec"><span class="tag">Next step</span><h3>Want us to fix these for you?</h3><p>We can implement the fixes on a productised engagement.</p><div class="gt-rec__btns"><a class="gt-btn gt-btn--digital" href="/contact">Book a discovery call ↗</a></div></div>';
+			showScreen( ui, 'results' );
+		}
+
+		// Payment return: Paystack sends the buyer back with ?reference / ?trxref.
+		var params = new URLSearchParams( location.search );
+		var ref = params.get( 'reference' ) || params.get( 'trxref' );
+		var stored = null;
+		try { stored = JSON.parse( localStorage.getItem( lsKey ) || 'null' ); } catch ( e ) {}
+		if ( ref && stored && stored.audit_id ) {
+			confirmPayment( stored.audit_id, stored.token, ref );
+		} else {
+			intro( ui, cfg, start );
+		}
+	}
+
 	/* ---------- score ring animation ---------- */
 	function animateScore( ui, overall, circ ) {
 		var arc = ui.results.querySelector( '.gt-ring__arc' );
@@ -411,6 +574,7 @@
 		showScreen( ui, 'intro' );
 		if ( cfg.engine === 'calculator' ) { calculator( root, ui, cfg ); }
 		else if ( cfg.engine === 'finder' ) { finder( root, ui, cfg ); }
+		else if ( cfg.engine === 'audit' ) { audit( root, ui, cfg ); }
 		else { likert( root, ui, cfg ); }
 	}
 
