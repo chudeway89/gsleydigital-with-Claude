@@ -32,7 +32,7 @@
 				<!-- /wp:paragraph -->
 				<!-- wp:html -->
 				<div class="tags"><span class="tag">Global enterprise</span><span class="tag">Hospitals &amp; foundations</span><span class="tag">Ambitious B2B &amp; B2C</span></div>
-				<div style="margin-top:var(--sp-6)"><a href="/services/market" class="open-link">Open ↗</a></div>
+				<div style="margin-top:var(--sp-6)"><a href="/services/market/" class="open-link">Open ↗</a></div>
 				<!-- /wp:html -->
 			</div>
 			<!-- /wp:group -->
@@ -50,7 +50,7 @@
 				<!-- /wp:paragraph -->
 				<!-- wp:html -->
 				<div class="tags"><span class="tag">Hospitals</span><span class="tag">Foundations</span><span class="tag">Global enterprise</span></div>
-				<div style="margin-top:var(--sp-6)"><a href="/services/digital" class="open-link open-link--digital">Open ↗</a></div>
+				<div style="margin-top:var(--sp-6)"><a href="/services/digital/" class="open-link open-link--digital">Open ↗</a></div>
 				<!-- /wp:html -->
 			</div>
 			<!-- /wp:group -->

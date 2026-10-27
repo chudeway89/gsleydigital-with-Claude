@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Content Development</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Content Development</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Content engineered to be cited — by AI, and by the people who decide.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
-    <a href="/tools/brand-authority-audit" class="btn btn--ghost">Audit your brand authority ↗</a>
+    <a href="/contact/" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
+    <a href="/tools/brand-authority-audit/" class="btn btn--ghost">Audit your brand authority ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Built for</span><span class="v">Citation, not clicks</span></div>
     <div><span class="k">Tier</span><span class="v">Sprint + retainer · price on request</span></div>
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Is your authority keeping pace with your ambition?</h3><p>The Brand Authority Audit scores how visible and credible you are to the decision-makers — and the engines — that now mediate trust.</p></div>
-    <a href="/tools/brand-authority-audit" class="btn btn--solid">Run the Brand Authority Audit <span class="arrow">↗</span></a>
+    <a href="/tools/brand-authority-audit/" class="btn btn--solid">Run the Brand Authority Audit <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Be the source the answer is built from.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

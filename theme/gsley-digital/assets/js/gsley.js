@@ -19,6 +19,15 @@
 		btn.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
 	} );
 
+	// Active nav state: mark the link whose section matches the current URL.
+	var section = '/' + ( location.pathname.split( '/' )[ 1 ] || '' );
+	document.querySelectorAll( '.nav a, .mobile-nav a:not(.btn)' ).forEach( function ( a ) {
+		var target = '/' + ( ( a.getAttribute( 'href' ) || '' ).split( '/' )[ 1 ] || '' );
+		if ( target === section ) {
+			a.setAttribute( 'aria-current', 'page' );
+		}
+	} );
+
 	// Scroll reveal.
 	var reduce = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
 	var targets = document.querySelectorAll( '.reveal' );

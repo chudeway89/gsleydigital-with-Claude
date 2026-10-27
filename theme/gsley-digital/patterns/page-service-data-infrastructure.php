@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/digital">Digital</a> › Data Infrastructure</div><div class="page-hero__glyph">◇</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/digital/">Digital</a> › Data Infrastructure</div><div class="page-hero__glyph">◇</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Every AI ambition quietly depends on the data underneath it.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/automation-opportunity-finder" class="btn btn--ghost">Find automation opportunities ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/automation-opportunity-finder/" class="btn btn--ghost">Find automation opportunities ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Sprint → programme</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -135,7 +135,7 @@
 <!-- wp:details {"showContent":true} -->
 <details class="wp-block-details" open><summary>Is this a prerequisite for the other Digital services?</summary>
 <!-- wp:paragraph -->
-<p>Often, yes. <a href="/services/digital/ai-agent-deployment" style="text-decoration:underline">AI Agent Deployment</a> and <a href="/services/digital/automation-and-revops" style="text-decoration:underline">Automation &amp; RevOps</a> are only as good as the data beneath them. Where foundations are weak, we sequence this first — or run a lightweight version in parallel so deployment isn't blocked.</p>
+<p>Often, yes. <a href="/services/digital/ai-agent-deployment/" style="text-decoration:underline">AI Agent Deployment</a> and <a href="/services/digital/automation-and-revops/" style="text-decoration:underline">Automation &amp; RevOps</a> are only as good as the data beneath them. Where foundations are weak, we sequence this first — or run a lightweight version in parallel so deployment isn't blocked.</p>
 <!-- /wp:paragraph -->
 </details>
 <!-- /wp:details -->
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>See what a foundation would unlock.</h3><p>The Automation Opportunity Finder maps the workflows with the highest automation return — most of which depend on the data foundation this engagement builds.</p></div>
-    <a href="/tools/automation-opportunity-finder" class="btn btn--solid">Find opportunities <span class="arrow">↗</span></a>
+    <a href="/tools/automation-opportunity-finder/" class="btn btn--solid">Find opportunities <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Build the foundation once. Let everything after stand on it.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

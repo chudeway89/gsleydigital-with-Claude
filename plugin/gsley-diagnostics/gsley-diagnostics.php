@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       GSLEY Diagnostics
- * Plugin URI:        https://gsleydigital.com/tools
+ * Plugin URI:        https://gsleydigital.com/tools/
  * Description:       The eight GSLEY interactive diagnostic tools, each as an editor block. Answer-first; one shared shell + engine (Likert) plus two variant engines (calculator, finder). Lead capture, persistence, and Resend delivery hook the gsley_diagnostics_submission action. Application logic lives here, never in the theme.
  * Version:           0.1.0
  * Requires at least: 6.5

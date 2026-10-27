@@ -25,7 +25,7 @@ function gsley_maybe_handle_contact() {
 		return;
 	}
 
-	$contact_url = home_url( '/contact' );
+	$contact_url = home_url( '/contact/' );
 
 	// Honeypot — pretend success, do nothing.
 	if ( ! empty( $_POST['company_website'] ) ) {

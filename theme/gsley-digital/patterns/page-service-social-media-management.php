@@ -15,7 +15,7 @@
 	<section class="wp-block-group page-hero">
 		<!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap">
-			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Social Media Management</div><div class="page-hero__glyph">▲</div><!-- /wp:html -->
+			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Social Media Management</div><div class="page-hero__glyph">▲</div><!-- /wp:html -->
 			<!-- wp:heading {"level":1} -->
 			<h1 class="wp-block-heading">A managed channel — editorial cadence, community, and governance.</h1>
 			<!-- /wp:heading -->
@@ -24,8 +24,8 @@
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
 			<div class="page-hero__ctas">
-				<a href="/contact" class="btn btn--digital">Begin <span class="arrow">↗</span></a>
-				<a href="/tools/brand-authority-audit" class="btn btn--ghost">Run the Brand Authority Audit ↗</a>
+				<a href="/contact/" class="btn btn--digital">Begin <span class="arrow">↗</span></a>
+				<a href="/tools/brand-authority-audit/" class="btn btn--ghost">Run the Brand Authority Audit ↗</a>
 			</div>
 			<div class="page-hero__meta">
 				<div><span class="k">Timeline</span><span class="v">Ongoing</span></div>
@@ -162,7 +162,7 @@
 			<!-- wp:html -->
 			<div class="matched">
 				<div><h3>Is the channel helping or hurting your authority?</h3><p>The Brand Authority Audit scores how visible and credible your brand is to the decision-makers who matter — and whether the channel is pulling its weight.</p></div>
-				<a href="/tools/brand-authority-audit" class="btn btn--solid">Run the Brand Authority Audit <span class="arrow">↗</span></a>
+				<a href="/tools/brand-authority-audit/" class="btn btn--solid">Run the Brand Authority Audit <span class="arrow">↗</span></a>
 			</div>
 			<!-- /wp:html -->
 		</div>
@@ -178,7 +178,7 @@
 			<p class="display">Make the channel sound like the institution — every day, not just launch day.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
-			<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Begin ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+			<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Begin ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 			<!-- /wp:html -->
 		</div>
 		<!-- /wp:group -->

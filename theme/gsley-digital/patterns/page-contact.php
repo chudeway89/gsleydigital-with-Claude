@@ -69,7 +69,7 @@
 							</select>
 						</div>
 						<div class="field"><label for="message">Tell us about the gap you're closing</label><textarea id="message" name="message" placeholder="A few sentences on where you are and where you want to be."></textarea></div>
-						<p class="hint">We reply to every brief. For a faster response, use WhatsApp. By submitting you agree to our <a href="/legal/privacy" style="text-decoration:underline">privacy policy</a>.</p>
+						<p class="hint">We reply to every brief. For a faster response, use WhatsApp. By submitting you agree to our <a href="/legal/privacy/" style="text-decoration:underline">privacy policy</a>.</p>
 						<button type="submit" class="btn btn--solid">Send brief <span class="arrow">↗</span></button>
 					</form>
 				</div>

@@ -47,7 +47,7 @@ $gsley_legal_index = '<!-- wp:group {"tagName":"div","templateLock":"contentOnly
 	. '<!-- wp:paragraph {"className":"lede"} --><p class="lede">Our privacy, terms, and cookie policies.</p><!-- /wp:paragraph -->'
 	. '</div><!-- /wp:group --></section><!-- /wp:group -->'
 	. '<!-- wp:group {"tagName":"section","className":"section","layout":{"type":"default"}} --><section class="wp-block-group section"><!-- wp:group {"className":"wrap read legal","layout":{"type":"default"}} --><div class="wp-block-group wrap read legal">'
-	. '<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li><a href="/legal/privacy">Privacy Policy</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/terms">Terms of Service</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/cookies">Cookie Policy</a></li><!-- /wp:list-item --></ul><!-- /wp:list -->'
+	. '<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li><a href="/legal/privacy/">Privacy Policy</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/terms/">Terms of Service</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/cookies/">Cookie Policy</a></li><!-- /wp:list-item --></ul><!-- /wp:list -->'
 	. '</div><!-- /wp:group --></section><!-- /wp:group -->'
 	. '</div><!-- /wp:group -->';
 

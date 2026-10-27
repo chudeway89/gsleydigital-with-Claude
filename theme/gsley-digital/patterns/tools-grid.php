@@ -10,16 +10,16 @@
  */
 
 $gsley_tools = array(
-	array( 'The Gsley Growth Diagnostic™', '4 min · scored', '/tools/growth-diagnostic' ),
-	array( 'AI Adoption Assessment — Organisation', '6 min · board-ready', '/tools/ai-adoption-assessment-organisation' ),
-	array( 'AI Adoption Assessment — Individual', '4 min · scored', '/tools/ai-adoption-assessment-individual' ),
-	array( 'Brand Authority Audit', '5 min · scored', '/tools/brand-authority-audit' ),
-	array( 'Revenue Leakage Calculator', '3 min · figure', '/tools/revenue-leakage-calculator' ),
-	array( 'Marketing Maturity Scorecard', '5 min · scored', '/tools/marketing-maturity-scorecard' ),
-	array( 'Automation Opportunity Finder', '4 min · mapped', '/tools/automation-opportunity-finder' ),
-	array( 'Partnership Readiness Quiz', '3 min · scored', '/tools/partnership-readiness-quiz' ),
-	array( 'Social Media Audit', '$10 · audit', '/tools/social-media-audit' ),
-	array( 'Digital Presence &amp; ORM Audit', '$20 · audit', '/tools/digital-presence-orm-audit' ),
+	array( 'The Gsley Growth Diagnostic™', '4 min · scored', '/tools/growth-diagnostic/' ),
+	array( 'AI Adoption Assessment — Organisation', '6 min · board-ready', '/tools/ai-adoption-assessment-organisation/' ),
+	array( 'AI Adoption Assessment — Individual', '4 min · scored', '/tools/ai-adoption-assessment-individual/' ),
+	array( 'Brand Authority Audit', '5 min · scored', '/tools/brand-authority-audit/' ),
+	array( 'Revenue Leakage Calculator', '3 min · figure', '/tools/revenue-leakage-calculator/' ),
+	array( 'Marketing Maturity Scorecard', '5 min · scored', '/tools/marketing-maturity-scorecard/' ),
+	array( 'Automation Opportunity Finder', '4 min · mapped', '/tools/automation-opportunity-finder/' ),
+	array( 'Partnership Readiness Quiz', '3 min · scored', '/tools/partnership-readiness-quiz/' ),
+	array( 'Social Media Audit', '$10 · audit', '/tools/social-media-audit/' ),
+	array( 'Digital Presence &amp; ORM Audit', '$20 · audit', '/tools/digital-presence-orm-audit/' ),
 );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--bone","templateLock":"contentOnly","layout":{"type":"default"}} -->

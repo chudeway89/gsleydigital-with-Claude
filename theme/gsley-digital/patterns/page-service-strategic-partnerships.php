@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Strategic Partnerships</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Strategic Partnerships</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">The partnerships that move an institution — structured, then landed.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/partnership-readiness-quiz" class="btn btn--ghost">Take the readiness quiz ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/partnership-readiness-quiz/" class="btn btn--ghost">Take the readiness quiz ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Deal Desk · retainer</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Are you ready to partner?</h3><p>The Partnership Readiness Quiz scores whether your organisation has the mandate, structure, and value to land an institutional partnership — before you spend months pursuing one.</p></div>
-    <a href="/tools/partnership-readiness-quiz" class="btn btn--solid">Take the readiness quiz <span class="arrow">↗</span></a>
+    <a href="/tools/partnership-readiness-quiz/" class="btn btn--solid">Take the readiness quiz <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Bring us the partnership that's been stalled. We'll structure the path to signed.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

@@ -44,12 +44,15 @@
 	}
 
 	function intro( ui, cfg, onStart ) {
+		var headTag = document.querySelector( 'h1' ) && ! ui.intro.querySelector( 'h1' ) ? 'h2' : 'h1';
 		var f = ( cfg.facts || [] ).map( function ( x ) {
 			return '<div><span class="v">' + esc( x.v ) + '</span><span class="k">' + esc( x.k ) + '</span></div>';
 		} ).join( '' );
 		ui.intro.innerHTML =
+			( /\/tools\/./.test( location.pathname ) ? '<a class="gt-back-link" href="/tools/">← All tools</a><br>' : '' ) +
 			'<span class="gt-mono">' + esc( cfg.code || 'Diagnostic' ) + '</span>' +
-			'<h2>' + esc( cfg.title ) + '</h2>' +
+			// The tool is the page's main content on /tools/* — give it the page H1.
+			'<' + headTag + '>' + esc( cfg.title ) + '</' + headTag + '>' +
 			'<p class="gt-lede">' + esc( cfg.lede ) + '</p>' +
 			( f ? '<div class="gt-facts">' + f + '</div>' : '' ) +
 			'<button class="gt-btn gt-btn--solid gt-start">' + esc( cfg.startLabel || 'Begin' ) + ' ↗</button>' +
@@ -74,7 +77,7 @@
 			'<p>' + esc( rec.body ) + '</p>' +
 			'<div class="gt-rec__btns">' +
 				'<a class="gt-btn gt-btn--digital" href="' + esc( rec.url ) + '">' + esc( rec.linkText ) + ' ↗</a>' +
-				'<a class="gt-btn gt-btn--ghost" href="/contact">Book a discovery call ↗</a>' +
+				'<a class="gt-btn gt-btn--ghost" href="/contact/">Book a discovery call ↗</a>' +
 			'</div>' +
 		'</div>';
 	}
@@ -91,7 +94,7 @@
 			'<div class="gt-field"><label>Work email<input type="email" class="gt-email" autocomplete="email" placeholder="you@organisation.com"></label><span class="gt-err"></span></div>' +
 			'<div class="gt-field"><label>Name (optional)<input type="text" class="gt-name" autocomplete="name"></label></div>' +
 			'<button class="gt-btn gt-btn--solid gt-send">Email me the full report ↗</button>' +
-			'<p class="gt-consent">We send the report and, occasionally, relevant insights. Unsubscribe anytime. See our <a href="/legal/privacy" style="text-decoration:underline">privacy policy</a>.</p>' +
+			'<p class="gt-consent">We send the report and, occasionally, relevant insights. Unsubscribe anytime. See our <a href="/legal/privacy/" style="text-decoration:underline">privacy policy</a>.</p>' +
 		'</div>' +
 		'<div class="gt-sent"><div class="check">✓</div><p style="margin-top:.75rem;font-weight:500">Report on its way.</p>' +
 			'<p class="gt-mono" style="margin-top:.5rem">Check your inbox shortly. Prefer to talk? <a href="https://wa.me/2349024767079" style="text-decoration:underline">WhatsApp us ↗</a></p></div>';
@@ -482,7 +485,7 @@
 
 		function unlockPanel( d ) {
 			if ( ! d.report.reco_count ) {
-				return '<div class="gt-report"><h3>No issues found</h3><p>Your audit came back clean across every check — nothing to unlock. Want a deeper, human review? <a href="/contact">Talk to us</a>.</p></div>';
+				return '<div class="gt-report"><h3>No issues found</h3><p>Your audit came back clean across every check — nothing to unlock. Want a deeper, human review? <a href="/contact/">Talk to us</a>.</p></div>';
 			}
 			var li = ( cfg.reportLines || [] ).map( function ( t ) { return '<li><span class="tick">✓</span> ' + esc( t ) + '</li>'; } ).join( '' );
 			return '<div class="gt-report"><h3>Unlock your ' + d.report.reco_count + ' detailed recommendations</h3>' +
@@ -490,7 +493,7 @@
 				'<ul>' + li + '</ul>' +
 				'<div class="gt-field"><label>Work email<input type="email" class="gt-email" placeholder="you@brand.com"></label><span class="gt-err"></span></div>' +
 				'<button class="gt-btn gt-btn--solid gt-pay">Unlock for ' + esc( d.priceLabel ) + ' →</button>' +
-				'<p class="gt-consent">Secure payment via Paystack. We email your recommendations and a copy of this report. See our <a href="/legal/privacy" style="text-decoration:underline">privacy policy</a>.</p></div>';
+				'<p class="gt-consent">Secure payment via Paystack. We email your recommendations and a copy of this report. See our <a href="/legal/privacy/" style="text-decoration:underline">privacy policy</a>.</p></div>';
 		}
 
 		function wireUnlock( d ) {
@@ -536,7 +539,7 @@
 			ui.results.innerHTML =
 				'<div class="gt-score"><span class="gt-mono">Unlocked</span><h2 class="gt-band" style="margin-top:.4rem">Your detailed recommendations</h2><p class="gt-band__blurb">We’ve emailed a copy too.</p></div>' +
 				'<div class="gt-recs">' + items + '</div>' +
-				'<div class="gt-rec"><span class="tag">Next step</span><h3>Want us to fix these for you?</h3><p>We can implement the fixes on a productised engagement.</p><div class="gt-rec__btns"><a class="gt-btn gt-btn--digital" href="/contact">Book a discovery call ↗</a></div></div>';
+				'<div class="gt-rec"><span class="tag">Next step</span><h3>Want us to fix these for you?</h3><p>We can implement the fixes on a productised engagement.</p><div class="gt-rec__btns"><a class="gt-btn gt-btn--digital" href="/contact/">Book a discovery call ↗</a></div></div>';
 			showScreen( ui, 'results' );
 		}
 

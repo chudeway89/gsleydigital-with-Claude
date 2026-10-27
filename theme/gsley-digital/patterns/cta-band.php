@@ -18,8 +18,8 @@
 		<!-- /wp:paragraph -->
 		<!-- wp:html -->
 		<div class="closing__ctas">
-			<a href="/tools/growth-diagnostic" class="btn btn--digital">Run the Growth Diagnostic ↗</a>
-			<a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a>
+			<a href="/tools/growth-diagnostic/" class="btn btn--digital">Run the Growth Diagnostic ↗</a>
+			<a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a>
 		</div>
 		<!-- /wp:html -->
 	</div>

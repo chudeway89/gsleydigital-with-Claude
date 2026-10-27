@@ -15,7 +15,7 @@
 	<section class="wp-block-group page-hero page-hero--teal">
 		<!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap">
-			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › Digital</div><div class="page-hero__glyph"><span class="glyph">◇</span></div><!-- /wp:html -->
+			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › Digital</div><div class="page-hero__glyph"><span class="glyph">◇</span></div><!-- /wp:html -->
 			<!-- wp:heading {"level":1} -->
 			<h1 class="wp-block-heading">GSLEY Digital — AI-native operating systems.</h1>
 			<!-- /wp:heading -->
@@ -44,9 +44,9 @@
 			<!-- /wp:group -->
 			<!-- wp:html -->
 			<div class="svc-grid">
-				<a class="svc-card" href="/services/digital/ai-agent-deployment"><div class="tagrow"><span class="code">D-01</span><span class="badge badge--front">Front-line</span></div><h3>AI Agent Deployment</h3><p>Agentic workflows wired into the back office. Prebuilt patterns for hospitals, foundations, and enterprise — not toy demos.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
-				<a class="svc-card" href="/services/digital/automation-and-revops"><div class="tagrow"><span class="code">D-02</span><span class="badge badge--front">Front-line</span></div><h3>Automation &amp; RevOps</h3><p>Revenue operations and automation across marketing, sales, and success — built on the data model, not the tool.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
-				<a class="svc-card" href="/services/digital/ai-adoption-programmes"><div class="tagrow"><span class="code">D-03</span><span class="badge badge--front">Front-line</span></div><h3>AI Adoption Programmes</h3><p>Structured, governed rollout of AI across teams — with bias review, training, and a board-ready adoption plan.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
+				<a class="svc-card" href="/services/digital/ai-agent-deployment/"><div class="tagrow"><span class="code">D-01</span><span class="badge badge--front">Front-line</span></div><h3>AI Agent Deployment</h3><p>Agentic workflows wired into the back office. Prebuilt patterns for hospitals, foundations, and enterprise — not toy demos.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
+				<a class="svc-card" href="/services/digital/automation-and-revops/"><div class="tagrow"><span class="code">D-02</span><span class="badge badge--front">Front-line</span></div><h3>Automation &amp; RevOps</h3><p>Revenue operations and automation across marketing, sales, and success — built on the data model, not the tool.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
+				<a class="svc-card" href="/services/digital/ai-adoption-programmes/"><div class="tagrow"><span class="code">D-03</span><span class="badge badge--front">Front-line</span></div><h3>AI Adoption Programmes</h3><p>Structured, governed rollout of AI across teams — with bias review, training, and a board-ready adoption plan.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
 			</div>
 			<!-- /wp:html -->
 		</div>
@@ -68,9 +68,9 @@
 			<!-- /wp:group -->
 			<!-- wp:html -->
 			<div class="svc-grid">
-				<a class="svc-card" href="/services/digital/digital-transformation"><div class="tagrow"><span class="code">C-07</span><span class="badge">Strategic</span></div><h3>Digital Transformation</h3><p>Diagnostics and roadmaps that move an institution from legacy operations to an AI-native operating model.</p><span class="open-link open-link--digital">Explore ↗</span></a>
-				<a class="svc-card" href="/services/digital/data-infrastructure"><div class="tagrow"><span class="code">C-08</span><span class="badge">Strategic</span></div><h3>Data Infrastructure</h3><p>Unified data, governed access, and a single source of truth across RevOps, finance, and operations.</p><span class="open-link open-link--digital">Explore ↗</span></a>
-				<a class="svc-card" href="/services/digital/revenue-optimisation"><div class="tagrow"><span class="code">C-09</span><span class="badge">Strategic</span></div><h3>Revenue Optimisation</h3><p>Pricing, retention, and lifecycle economics — instrumented, measured, and improved against a defined model.</p><span class="open-link open-link--digital">Explore ↗</span></a>
+				<a class="svc-card" href="/services/digital/digital-transformation/"><div class="tagrow"><span class="code">C-07</span><span class="badge">Strategic</span></div><h3>Digital Transformation</h3><p>Diagnostics and roadmaps that move an institution from legacy operations to an AI-native operating model.</p><span class="open-link open-link--digital">Explore ↗</span></a>
+				<a class="svc-card" href="/services/digital/data-infrastructure/"><div class="tagrow"><span class="code">C-08</span><span class="badge">Strategic</span></div><h3>Data Infrastructure</h3><p>Unified data, governed access, and a single source of truth across RevOps, finance, and operations.</p><span class="open-link open-link--digital">Explore ↗</span></a>
+				<a class="svc-card" href="/services/digital/revenue-optimisation/"><div class="tagrow"><span class="code">C-09</span><span class="badge">Strategic</span></div><h3>Revenue Optimisation</h3><p>Pricing, retention, and lifecycle economics — instrumented, measured, and improved against a defined model.</p><span class="open-link open-link--digital">Explore ↗</span></a>
 			</div>
 			<!-- /wp:html -->
 		</div>
@@ -113,7 +113,7 @@
 			<p class="display u-paper">Start with the AI Adoption Assessment — a board-ready read-out in six minutes.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
-			<div class="cta-band__btns"><a href="/tools/ai-adoption-assessment-organisation" class="btn btn--digital">Run the AI Adoption Assessment ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+			<div class="cta-band__btns"><a href="/tools/ai-adoption-assessment-organisation/" class="btn btn--digital">Run the AI Adoption Assessment ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 			<!-- /wp:html -->
 		</div>
 		<!-- /wp:group -->

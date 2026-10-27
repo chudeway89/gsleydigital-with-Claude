@@ -20,7 +20,7 @@
 			<h1 class="wp-block-heading">Cookie Policy</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"meta"} -->
-			<p class="meta">Last updated: 30 May 2026 · Read with our <a href="/legal/privacy">Privacy Policy</a></p>
+			<p class="meta">Last updated: 30 May 2026 · Read with our <a href="/legal/privacy/">Privacy Policy</a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->

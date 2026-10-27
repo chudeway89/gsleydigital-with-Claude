@@ -43,9 +43,9 @@ function gsley_seo_output_schema() {
 			$items = array();
 			$market = gsley_seo_market_services();
 			foreach ( array( 'website-design', 'google-ads', 'email-marketing', 'social-media-marketing', 'content-development' ) as $i => $slug ) {
-				$items[] = gsley_seo_listitem( $i + 1, $market[ $slug ], home_url( '/services/market/' . $slug ) );
+				$items[] = gsley_seo_listitem( $i + 1, $market[ $slug ], trailingslashit( home_url( '/services/market/' . $slug ) ) );
 			}
-			$items[] = gsley_seo_listitem( 6, 'AI Agent Deployment', home_url( '/services/digital/ai-agent-deployment' ) );
+			$items[] = gsley_seo_listitem( 6, 'AI Agent Deployment', home_url( '/services/digital/ai-agent-deployment/' ) );
 			$graph[] = array( '@type' => 'ItemList', 'name' => 'Start here', 'itemListElement' => $items );
 			$graph[] = gsley_seo_faqpage( gsley_seo_home_faq() );
 			break;
@@ -57,7 +57,7 @@ function gsley_seo_output_schema() {
 				'honorificSuffix' => 'MCIPR',
 				'jobTitle' => 'Founder',
 				'worksFor' => array( '@id' => home_url( '/#organization' ) ),
-				'url'      => home_url( '/about' ),
+				'url'      => home_url( '/about/' ),
 				'sameAs'   => 'https://www.linkedin.com/in/chukwudihex',
 			);
 			$graph[] = gsley_seo_breadcrumblist( $pt );
@@ -159,15 +159,15 @@ function gsley_seo_collection_itemlist( $pt ) {
 	if ( 'pillar' === $pt['type'] ) {
 		$svc = 'market' === $pt['pillar'] ? gsley_seo_market_services() : gsley_seo_digital_services();
 		foreach ( $svc as $slug => $name ) {
-			$items[] = gsley_seo_listitem( $i++, $name, home_url( '/services/' . $pt['pillar'] . '/' . $slug ) );
+			$items[] = gsley_seo_listitem( $i++, $name, trailingslashit( home_url( '/services/' . $pt['pillar'] . '/' . $slug ) ) );
 		}
 	} elseif ( 'tools-hub' === $pt['type'] ) {
 		foreach ( gsley_seo_tools() as $slug => $name ) {
-			$items[] = gsley_seo_listitem( $i++, $name, home_url( '/tools/' . $slug ) );
+			$items[] = gsley_seo_listitem( $i++, $name, trailingslashit( home_url( '/tools/' . $slug ) ) );
 		}
 	} else { // services index
-		$items[] = gsley_seo_listitem( $i++, 'GSLEY Market', home_url( '/services/market' ) );
-		$items[] = gsley_seo_listitem( $i++, 'GSLEY Digital', home_url( '/services/digital' ) );
+		$items[] = gsley_seo_listitem( $i++, 'GSLEY Market', home_url( '/services/market/' ) );
+		$items[] = gsley_seo_listitem( $i++, 'GSLEY Digital', home_url( '/services/digital/' ) );
 	}
 	return array( '@type' => 'ItemList', 'itemListElement' => $items );
 }

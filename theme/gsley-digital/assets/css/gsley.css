@@ -155,7 +155,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .footer-col h4 .dot{width:7px;height:7px;border-radius:1px;}
 .footer-col h4 .dot--m{background:var(--ink-900);}
 .footer-col h4 .dot--d{background:var(--accent-digital);}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--sp-2);}
+.footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--sp-2);}
 .footer-col a{font-size:var(--fs-small);color:var(--ink-500);transition:color var(--dur-base);}
 .footer-col a:hover{color:var(--ink-900);}
 .footer-bottom{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;align-items:center;padding-top:var(--sp-8);border-top:1px solid var(--line);font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.08em;color:var(--ink-500);text-transform:uppercase;}
@@ -207,7 +207,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .pillar-detail__label .name{font-family:var(--font-display);font-size:1.25rem;font-weight:600;}
 .pillar-detail__label .mono-tag{margin-top:2px;}
 .pillar-detail p{color:var(--ink-700);max-width:42ch;}
-.service-list{list-style:none;display:flex;flex-direction:column;gap:var(--sp-3);}
+.service-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--sp-3);}
 .service-list li{display:flex;align-items:baseline;gap:var(--sp-3);font-size:var(--fs-small);color:var(--ink-700);}
 .service-list li::before{content:"—";color:var(--ink-300);}
 
@@ -341,7 +341,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
 /* Two-column intro + included scope */
 .two-col{display:grid;gap:var(--sp-8);}
-.incl{list-style:none;display:grid;gap:var(--sp-3);margin-top:var(--sp-8);}
+.incl{list-style:none;padding:0;display:grid;gap:var(--sp-3);margin-top:var(--sp-8);}
 .incl li{display:flex;gap:var(--sp-3);align-items:flex-start;font-size:var(--fs-small);color:var(--ink-700);padding-bottom:var(--sp-3);border-bottom:1px solid var(--line);}
 .incl li .tick{color:var(--accent-digital);font-weight:600;flex-shrink:0;}
 
@@ -521,3 +521,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
    tokens fail to resolve on a given host/plugin stack. */
 .hero h1,.page-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;}
 @media(max-width:480px){.hero h1,.page-hero h1{font-size:clamp(2rem,9vw,2.75rem);}}
+
+/* ============================================================ DESIGN POLISH (live audit)
+   - Balanced headline wrapping: no orphaned last words ("…are / not.").
+   - TranslatePress floating language switcher moved off the WhatsApp button
+     (it covered the FAB and on-page CTAs, bottom-right).
+   - Active nav state (set by gsley.js). */
+h1,h2,.display,.h2{text-wrap:balance;}
+.lede,.prose p{text-wrap:pretty;}
+nav.trp-floating-switcher{right:auto !important;left:16px !important;}
+@media(max-width:600px){nav.trp-floating-switcher{left:12px !important;bottom:12px !important;transform:scale(.88);transform-origin:left bottom;}}
+.nav a[aria-current="page"],.mobile-nav a[aria-current="page"]{color:var(--ink-900);}
+.nav a[aria-current="page"]{background:var(--bone);}
+.mobile-nav a[aria-current="page"]{font-weight:600;}

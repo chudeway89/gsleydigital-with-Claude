@@ -13,25 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * robots.txt — allow search + named AI crawlers; point to the sitemap.
  * (phase1-handoff.md §5.)
  */
-add_filter( 'robots_txt', 'gsley_seo_robots_txt', 10, 2 );
+add_filter( 'robots_txt', 'gsley_seo_robots_txt', 99999, 2 ); // run after Yoast/WP defaults
 function gsley_seo_robots_txt( $output, $public ) {
 	$sitemap = home_url( '/sitemap.xml' );
-	$lines   = array(
-		'User-agent: *',
-		'Allow: /',
-		'',
-		'User-agent: GPTBot',
-		'Allow: /',
-		'',
-		'User-agent: ClaudeBot',
-		'Allow: /',
-		'',
-		'User-agent: PerplexityBot',
-		'Allow: /',
-		'',
-		'Sitemap: ' . $sitemap,
-		'',
-	);
+	// Kept identical to deploy/robots.txt (the static file wins if uploaded).
+	$body = file_exists( GSLEY_SEO_DIR . 'robots.txt' ) ? (string) file_get_contents( GSLEY_SEO_DIR . 'robots.txt' ) : "User-agent: *\nAllow: /\n";
+	$lines = array( rtrim( preg_replace( '#^Sitemap:.*$#m', '', $body ) ), '', 'Sitemap: ' . $sitemap, '' );
 	$txt = implode( "\n", $lines );
 	if ( ! $public ) {
 		// Site is set to discourage indexing (e.g. staging): respect that.
@@ -70,24 +57,24 @@ function gsley_seo_serve_files() {
 function gsley_seo_output_sitemap() {
 	$urls = array();
 	$urls[] = array( home_url( '/' ), '1.0', 'weekly' );
-	$urls[] = array( home_url( '/about' ), '0.6', 'monthly' );
-	$urls[] = array( home_url( '/contact' ), '0.6', 'monthly' );
-	$urls[] = array( home_url( '/services' ), '0.8', 'monthly' );
-	$urls[] = array( home_url( '/services/market' ), '0.8', 'monthly' );
-	$urls[] = array( home_url( '/services/digital' ), '0.8', 'monthly' );
-	$urls[] = array( home_url( '/tools' ), '0.8', 'monthly' );
+	$urls[] = array( home_url( '/about/' ), '0.6', 'monthly' );
+	$urls[] = array( home_url( '/contact/' ), '0.6', 'monthly' );
+	$urls[] = array( home_url( '/services/' ), '0.8', 'monthly' );
+	$urls[] = array( home_url( '/services/market/' ), '0.8', 'monthly' );
+	$urls[] = array( home_url( '/services/digital/' ), '0.8', 'monthly' );
+	$urls[] = array( home_url( '/tools/' ), '0.8', 'monthly' );
 
 	foreach ( gsley_seo_market_services() as $slug => $name ) {
-		$urls[] = array( home_url( '/services/market/' . $slug ), '0.7', 'monthly' );
+		$urls[] = array( trailingslashit( home_url( '/services/market/' . $slug ) ), '0.7', 'monthly' );
 	}
 	foreach ( gsley_seo_digital_services() as $slug => $name ) {
-		$urls[] = array( home_url( '/services/digital/' . $slug ), '0.7', 'monthly' );
+		$urls[] = array( trailingslashit( home_url( '/services/digital/' . $slug ) ), '0.7', 'monthly' );
 	}
 	foreach ( gsley_seo_tools() as $slug => $name ) {
-		$urls[] = array( home_url( '/tools/' . $slug ), '0.7', 'monthly' );
+		$urls[] = array( trailingslashit( home_url( '/tools/' . $slug ) ), '0.7', 'monthly' );
 	}
 	foreach ( gsley_seo_legal() as $slug => $name ) {
-		$urls[] = array( home_url( '/legal/' . $slug ), '0.3', 'yearly' );
+		$urls[] = array( trailingslashit( home_url( '/legal/' . $slug ) ), '0.3', 'yearly' );
 	}
 
 	$urls = apply_filters( 'gsley_seo_sitemap_urls', $urls );
@@ -98,6 +85,12 @@ function gsley_seo_output_sitemap() {
 	foreach ( $urls as $u ) {
 		echo "  <url>\n";
 		echo '    <loc>' . esc_url( $u[0] ) . "</loc>\n";
+		// Real last-modified date from the page itself (omitted if unknown).
+		$path = trim( (string) wp_parse_url( $u[0], PHP_URL_PATH ), '/' );
+		$page = '' === $path ? null : get_page_by_path( $path );
+		if ( $page && ! empty( $page->post_modified_gmt ) && '0000-00-00 00:00:00' !== $page->post_modified_gmt ) {
+			echo '    <lastmod>' . esc_html( mysql2date( 'Y-m-d', $page->post_modified_gmt ) ) . "</lastmod>\n";
+		}
 		echo '    <changefreq>' . esc_html( $u[2] ) . "</changefreq>\n";
 		echo '    <priority>' . esc_html( $u[1] ) . "</priority>\n";
 		echo "  </url>\n";

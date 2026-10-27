@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Email Marketing</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Email Marketing</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">An audience you own, monetised across its whole lifecycle.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
-    <a href="/tools/marketing-maturity-scorecard" class="btn btn--ghost">Score your marketing maturity ↗</a>
+    <a href="/contact/" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
+    <a href="/tools/marketing-maturity-scorecard/" class="btn btn--ghost">Score your marketing maturity ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Build</span><span class="v">Core flows in weeks</span></div>
     <div><span class="k">Tier</span><span class="v">Sprint + retainer · price on request</span></div>
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Where does email sit in your wider system?</h3><p>The Marketing Maturity Scorecard shows whether email is your fastest win — or whether something else should come first.</p></div>
-    <a href="/tools/marketing-maturity-scorecard" class="btn btn--solid">Score your maturity <span class="arrow">↗</span></a>
+    <a href="/tools/marketing-maturity-scorecard/" class="btn btn--solid">Score your maturity <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Turn the channel you own into the revenue that compounds.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

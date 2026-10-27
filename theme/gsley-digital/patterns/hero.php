@@ -45,8 +45,8 @@
 
 		<!-- wp:html -->
 		<div class="hero__ctas">
-			<a href="/tools/growth-diagnostic" class="btn btn--solid">Run the Growth Diagnostic <span class="arrow">↗</span></a>
-			<a href="/contact" class="btn btn--ghost">Book a Discovery Call <span class="arrow">↗</span></a>
+			<a href="/tools/growth-diagnostic/" class="btn btn--solid">Run the Growth Diagnostic <span class="arrow">↗</span></a>
+			<a href="/contact/" class="btn btn--ghost">Book a Discovery Call <span class="arrow">↗</span></a>
 		</div>
 		<!-- /wp:html -->
 	</div>

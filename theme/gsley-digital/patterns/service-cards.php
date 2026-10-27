@@ -10,12 +10,12 @@
  */
 
 $gsley_services = array(
-	array( 'Website Design &amp; Development', 'Conversion-engineered, AI-search ready, deployed in 4–8 weeks.', '/services/market/website-design', false ),
-	array( 'Google Ads', 'Productised search and performance media. Pipeline within 30 days.', '/services/market/google-ads', false ),
-	array( 'Email Marketing', 'Lifecycle systems, not blasts. Built on owned data.', '/services/market/email-marketing', false ),
-	array( 'Social Media Marketing &amp; Management', 'Editorial cadence, paid amplification, governance baked in.', '/services/market/social-media-marketing', false ),
-	array( 'Content Development', 'Thought-leadership content engineered for citation, not vanity metrics.', '/services/market/content-development', false ),
-	array( 'AI Agent Deployment', 'Agentic workflows wired into the back office. Prebuilt patterns, not toy demos.', '/services/digital/ai-agent-deployment', true ),
+	array( 'Website Design &amp; Development', 'Conversion-engineered, AI-search ready, deployed in 4–8 weeks.', '/services/market/website-design/', false ),
+	array( 'Google Ads', 'Productised search and performance media. Pipeline within 30 days.', '/services/market/google-ads/', false ),
+	array( 'Email Marketing', 'Lifecycle systems, not blasts. Built on owned data.', '/services/market/email-marketing/', false ),
+	array( 'Social Media Marketing &amp; Management', 'Editorial cadence, paid amplification, governance baked in.', '/services/market/social-media-marketing/', false ),
+	array( 'Content Development', 'Thought-leadership content engineered for citation, not vanity metrics.', '/services/market/content-development/', false ),
+	array( 'AI Agent Deployment', 'Agentic workflows wired into the back office. Prebuilt patterns, not toy demos.', '/services/digital/ai-agent-deployment/', true ),
 );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--bone","templateLock":"contentOnly","layout":{"type":"default"}} -->

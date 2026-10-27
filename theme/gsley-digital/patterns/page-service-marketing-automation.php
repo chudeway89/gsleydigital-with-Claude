@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Marketing Automation</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Marketing Automation</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">One view of the customer — and a lifecycle that acts on it.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/marketing-maturity-scorecard" class="btn btn--ghost">Score your marketing maturity ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/marketing-maturity-scorecard/" class="btn btn--ghost">Score your marketing maturity ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Sprint → retainer</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -142,7 +142,7 @@
 <!-- wp:details -->
 <details class="wp-block-details"><summary>And how is it different from Automation &amp; RevOps?</summary>
 <!-- wp:paragraph -->
-<p>This is marketing-owned, customer-facing lifecycle orchestration. <a href="/services/digital/automation-and-revops" style="text-decoration:underline">Automation &amp; RevOps</a> in the Digital pillar is the back-office, revenue-operations counterpart. They share a data philosophy and are often deployed together.</p>
+<p>This is marketing-owned, customer-facing lifecycle orchestration. <a href="/services/digital/automation-and-revops/" style="text-decoration:underline">Automation &amp; RevOps</a> in the Digital pillar is the back-office, revenue-operations counterpart. They share a data philosophy and are often deployed together.</p>
 <!-- /wp:paragraph -->
 </details>
 <!-- /wp:details -->
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>How mature is your marketing engine?</h3><p>The Marketing Maturity Scorecard places your function on a curve from ad hoc to orchestrated system — and shows whether automation is the right next step.</p></div>
-    <a href="/tools/marketing-maturity-scorecard" class="btn btn--solid">Score your maturity <span class="arrow">↗</span></a>
+    <a href="/tools/marketing-maturity-scorecard/" class="btn btn--solid">Score your maturity <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Stop scheduling blasts. Start orchestrating the lifecycle.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

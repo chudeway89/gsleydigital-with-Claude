@@ -133,10 +133,10 @@ function gsley_build_report_email( $tool, $submission ) {
 		. $priority_block
 		. $plan
 		. '<div style="margin-top:28px;padding-top:20px;border-top:1px solid #E5E2D8">'
-		. '<a href="https://gsleydigital.com/contact" style="display:inline-block;background:#16B8A6;color:#0F1B2D;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600">Book a discovery call &#8599;</a>'
+		. '<a href="https://gsleydigital.com/contact/" style="display:inline-block;background:#16B8A6;color:#0F1B2D;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600">Book a discovery call &#8599;</a>'
 		. ' &nbsp; <a href="https://wa.me/2349024767079" style="color:#0F1B2D">or WhatsApp us</a></div>'
 		. '<p style="font-size:12px;color:#8895A7;margin-top:24px">You received this because you requested it from a GSLEY diagnostic. '
-		. 'Unsubscribe anytime &mdash; see our <a href="https://gsleydigital.com/legal/privacy" style="color:#8895A7">privacy policy</a>.</p>'
+		. 'Unsubscribe anytime &mdash; see our <a href="https://gsleydigital.com/legal/privacy/" style="color:#8895A7">privacy policy</a>.</p>'
 		. '</div></div>';
 
 	return array( 'subject' => $subject, 'html' => $html );

@@ -84,12 +84,12 @@
 				<div>
 					<div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)"><span class="glyph glyph--market">▲</span><span class="h3">GSLEY Market</span></div>
 					<p style="color:var(--ink-700);margin-bottom:var(--sp-6)">An integrated growth studio engineering predictable demand and brand authority — composed as one compounding system, not disposable campaigns.</p>
-					<a href="/services/market" class="open-link">Explore Market ↗</a>
+					<a href="/services/market/" class="open-link">Explore Market ↗</a>
 				</div>
 				<div>
 					<div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)"><span class="glyph glyph--digital">◇</span><span class="h3">GSLEY Digital</span></div>
 					<p style="color:var(--ink-700);margin-bottom:var(--sp-6)">AI-native operating systems for institutions in transition. We architect infrastructure, deploy agents, and rewire workflows around proven outcomes — under explicit governance.</p>
-					<a href="/services/digital" class="open-link open-link--digital">Explore Digital ↗</a>
+					<a href="/services/digital/" class="open-link open-link--digital">Explore Digital ↗</a>
 				</div>
 			</div>
 			<!-- /wp:html -->
@@ -178,7 +178,7 @@
 			<p class="display u-paper">Bring us a gap between capability and outcome. We will engineer the bridge.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
-			<div class="cta-band__btns"><a href="/tools/growth-diagnostic" class="btn btn--digital">Run the Growth Diagnostic ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+			<div class="cta-band__btns"><a href="/tools/growth-diagnostic/" class="btn btn--digital">Run the Growth Diagnostic ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 			<!-- /wp:html -->
 		</div>
 		<!-- /wp:group -->

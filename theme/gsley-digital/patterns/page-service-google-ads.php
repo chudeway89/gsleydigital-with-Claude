@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › Google Ads</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › Google Ads</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Capture the demand that's already searching for you.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--ghost">Calculate revenue leakage ↗</a>
+    <a href="/contact/" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--ghost">Calculate revenue leakage ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">First pipeline</span><span class="v">~30 days</span></div>
     <div><span class="k">Tier</span><span class="v">Sprint + retainer · price on request</span></div>
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>How much is poor capture costing you?</h3><p>The Revenue Leakage Calculator estimates the pipeline lost to weak conversion and missed intent — in a figure you can take to a budget conversation.</p></div>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Meet your buyers at the moment of intent.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

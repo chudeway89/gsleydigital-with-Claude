@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/market">Market</a> › B2B Sales Enablement</div><div class="page-hero__glyph">▲</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/market/">Market</a> › B2B Sales Enablement</div><div class="page-hero__glyph">▲</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">The spine that turns marketing momentum into booked revenue.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--ghost">Calculate revenue leakage ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--ghost">Calculate revenue leakage ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Sprint → retainer</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Quantify the leak first.</h3><p>The Revenue Leakage Calculator estimates what weak conversion, pricing, and retention are costing you — the fastest way to size this engagement's return.</p></div>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Make revenue a system — not a quarterly act of faith.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

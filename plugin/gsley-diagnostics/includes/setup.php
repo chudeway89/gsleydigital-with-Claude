@@ -38,7 +38,7 @@ function gsley_setup_page_defs() {
 		. '<!-- wp:paragraph {"className":"lede"} --><p class="lede">Our privacy, terms, and cookie policies.</p><!-- /wp:paragraph -->'
 		. '</div><!-- /wp:group --></section><!-- /wp:group -->'
 		. '<!-- wp:group {"tagName":"section","className":"section","layout":{"type":"default"}} --><section class="wp-block-group section"><!-- wp:group {"className":"wrap read legal","layout":{"type":"default"}} --><div class="wp-block-group wrap read legal">'
-		. '<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li><a href="/legal/privacy">Privacy Policy</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/terms">Terms of Service</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/cookies">Cookie Policy</a></li><!-- /wp:list-item --></ul><!-- /wp:list -->'
+		. '<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li><a href="/legal/privacy/">Privacy Policy</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/terms/">Terms of Service</a></li><!-- /wp:list-item --><!-- wp:list-item --><li><a href="/legal/cookies/">Cookie Policy</a></li><!-- /wp:list-item --></ul><!-- /wp:list -->'
 		. '</div><!-- /wp:group --></section><!-- /wp:group -->'
 		. '</div><!-- /wp:group -->';
 
@@ -190,7 +190,7 @@ function gsley_render_setup() {
 
 	echo '<hr><h2>After importing</h2><ol>';
 	echo '<li>Go to <strong>Settings → Permalinks</strong> and click <strong>Save Changes</strong> once (refreshes the URL rules).</li>';
-	echo '<li>All eight diagnostic tool pages are created automatically under <em>/tools/</em> — visit <a href="' . esc_url( home_url( '/tools/growth-diagnostic' ) ) . '" target="_blank">/tools/growth-diagnostic</a> to confirm.</li>';
+	echo '<li>All eight diagnostic tool pages are created automatically under <em>/tools/</em> — visit <a href="' . esc_url( home_url( '/tools/growth-diagnostic/' ) ) . '" target="_blank">/tools/growth-diagnostic</a> to confirm.</li>';
 	echo '<li>Set up Resend under <a href="' . esc_url( admin_url( 'admin.php?page=gsley-diagnostics-settings' ) ) . '">Settings</a> so emails send.</li>';
 	echo '</ol></div>';
 }

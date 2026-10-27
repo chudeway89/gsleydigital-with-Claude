@@ -51,7 +51,7 @@ function gsley_diagnostics_render( $attributes, $content, $block ) {
 	);
 
 	return sprintf(
-		'<div %1$s><script type="application/json" class="gsley-tool-config">%2$s</script><noscript><p>%3$s <a href="/contact">%4$s</a></p></noscript></div>',
+		'<div %1$s><script type="application/json" class="gsley-tool-config">%2$s</script><noscript><p>%3$s <a href="/contact/">%4$s</a></p></noscript></div>',
 		$wrapper,
 		$json, // JSON in a application/json script tag; not HTML-executed.
 		$noscript,

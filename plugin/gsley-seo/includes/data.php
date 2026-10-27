@@ -154,26 +154,26 @@ function gsley_seo_og_slug( $pt ) {
 function gsley_seo_breadcrumbs( $pt ) {
 	$crumbs = array( array( 'Home', home_url( '/' ) ) );
 	switch ( $pt['type'] ) {
-		case 'about': $crumbs[] = array( 'About', home_url( '/about' ) ); break;
-		case 'contact': $crumbs[] = array( 'Contact', home_url( '/contact' ) ); break;
-		case 'services-index': $crumbs[] = array( 'Services', home_url( '/services' ) ); break;
-		case 'tools-hub': $crumbs[] = array( 'Tools', home_url( '/tools' ) ); break;
+		case 'about': $crumbs[] = array( 'About', home_url( '/about/' ) ); break;
+		case 'contact': $crumbs[] = array( 'Contact', home_url( '/contact/' ) ); break;
+		case 'services-index': $crumbs[] = array( 'Services', home_url( '/services/' ) ); break;
+		case 'tools-hub': $crumbs[] = array( 'Tools', home_url( '/tools/' ) ); break;
 		case 'pillar':
-			$crumbs[] = array( 'Services', home_url( '/services' ) );
-			$crumbs[] = array( 'market' === $pt['pillar'] ? 'Market' : 'Digital', home_url( '/services/' . $pt['pillar'] ) );
+			$crumbs[] = array( 'Services', home_url( '/services/' ) );
+			$crumbs[] = array( 'market' === $pt['pillar'] ? 'Market' : 'Digital', trailingslashit( home_url( '/services/' . $pt['pillar'] ) ) );
 			break;
 		case 'service':
-			$crumbs[] = array( 'Services', home_url( '/services' ) );
-			$crumbs[] = array( 'market' === $pt['pillar'] ? 'Market' : 'Digital', home_url( '/services/' . $pt['pillar'] ) );
-			$crumbs[] = array( $pt['name'], home_url( '/services/' . $pt['pillar'] . '/' . $pt['slug'] ) );
+			$crumbs[] = array( 'Services', home_url( '/services/' ) );
+			$crumbs[] = array( 'market' === $pt['pillar'] ? 'Market' : 'Digital', trailingslashit( home_url( '/services/' . $pt['pillar'] ) ) );
+			$crumbs[] = array( $pt['name'], trailingslashit( home_url( '/services/' . $pt['pillar'] . '/' . $pt['slug'] ) ) );
 			break;
 		case 'tool':
-			$crumbs[] = array( 'Tools', home_url( '/tools' ) );
-			$crumbs[] = array( $pt['name'], home_url( '/tools/' . $pt['slug'] ) );
+			$crumbs[] = array( 'Tools', home_url( '/tools/' ) );
+			$crumbs[] = array( $pt['name'], trailingslashit( home_url( '/tools/' . $pt['slug'] ) ) );
 			break;
 		case 'legal':
-			$crumbs[] = array( 'Legal', home_url( '/legal' ) );
-			$crumbs[] = array( $pt['name'], home_url( '/legal/' . $pt['slug'] ) );
+			$crumbs[] = array( 'Legal', home_url( '/legal/' ) );
+			$crumbs[] = array( $pt['name'], trailingslashit( home_url( '/legal/' . $pt['slug'] ) ) );
 			break;
 	}
 	return $crumbs;

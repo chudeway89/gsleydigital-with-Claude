@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** @return array<string,string> source path (no slashes) => target path/url */
 function gsley_seo_redirect_map() {
 	return array(
-		'diagnostic'                            => '/tools/growth-diagnostic',
-		'services/market/media-management'      => '/services/market/institutional-brand-and-reputation#media-management',
-		'services/digital/business-development' => '/services/market/strategic-partnerships',
+		'diagnostic'                            => '/tools/growth-diagnostic/',
+		'services/market/media-management'      => '/services/market/institutional-brand-and-reputation/#media-management',
+		'services/digital/business-development' => '/services/market/strategic-partnerships/',
 	);
 }
 

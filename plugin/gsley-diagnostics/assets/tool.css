@@ -13,12 +13,18 @@
   --font-mono:"JetBrains Mono",ui-monospace,monospace;
   --r-sm:6px;--r-md:10px;--r-lg:16px;--r-pill:999px;
   --ease:cubic-bezier(.22,1,.36,1);--dur:240ms;
-  max-width:760px;margin-inline:auto;
+  box-sizing:content-box;max-width:760px;margin-inline:auto;
+  padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2rem) clamp(3.5rem,8vw,6rem);
   font-family:var(--font-body);color:var(--ink-900);line-height:1.55;
 }
 .gsley-tool *,.gsley-tool *::before,.gsley-tool *::after{box-sizing:border-box;}
-.gsley-tool button{font-family:inherit;cursor:pointer;border:none;background:none;}
-.gsley-tool a{color:inherit;}
+/* Zero-specificity resets so component classes (.gt-btn--solid etc.) always win.
+   A plain `.gsley-tool button{background:none}` outranked them and made every
+   solid button cream-on-cream (invisible). */
+:where(.gsley-tool) button{font-family:inherit;cursor:pointer;border:none;background:none;}
+:where(.gsley-tool) a{color:inherit;}
+.gt-back-link{display:inline-block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500);text-decoration:none;margin-bottom:1.5rem;}
+.gt-back-link:hover{color:var(--ink-900);}
 .gsley-tool :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:3px;}
 
 .gt-mono{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);}
@@ -34,7 +40,7 @@
 .gt-btn--ghost:hover{border-color:var(--ink-900);}
 
 /* progress */
-.gt-progress{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-bottom:2rem;}
+.gt-progress{position:sticky;top:var(--gt-sticky-top,68px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-bottom:2rem;}
 .gt-progress__bar{height:3px;background:var(--accent);width:0;transition:width var(--dur) var(--ease);}
 .gt-progress__meta{display:flex;justify-content:space-between;padding:.75rem 0;}
 
@@ -44,7 +50,7 @@
 @keyframes gt-fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 
 /* intro */
-.gt-intro h2{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:400;letter-spacing:-.02em;line-height:1.1;margin:.5rem 0 1rem;}
+.gt-intro h1,.gt-intro h2{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);text-wrap:balance;color:var(--ink-900);font-weight:400;letter-spacing:-.02em;line-height:1.1;margin:.5rem 0 1rem;}
 .gt-intro .gt-lede{font-size:1.125rem;color:var(--ink-700);margin-bottom:2rem;max-width:56ch;}
 .gt-facts{display:flex;flex-wrap:wrap;gap:2rem;padding:1.5rem 0;border-block:1px solid var(--line);margin-bottom:2rem;}
 .gt-facts div{display:flex;flex-direction:column;gap:2px;}
@@ -66,9 +72,9 @@
 
 /* fields (calculator + email) */
 .gt-field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
-.gt-field label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500);}
-.gt-field input,.gt-field select{font-family:var(--font-body);font-size:1rem;padding:.75rem 1rem;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink-900);}
-.gt-field input:focus,.gt-field select:focus{outline:none;border-color:var(--accent);}
+.gt-field label{display:flex;flex-direction:column;gap:.5rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500);}
+.gt-field input,.gt-field select,.gt-field textarea{width:100%;font-family:var(--font-body);font-size:1rem;padding:.75rem 1rem;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink-900);}
+.gt-field input:focus,.gt-field select:focus,.gt-field textarea:focus{outline:none;border-color:var(--accent);}
 .gt-field .gt-suffix{position:relative;}
 .gt-field .gt-err{color:var(--danger);font-size:.875rem;min-height:1.2em;}
 .gt-grid2{display:grid;gap:1rem 1.5rem;}

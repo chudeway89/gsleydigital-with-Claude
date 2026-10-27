@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/digital">Digital</a> › Digital Transformation</div><div class="page-hero__glyph">◇</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/digital/">Digital</a> › Digital Transformation</div><div class="page-hero__glyph">◇</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Transformation is an operating model — not a technology purchase.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/ai-adoption-assessment-organisation" class="btn btn--ghost">Run the AI Adoption Assessment ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/ai-adoption-assessment-organisation/" class="btn btn--ghost">Run the AI Adoption Assessment ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Diagnostic → programme</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -142,7 +142,7 @@
 <!-- wp:details -->
 <details class="wp-block-details"><summary>Do you implement, or just advise?</summary>
 <!-- wp:paragraph -->
-<p>Both, by design. The archetype runs from diagnosis through to deploying priority workstreams — and the deployment leans on the rest of the Digital pillar: <a href="/services/digital/data-infrastructure" style="text-decoration:underline">Data Infrastructure</a>, <a href="/services/digital/ai-agent-deployment" style="text-decoration:underline">AI Agent Deployment</a>, and <a href="/services/digital/automation-and-revops" style="text-decoration:underline">Automation &amp; RevOps</a>.</p>
+<p>Both, by design. The archetype runs from diagnosis through to deploying priority workstreams — and the deployment leans on the rest of the Digital pillar: <a href="/services/digital/data-infrastructure/" style="text-decoration:underline">Data Infrastructure</a>, <a href="/services/digital/ai-agent-deployment/" style="text-decoration:underline">AI Agent Deployment</a>, and <a href="/services/digital/automation-and-revops/" style="text-decoration:underline">Automation &amp; RevOps</a>.</p>
 <!-- /wp:paragraph -->
 </details>
 <!-- /wp:details -->
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Start with a board-ready baseline.</h3><p>The AI Adoption Assessment scores your organisation's maturity across strategy, data, governance, and capability — the honest starting point for any transformation.</p></div>
-    <a href="/tools/ai-adoption-assessment-organisation" class="btn btn--solid">Run the assessment <span class="arrow">↗</span></a>
+    <a href="/tools/ai-adoption-assessment-organisation/" class="btn btn--solid">Run the assessment <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Design how you'll run — then choose the technology that serves it.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

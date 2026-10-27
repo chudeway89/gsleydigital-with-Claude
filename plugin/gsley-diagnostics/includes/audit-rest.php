@@ -127,7 +127,7 @@ function gsley_audit_rest_pay_init( $request ) {
 	$callback = isset( $body['callback'] ) ? esc_url_raw( $body['callback'] ) : '';
 	$site_host = wp_parse_url( home_url(), PHP_URL_HOST );
 	if ( ! $callback || wp_parse_url( $callback, PHP_URL_HOST ) !== $site_host ) {
-		$callback = home_url( '/tools/' . $sub->tool );
+		$callback = trailingslashit( home_url( '/tools/' . $sub->tool ) );
 	}
 
 	// Capture/refresh the lead now that we have an email + intent.
@@ -261,7 +261,7 @@ function gsley_audit_email_html( $cfg, $run ) {
 		. '<p>Thank you — your detailed recommendations are below, prioritised from the real checks we ran.</p>'
 		. $rows
 		. '<div style="margin-top:24px;padding-top:18px;border-top:1px solid #E5E2D8">'
-		. '<a href="https://gsleydigital.com/contact" style="display:inline-block;background:#16B8A6;color:#0F1B2D;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600">Want us to fix these for you? Book a call &#8599;</a></div>'
+		. '<a href="https://gsleydigital.com/contact/" style="display:inline-block;background:#16B8A6;color:#0F1B2D;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600">Want us to fix these for you? Book a call &#8599;</a></div>'
 		. '<p style="font-size:12px;color:#8895A7;margin-top:20px">You purchased this report from GSLEY Digital. Questions? Reply to this email.</p>'
 		. '</div></div>';
 	return array( 'subject' => $cfg['title'] . ' — your detailed recommendations', 'html' => $html );

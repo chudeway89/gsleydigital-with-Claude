@@ -16,7 +16,7 @@
 <!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 <div class="wp-block-group wrap">
 <!-- wp:html -->
-<div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/digital">Digital</a> › Revenue Optimisation</div><div class="page-hero__glyph">◇</div>
+<div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/digital/">Digital</a> › Revenue Optimisation</div><div class="page-hero__glyph">◇</div>
 <!-- /wp:html -->
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Most growth is bought. Some of it was already yours.</h1>
@@ -26,8 +26,8 @@
 <!-- /wp:paragraph -->
 <!-- wp:html -->
 <div class="page-hero__ctas">
-    <a href="/contact" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--ghost">Calculate revenue leakage ↗</a>
+    <a href="/contact/" class="btn btn--digital">Scope an engagement <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--ghost">Calculate revenue leakage ↗</a>
   </div><div class="page-hero__meta">
     <div><span class="k">Engagement</span><span class="v">Sprint → retainer</span></div>
     <div><span class="k">Tier</span><span class="v">Strategic · price on request</span></div>
@@ -135,7 +135,7 @@
 <!-- wp:details {"showContent":true} -->
 <details class="wp-block-details" open><summary>How does this differ from B2B Sales Enablement?</summary>
 <!-- wp:paragraph -->
-<p><a href="/services/market/b2b-sales-enablement" style="text-decoration:underline">Sales Enablement</a> optimises the path to winning new revenue. Revenue Optimisation works the economics of revenue you already have — pricing, retention, expansion. They're complementary: one fills the top of the system, the other stops the bottom leaking.</p>
+<p><a href="/services/market/b2b-sales-enablement/" style="text-decoration:underline">Sales Enablement</a> optimises the path to winning new revenue. Revenue Optimisation works the economics of revenue you already have — pricing, retention, expansion. They're complementary: one fills the top of the system, the other stops the bottom leaking.</p>
 <!-- /wp:paragraph -->
 </details>
 <!-- /wp:details -->
@@ -166,7 +166,7 @@
 <!-- wp:html -->
 <div class="matched">
     <div><h3>Size the leak in three minutes.</h3><p>The Revenue Leakage Calculator gives a fast estimate of what pricing, conversion, and retention gaps are costing — the natural entry point to this engagement.</p></div>
-    <a href="/tools/revenue-leakage-calculator" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
+    <a href="/tools/revenue-leakage-calculator/" class="btn btn--solid">Calculate revenue leakage <span class="arrow">↗</span></a>
   </div>
 <!-- /wp:html -->
 </div>
@@ -181,7 +181,7 @@
 <p class="display">Compound the revenue you already have — before you pay for more.</p>
 <!-- /wp:paragraph -->
 <!-- wp:html -->
-<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Scope an engagement ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 <!-- /wp:html -->
 </div>
 <!-- /wp:group -->

@@ -81,6 +81,30 @@ function gsley_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'gsley_enqueue_assets' );
 
 /**
+ * WooCommerce is installed on the site but this theme sells nothing through it
+ * (paid audits use Paystack). It was loading 5 stylesheets and 6 scripts on
+ * every page. Keep them only on actual WooCommerce pages.
+ */
+function gsley_trim_woocommerce_assets() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+	if ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() )
+		|| ( function_exists( 'is_cart' ) && is_cart() )
+		|| ( function_exists( 'is_checkout' ) && is_checkout() )
+		|| ( function_exists( 'is_account_page' ) && is_account_page() ) ) {
+		return;
+	}
+	foreach ( array( 'woocommerce-general', 'woocommerce-layout', 'woocommerce-smallscreen', 'woocommerce-blocktheme', 'wc-blocks-style' ) as $h ) {
+		wp_dequeue_style( $h );
+	}
+	foreach ( array( 'wc-add-to-cart', 'woocommerce', 'wc-order-attribution', 'sourcebuster-js', 'js-cookie', 'jquery-blockui', 'wc-cart-fragments' ) as $h ) {
+		wp_dequeue_script( $h );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'gsley_trim_woocommerce_assets', 99 );
+
+/**
  * Preload the above-the-fold display font weights for performance,
  * per phase1-foundation.md §3.2 (preload 400 + 600 display weights).
  */

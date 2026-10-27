@@ -15,7 +15,7 @@
 	<section class="wp-block-group page-hero page-hero--teal">
 		<!-- wp:group {"className":"wrap","layout":{"type":"default"}} -->
 		<div class="wp-block-group wrap">
-			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services">Services</a> › <a href="/services/digital">Digital</a> › AI Adoption Programmes</div><div class="page-hero__glyph">◇</div><!-- /wp:html -->
+			<!-- wp:html --><div class="crumb"><a href="/">Home</a> › <a href="/services/">Services</a> › <a href="/services/digital/">Digital</a> › AI Adoption Programmes</div><div class="page-hero__glyph">◇</div><!-- /wp:html -->
 			<!-- wp:heading {"level":1} -->
 			<h1 class="wp-block-heading">AI adoption your board can sign off — and your team will actually use.</h1>
 			<!-- /wp:heading -->
@@ -24,8 +24,8 @@
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
 			<div class="page-hero__ctas">
-				<a href="/contact" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
-				<a href="/tools/ai-adoption-assessment-organisation" class="btn btn--ghost">Score your readiness ↗</a>
+				<a href="/contact/" class="btn btn--digital">Begin a sprint <span class="arrow">↗</span></a>
+				<a href="/tools/ai-adoption-assessment-organisation/" class="btn btn--ghost">Score your readiness ↗</a>
 			</div>
 			<div class="page-hero__meta">
 				<div><span class="k">Timeline</span><span class="v">8–12 weeks</span></div>
@@ -167,7 +167,7 @@
 			<!-- wp:html -->
 			<div class="matched">
 				<div><h3>Not sure you're ready to roll out?</h3><p>The AI Adoption Assessment scores your organisation across strategy, data, governance, and capability — a board-ready read-out in six minutes.</p></div>
-				<a href="/tools/ai-adoption-assessment-organisation" class="btn btn--solid">Score your readiness <span class="arrow">↗</span></a>
+				<a href="/tools/ai-adoption-assessment-organisation/" class="btn btn--solid">Score your readiness <span class="arrow">↗</span></a>
 			</div>
 			<!-- /wp:html -->
 		</div>
@@ -183,7 +183,7 @@
 			<p class="display u-paper">Make AI how the organisation works — under governance you can defend.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:html -->
-			<div class="cta-band__btns"><a href="/contact" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
+			<div class="cta-band__btns"><a href="/contact/" class="btn btn--digital">Begin a sprint ↗</a><a href="/contact/" class="btn btn--ghost">Book a Discovery Call ↗</a></div>
 			<!-- /wp:html -->
 		</div>
 		<!-- /wp:group -->
