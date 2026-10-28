@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GSLEY Digital — Growth &amp; AI Studio</title>
+<meta name="description" content="A productised growth and AI studio for institutions and ambitious scale-ups. Predictable demand and AI-native systems. Engineered, not opinionated.">
+<link rel="canonical" href="https://gsleydigital.com/">
+<meta property="og:title" content="GSLEY Digital — Growth & AI Studio">
+<meta property="og:description" content="A productised growth and AI studio for institutions and ambitious scale-ups. Predictable demand and AI-native systems.">
+<meta property="og:image" content="https://gsleydigital.com/assets/og/home.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF9F5">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gsley.css">
+<style>
+.hero{padding-block:clamp(3rem,10vw,6rem) clamp(2.5rem,6vw,4rem)}
+.hero h1{font-size:var(--fs-h1);margin-bottom:var(--sp-8);max-width:920px}
+.hero h1 .soft{color:var(--ink-500);font-style:italic}
+.hero__grid{display:grid;gap:var(--sp-8);margin-top:var(--sp-8);padding-top:var(--sp-8);border-top:1px solid var(--line)}
+.hero__support p{color:var(--ink-700);max-width:46ch}
+.hero__method p{font-size:var(--fs-small);color:var(--ink-700);margin-top:var(--sp-2)}
+.hero__ctas{display:grid;gap:var(--sp-3)}
+.answer{margin-top:var(--sp-12);padding:var(--sp-6);background:var(--bone);border-left:2px solid var(--accent-digital);border-radius:0 var(--r-sm) var(--r-sm) 0}
+.answer p{font-size:var(--fs-small);color:var(--ink-700);line-height:var(--lh-loose);margin-top:var(--sp-3);max-width:80ch}
+.pillars{display:grid;gap:var(--sp-4)}
+.pillar{display:flex;flex-direction:column;gap:var(--sp-6);padding:clamp(1.5rem,4vw,2.5rem);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md)}
+.pillar--digital{border-top:3px solid var(--accent-digital)}
+.pillar--market{border-top:3px solid var(--ink-900)}
+.pillar--health{border-top:3px solid var(--accent-health)}
+.pillar__sub{display:block;font-size:var(--fs-small);color:var(--ink-500);margin-top:2px}
+@media(min-width:1100px){.pillars{grid-template-columns:repeat(3,1fr)}.pillar--health{grid-column:auto}}
+.pillar__head{display:flex;align-items:center;gap:var(--sp-3)}
+.pillar__head .h3{margin:0}
+.pillar p.desc{color:var(--ink-700)}
+.svc{list-style:none;display:grid;border-top:1px solid var(--line)}
+.svc a{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);min-height:48px;border-bottom:1px solid var(--line);font-size:var(--fs-small);color:var(--ink-700)}
+.svc a:hover{color:var(--ink-900)}
+.svc a span{font-family:var(--font-mono);color:var(--ink-400)}
+.pillar__foot{margin-top:auto}
+.start-grid,.tools-grid{display:grid;gap:var(--sp-3)}
+.tool-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);min-height:64px;padding:var(--sp-3) var(--sp-6);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);transition:border-color var(--dur-base)}
+.tool-row:hover{border-color:var(--teal-ink);color:var(--ink-900)}
+.tool-row__name{font-weight:500;font-size:var(--fs-small)}
+.tool-row__meta{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-400);white-space:nowrap}
+.tool-row--flag{background:var(--ink-900);color:var(--paper);border-color:var(--ink-900)}
+.tool-row--flag:hover{color:var(--paper);border-color:var(--accent-digital)}
+.tool-row--flag .tool-row__meta{color:var(--accent-digital)}
+.steps{display:grid;gap:1px;background:var(--ink-700);border:1px solid var(--ink-700);border-radius:var(--r-md);overflow:hidden}
+.step{background:var(--ink-900);padding:var(--sp-8)}
+.step__no{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--accent-digital);letter-spacing:.12em;margin-bottom:var(--sp-4)}
+.step h3{font-family:var(--font-display);font-size:1.25rem;font-weight:600;margin-bottom:var(--sp-3);color:var(--paper)}
+.step p{font-size:var(--fs-small);color:#C9D1DC}
+.ladder{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.ladder__row{display:grid;gap:var(--sp-2) var(--sp-6);padding:var(--sp-6);border-top:1px solid var(--line);grid-template-columns:auto 1fr}
+.ladder__row:first-child{border-top:none}
+.ladder__no{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--ink-400);letter-spacing:.1em;padding-top:4px}
+.ladder__stage{font-family:var(--font-display);font-size:1.25rem;font-weight:600}
+.ladder__what,.ladder__eg{grid-column:2;font-size:var(--fs-small);color:var(--ink-700)}
+.ladder__eg{color:var(--ink-500)}
+.founder{display:grid;gap:var(--sp-8);align-items:start}
+.founder .h2{margin-bottom:var(--sp-6)}
+.founder p{color:var(--ink-700);margin-bottom:var(--sp-4);max-width:58ch}
+.founder .tags{margin:var(--sp-6) 0}
+.founder__sign{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap}
+.founder__sign .name{font-family:var(--font-display);font-size:1.125rem}
+.closing .display{font-size:var(--fs-h2);max-width:20ch;margin-bottom:var(--sp-8)}
+.closing .display strong{font-weight:600}
+.closing__ctas{display:grid;gap:var(--sp-3)}
+@media(min-width:600px){.hero__ctas,.closing__ctas{display:flex;flex-wrap:wrap}.start-grid,.tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){
+  .hero__grid{grid-template-columns:1.4fr 1fr auto;align-items:start}
+  .hero__ctas{flex-direction:column}
+  .pillars{grid-template-columns:1fr 1fr}
+  .pillar--health{grid-column:1/-1}
+  .start-grid{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .ladder__row{grid-template-columns:48px 200px 1fr 220px;align-items:start}
+  .ladder__what,.ladder__eg{grid-column:auto}
+  .founder{grid-template-columns:280px 1fr;gap:var(--sp-16)}
+}
+</style>
+</head>
+<body data-page="/">
+<a href="#main" class="skip-link">Skip to content</a>
+<header data-gsley-header></header>
+
+<main id="main">
+
+<section class="hero wrap" aria-labelledby="h-hero">
+  <h1 id="h-hero" class="display reveal">Capability is common.<br>Commercial outcomes are not.<br><span class="soft">We engineer the gap.</span></h1>
+  <div class="hero__grid">
+    <div class="hero__support reveal"><p>A productised growth and AI studio for institutions and ambitious scale-ups. Three pillars — predictable demand, AI-native operating systems, and healthcare growth — composed as one commercial system.</p></div>
+    <div class="hero__method reveal"><p>The Archetype System™. Documented archetypes — never opinions.</p></div>
+    <div class="hero__ctas reveal">
+      <a href="/tools/growth-diagnostic" class="btn btn--solid">Run the Growth Diagnostic <span class="arrow">↗</span></a>
+      <a href="/contact#brief" data-bind="book" class="btn btn--ghost">Book a Discovery Call <span class="arrow">↗</span></a>
+    </div>
+  </div>
+  <div class="answer reveal">
+    <p>GSLEY is a productised growth and AI studio with offices in Lagos and Enugu, Nigeria, serving institutions and B2B and B2C scale-ups globally. It operates three pillars: GSLEY Market — predictable demand, brand authority, and commercial systems; GSLEY Digital — AI-native operating systems, agent deployment, and workflow architecture; and GSLEY Health — public relations, marketing, revenue, and thought leadership for healthcare brands. Its method is documented as named archetypes rather than opinion-based consulting, and every engagement ships with AI-native delivery and a transferable operating manual.</p>
+  </div>
+</section>
+
+<section class="section section--bone" aria-labelledby="h-pillars">
+  <div class="wrap">
+    <h2 id="h-pillars" class="h2 reveal" style="max-width:24ch;margin-bottom:var(--sp-12)">Three pillars. <strong>One commercial system</strong> — productised offers, owned methodology, AI-native delivery.</h2>
+    <div class="pillars">
+      <article class="pillar pillar--market reveal">
+        <div class="pillar__head"><span class="glyph glyph--market" aria-hidden="true">▲</span><div><h3 class="h3">GSLEY Market</h3><span class="pillar__sub">Growth &amp; Marketing</span></div></div>
+        <p class="desc">An integrated growth studio that engineers predictable demand and brand authority. Strategic commercial planning, elite digital marketing, and senior dealmaking — composed as one compounding system, not disposable campaigns.</p>
+        <div class="tags"><span class="tag">Global enterprise</span><span class="tag">Hospitals &amp; foundations</span><span class="tag">Ambitious B2B &amp; B2C</span></div>
+        <ul class="svc">
+          <li><a href="/services/market/demand-generation">Demand Generation Systems <span>↗</span></a></li>
+          <li><a href="/services/market/b2b-sales-enablement">B2B Sales Enablement &amp; Commercialisation <span>↗</span></a></li>
+          <li><a href="/services/market/strategic-partnerships">Strategic Partnerships <span>↗</span></a></li>
+          <li><a href="/services/market/institutional-brand-and-reputation">Institutional Brand &amp; Reputation <span>↗</span></a></li>
+          <li><a href="/services/market/thought-leadership-programmes">Thought-Leadership Programmes <span>↗</span></a></li>
+        </ul>
+        <div class="pillar__foot"><a href="/services/market" class="btn btn--solid">All Market services <span class="arrow">↗</span></a></div>
+      </article>
+      <article class="pillar pillar--digital reveal">
+        <div class="pillar__head"><span class="glyph glyph--digital" aria-hidden="true">◇</span><div><h3 class="h3">GSLEY Digital</h3><span class="pillar__sub">AI-Native Systems</span></div></div>
+        <p class="desc">AI-native operating systems for institutions in transition. We architect digital infrastructure, deploy agents, and rewire workflows around proven commercial outcomes — under explicit governance.</p>
+        <div class="tags"><span class="tag">Hospitals</span><span class="tag">Foundations</span><span class="tag">Global enterprise</span></div>
+        <ul class="svc">
+          <li><a href="/services/digital/ai-agent-deployment">AI Agent Deployment <span>↗</span></a></li>
+          <li><a href="/services/digital/automation-and-revops">Automation &amp; RevOps <span>↗</span></a></li>
+          <li><a href="/services/digital/ai-adoption-programmes">AI Adoption Programmes <span>↗</span></a></li>
+          <li><a href="/services/digital/digital-transformation">Digital Transformation <span>↗</span></a></li>
+          <li><a href="/services/digital/data-infrastructure">Data Infrastructure <span>↗</span></a></li>
+          <li><a href="/services/digital/revenue-optimisation">Revenue Optimisation <span>↗</span></a></li>
+        </ul>
+        <div class="pillar__foot"><a href="/services/digital" class="btn btn--ghost">All Digital services <span class="arrow">↗</span></a></div>
+      </article>
+      <article class="pillar pillar--health reveal">
+        <div class="pillar__head"><span class="glyph glyph--health" aria-hidden="true">✚</span><div><h3 class="h3">GSLEY Health</h3><span class="pillar__sub">Healthcare Growth</span></div></div>
+        <p class="desc">Public relations, marketing, and commercial strategy for healthcare brands. Clinically literate communications, revenue and tariff work, and thought leadership that hold up in front of regulators, clinicians, payers, and patients.</p>
+        <div class="tags"><span class="tag">Hospitals &amp; clinics</span><span class="tag">HMOs &amp; payers</span><span class="tag">Health-tech &amp; pharma</span></div>
+        <ul class="svc">
+          <li><a href="/services/health/pr-marketing-communications">Healthcare PR, Marketing &amp; Communications <span>↗</span></a></li>
+          <li><a href="/services/health/revenue-and-tariff-optimisation">Revenue &amp; Tariff Optimisation <span>↗</span></a></li>
+          <li><a href="/services/health/thought-leadership">Healthcare Thought Leadership <span>↗</span></a></li>
+        </ul>
+        <div class="pillar__foot"><a href="/services/health" class="btn btn--health">All Health services <span class="arrow">↗</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="h-start">
+  <div class="wrap">
+    <div class="reveal" style="max-width:680px;margin-bottom:var(--sp-12)">
+      <h2 id="h-start" class="h2">Strategic outcomes begin with executable work.</h2>
+      <p class="lede" style="margin-top:var(--sp-4)">Six places to begin — designed as Sprints, productised end-to-end, priced on engagement scope.</p>
+    </div>
+    <div class="start-grid reveal">
+      <a href="/services/market/website-design" class="card"><span class="card__meta"><span>Market</span><span aria-hidden="true">▲</span></span><h3>Website Design &amp; Development</h3><p>Conversion-engineered and AI-search ready.</p><span class="open-link">Begin sprint ↗</span></a>
+      <a href="/services/market/google-ads" class="card"><span class="card__meta"><span>Market</span><span aria-hidden="true">▲</span></span><h3>Google Ads</h3><p>Productised search and performance media, measured against pipeline.</p><span class="open-link">Begin sprint ↗</span></a>
+      <a href="/services/market/email-marketing" class="card"><span class="card__meta"><span>Market</span><span aria-hidden="true">▲</span></span><h3>Email Marketing</h3><p>Lifecycle systems, not blasts. Built on owned data.</p><span class="open-link">Begin sprint ↗</span></a>
+      <a href="/services/market/social-media-marketing" class="card"><span class="card__meta"><span>Market</span><span aria-hidden="true">▲</span></span><h3>Social Media Marketing &amp; Management</h3><p>Editorial cadence, paid amplification, governance baked in.</p><span class="open-link">Begin sprint ↗</span></a>
+      <a href="/services/market/content-development" class="card"><span class="card__meta"><span>Market</span><span aria-hidden="true">▲</span></span><h3>Content Development</h3><p>Thought-leadership content engineered for citation, not vanity metrics.</p><span class="open-link">Begin sprint ↗</span></a>
+      <a href="/services/digital/ai-agent-deployment" class="card"><span class="card__meta"><span>Digital</span><span aria-hidden="true" style="color:var(--teal-ink)">◇</span></span><h3>AI Agent Deployment</h3><p>Agentic workflows wired into the back office, under explicit governance.</p><span class="open-link open-link--digital">Begin sprint ↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--bone" aria-labelledby="h-tools">
+  <div class="wrap">
+    <div class="reveal" style="max-width:680px;margin-bottom:var(--sp-12)">
+      <h2 id="h-tools" class="h2"><span data-count="tools-all" data-cap>Ten</span> free diagnostics. Each ends in a scored read-out and a recommendation.</h2>
+      <p class="lede" style="margin-top:var(--sp-4)">Free, instant, no call required. The fastest way to see where your commercial system is leaking.</p>
+    </div>
+    <div class="tools-grid reveal">
+      <a href="/tools/growth-diagnostic" class="tool-row tool-row--flag"><span class="tool-row__name">The Gsley Growth Diagnostic™ — start here</span><span class="tool-row__meta">4 min · scored</span></a>
+      <a href="/tools/ai-adoption-assessment-organisation" class="tool-row"><span class="tool-row__name">AI Adoption Assessment — Organisation</span><span class="tool-row__meta">6 min · board-ready</span></a>
+      <a href="/tools/ai-adoption-assessment-individual" class="tool-row"><span class="tool-row__name">AI Adoption Assessment — Individual</span><span class="tool-row__meta">4 min · scored</span></a>
+      <a href="/tools/brand-authority-audit" class="tool-row"><span class="tool-row__name">Brand Authority Audit</span><span class="tool-row__meta">5 min · scored</span></a>
+      <a href="/tools/revenue-leakage-calculator" class="tool-row"><span class="tool-row__name">Revenue Leakage Calculator</span><span class="tool-row__meta">3 min · figure</span></a>
+      <a href="/tools/marketing-maturity-scorecard" class="tool-row"><span class="tool-row__name">Marketing Maturity Scorecard</span><span class="tool-row__meta">5 min · scored</span></a>
+      <a href="/tools/automation-opportunity-finder" class="tool-row"><span class="tool-row__name">Automation Opportunity Finder</span><span class="tool-row__meta">4 min · mapped</span></a>
+      <a href="/tools/partnership-readiness-quiz" class="tool-row"><span class="tool-row__name">Partnership Readiness Quiz</span><span class="tool-row__meta">3 min · scored</span></a>
+    </div>
+    <p class="reveal" style="margin:var(--sp-8) 0 var(--sp-3);color:var(--ink-700);font-size:var(--fs-small)">Two run live checks on your channels. The score is free; the detailed fix list or remediation plan is paid.</p>
+    <div class="tools-grid reveal">
+      <a href="/tools/social-media-audit" class="tool-row"><span class="tool-row__name">Social Media Audit</span><span class="tool-row__meta">Fix list · $10</span></a>
+      <a href="/tools/digital-presence-orm-audit" class="tool-row"><span class="tool-row__name">Digital Presence &amp; ORM Audit</span><span class="tool-row__meta">Full plan · $20</span></a>
+    </div>
+    <p style="margin-top:var(--sp-8)"><a href="/tools" class="open-link">See all tools ↗</a></p>
+  </div>
+</section>
+
+<section class="section section--ink" aria-labelledby="h-method">
+  <div class="wrap">
+    <div class="reveal" style="max-width:720px;margin-bottom:var(--sp-12)">
+      <h2 id="h-method" class="h2">Most consulting is opinion, rented by the hour. <strong>The Archetype System™</strong> is the opposite.</h2>
+      <p class="lede" style="margin-top:var(--sp-6)">Every engagement runs on a documented archetype — a named, repeatable method with defined inputs, sequence, and outputs. The archetype is yours to keep. When the engagement ends, the system stays, and your team runs it without us.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><div class="step__no">01</div><h3>Diagnose</h3><p>A scored read-out of where the commercial system is leaking — revenue, reputation, or capacity.</p></div>
+      <div class="step"><div class="step__no">02</div><h3>Architect</h3><p>The named archetype mapped to your context, your data, and your constraints.</p></div>
+      <div class="step"><div class="step__no">03</div><h3>Deploy</h3><p>AI-native delivery against an explicit governance protocol — bias review, data residency, human override.</p></div>
+      <div class="step"><div class="step__no">04</div><h3>Transfer</h3><p>A documented operating manual your team owns and runs after we leave. No lock-in.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="h-ladder">
+  <div class="wrap">
+    <h2 id="h-ladder" class="h2 reveal" style="max-width:26ch;margin-bottom:var(--sp-12)">Three tiers. Begin free, graduate at the speed of value, continue on a retainer.</h2>
+    <div class="ladder reveal">
+      <div class="ladder__row"><span class="ladder__no">01</span><div><div class="ladder__stage">Free</div><div class="mono-tag">Audience</div></div><p class="ladder__what">Diagnostics, briefings, scorecards. Top-of-funnel authority.</p><p class="ladder__eg">Growth Diagnostic · Brand Authority Audit · Revenue Leakage Calculator</p></div>
+      <div class="ladder__row"><span class="ladder__no">02</span><div><div class="ladder__stage">Sprint</div><div class="mono-tag">Fixed scope</div></div><p class="ladder__what">Productised engagements with a fixed scope, defined deliverables, and a named archetype.</p><p class="ladder__eg">Website Design · Google Ads · AI Agent Deployment</p></div>
+      <div class="ladder__row"><span class="ladder__no">03</span><div><div class="ladder__stage">Retainer</div><div class="mono-tag">Ongoing</div></div><p class="ladder__what">Continuing advisory and delivery once the system is in place.</p><p class="ladder__eg">Market · Digital · Health</p></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" aria-labelledby="h-faq">
+  <div class="wrap narrow">
+    <h2 id="h-faq" class="h2 reveal" style="margin-bottom:var(--sp-8)">Frequently asked.</h2>
+    <div class="faq reveal">
+      <details class="faq__item" open><summary class="faq__q">What is GSLEY Digital?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">GSLEY Digital is a productised growth and AI studio with offices in Lagos and Enugu, Nigeria, serving institutions and ambitious B2B and B2C scale-ups worldwide. It operates three pillars — GSLEY Market for predictable demand and commercial systems, GSLEY Digital for AI-native operating systems, and GSLEY Health for healthcare PR, marketing, revenue, and thought leadership — delivered as one commercial system rather than disconnected campaigns.</div></details>
+      <details class="faq__item"><summary class="faq__q">What is The Archetype System™?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">The Archetype System™ is GSLEY's operating method. Instead of opinion-based consulting, every engagement runs on a documented archetype — a named, repeatable method with defined inputs, sequence, and outputs. The archetype is transferred to the client at the end of the engagement, so the system stays in the organisation rather than leaving with the consultant.</div></details>
+      <details class="faq__item"><summary class="faq__q">How is GSLEY different from a marketing agency?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">A traditional agency sells deliverables and retains the method. GSLEY productises the method itself, ships AI-native delivery, and hands over a documented operating manual the internal team can run. The work is structured as named archetypes and an explicit value ladder — from free diagnostics to fractional executive retainers — rather than open-ended monthly retainers.</div></details>
+      <details class="faq__item"><summary class="faq__q">Who does GSLEY work with?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">Three buyers: institutional leaders at hospitals, foundations, and parastatals; enterprise growth leaders (CMOs and CROs) at venture- or PE-backed B2B businesses; and founders of ambitious Nigerian and West African scale-ups building toward category leadership.</div></details>
+      <details class="faq__item"><summary class="faq__q">Where is GSLEY based?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">GSLEY Digital has offices in Lagos and Enugu, Nigeria, and works with clients globally. Contact: <a href="mailto:brief@gsleydigital.com" data-bind="email">brief@gsleydigital.com</a> or <a href="tel:+2349024767079" data-bind="phone">+234 902 476 7079</a>.</div></details>
+      <details class="faq__item"><summary class="faq__q">How do I start working with GSLEY?<span class="pm" aria-hidden="true">+</span></summary><div class="faq__a">Run a free diagnostic for an instant scored read-out and a recommendation, or book a discovery call directly. Engagements are scoped from there across three tiers: free, sprint, and retainer.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--bone closing">
+  <div class="wrap">
+    <p class="display reveal">No jargon. <strong>Proven methodologies</strong>, data-backed precision, creative excellence — engineered for organisations that intend to define their category on the global stage.</p>
+    <div class="closing__ctas reveal">
+      <a href="/tools/growth-diagnostic" class="btn btn--solid">Run the Growth Diagnostic <span class="arrow">↗</span></a>
+      <a href="/contact#brief" data-bind="book" class="btn btn--ghost">Book a Discovery Call <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer data-gsley-footer></footer>
+<script src="site.js"></script>
+</body>
+</html>

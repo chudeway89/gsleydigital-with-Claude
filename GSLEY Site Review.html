@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSLEY Digital — Site Review, October 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gsley.css">
+<style>
+body{background:var(--paper)}
+.doc{max-width:880px;margin-inline:auto;padding:clamp(2rem,6vw,4rem) var(--gutter) 6rem}
+.doc h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin:var(--sp-4) 0 var(--sp-6)}
+.doc h2{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;margin:var(--sp-16) 0 var(--sp-4);padding-top:var(--sp-8);border-top:1px solid var(--line)}
+.doc h3{font-size:1.0625rem;font-weight:600;margin-bottom:var(--sp-2)}
+.doc p{color:var(--ink-700);margin-bottom:var(--sp-4)}
+.verdict{padding:var(--sp-6);background:var(--bone);border-left:2px solid var(--accent-digital);border-radius:0 var(--r-sm) var(--r-sm) 0;margin:var(--sp-8) 0}
+.verdict p:last-child{margin:0}
+.items{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.item{display:grid;gap:var(--sp-2) var(--sp-6);padding:var(--sp-6) 0;border-bottom:1px solid var(--line)}
+.item p{font-size:var(--fs-small);margin:0}
+.item .fix{color:var(--ink-900)}
+.item .fix b{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-ink);margin-right:6px}
+.item .where{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-400)}
+.pri{display:inline-block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;padding:2px 8px;border-radius:var(--r-pill);border:1px solid currentColor;margin-right:8px;vertical-align:2px}
+.p0{color:var(--danger)}.p1{color:#9A5B00}.p2{color:var(--ink-500)}
+.keep{list-style:none;display:grid;gap:var(--sp-3)}
+.keep li{padding-left:var(--sp-6);position:relative;font-size:var(--fs-small);color:var(--ink-700)}
+.keep li::before{content:"✓";position:absolute;left:0;color:var(--success)}
+.files{display:grid;gap:var(--sp-3)}
+.files a{display:flex;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-4) var(--sp-6);border:1px solid var(--line);border-radius:var(--r-md);background:#fff;font-size:var(--fs-small)}
+.files a:hover{border-color:var(--ink-900)}
+.files span{color:var(--ink-500)}
+.dec{counter-reset:d;list-style:none;display:grid;gap:var(--sp-4)}
+.dec li{counter-increment:d;padding-left:2.5rem;position:relative;font-size:var(--fs-small);color:var(--ink-700)}
+.dec li::before{content:counter(d,decimal-leading-zero);position:absolute;left:0;font-family:var(--font-mono);color:var(--teal-ink)}
+@media(min-width:760px){.item{grid-template-columns:1fr 1fr}.item h3,.item .where{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<main class="doc">
+<span class="mono-tag">GSLEY Digital · UX &amp; design review · 28 October 2026</span>
+<h1>gsleydigital.com: what works, what to change, and how to stop coming back to it.</h1>
+<p>Scope: the live WordPress site at gsleydigital.com (Home, Services, Tools, a tool page, Automation &amp; RevOps, About, Contact) and the repository <span class="mono-tag" style="text-transform:none">chudeway89/gsleydigital-with-Claude</span> at commit ddc5bbf.</p>
+
+<div class="verdict">
+<p><strong>Verdict.</strong> The design system is sound and the voice is consistent. The site doesn't need a redesign. What hurts it is a set of publishing errors: placeholder text that's live, numbers that contradict each other between pages, a "Book a Discovery Call" button that doesn't book anything, and a mobile menu below current standard. Each one is cheap to fix. The bigger structural issue is that the code running the live site isn't in the repository. Until it is, every fix depends on whoever has server access.</p>
+</div>
+
+<h2>1. Live site vs. repository</h2>
+<p>The live site is ahead of the repository, not behind it. Production has the Services index, Automation &amp; RevOps, AI Adoption Programmes, and ten tool pages, two of them paid. None of these exist in the repo. The repo holds the Phase 1 HTML design reference and planning documents only. There's no theme, no plugin, and no <span class="mono-tag" style="text-transform:none">theme.json</span>.</p>
+<div class="items">
+  <div class="item"><h3><span class="pri p0">P0</span>The WordPress theme and plugin aren't version-controlled</h3><p>The live site loads a custom <em>gsley-seo</em> plugin and a custom theme. Neither is in the repository, so there's no history, no rollback, and no way for anyone else to apply a fix safely.</p><p class="fix"><b>Fix</b>Commit the theme folder and the GSLEY plugin to the repo (wp-content/themes/gsley, wp-content/plugins/gsley-*). Deploy from Git from then on.</p><span class="where">Owner / developer · one-off</span></div>
+  <div class="item"><h3><span class="pri p2">P2</span>Repo reference pages have drifted from production</h3><p>For example, repo contact.html still links /insights (it 404s), the repo has no pages for the 3 extra services or the 9 extra tools, and repo copy differs slightly in places (founder heading).</p><p class="fix"><b>Fix</b>Treat the files in <em>redesign/</em> as the current reference and retire the Phase 1 HTML once the theme is committed.</p><span class="where">Repo</span></div>
+</div>
+
+<h2>2. What works — keep it</h2>
+<ul class="keep">
+  <li>The "Engineered Precision" system: Source Serif 4 / Inter / JetBrains Mono, ink-on-paper, a single teal accent, ink band for Market and teal band for Digital. It's distinctive and reads as institutional rather than agency.</li>
+  <li>The hero thesis line. It's clear, memorable, and gives the visitor a reason to read on.</li>
+  <li>Answer-first diagnostics as the main lead route, with a free score before the email ask.</li>
+  <li>Service pages: gap, then named archetype method, then scope, outcomes, and FAQ. Automation &amp; RevOps is the strongest page on the site.</li>
+  <li>No fake logos, testimonials, or invented statistics. "Client roster — disclosed on request, under NDA" is the right call.</li>
+  <li>The "In one paragraph" answer block and the FAQ blocks are good material for AI-search citation, and llms.txt is in place.</li>
+  <li>The three-step "What happens next" on Contact sets expectations well.</li>
+  <li>WhatsApp as a first-class channel suits the audience.</li>
+</ul>
+
+<h2>3. Fix before anything else (P0)</h2>
+<div class="items">
+  <div class="item"><h3><span class="pri p0">P0</span>Placeholder text is live on Home and About</h3><p>Visitors see "[ Founder photo Chukwudi Eze 4:5 portrait ]" in the founder section of both pages. It's the most visible credibility leak on the site.</p><p class="fix"><b>Fix</b>Upload the portrait and add alt text. Until then, the v2 component shows a "CE" monogram instead of printed instructions, so no placeholder text can reach the page again.</p><span class="where">WP: Media + founder pattern · redesign/gsley.css .photo</span></div>
+  <div class="item"><h3><span class="pri p0">P0</span>The site title is wrong in every browser tab and search result</h3><p>The homepage title is "Gsley Digital AI | Marketing | PR | Health -", with a trailing dash and a "Health" pillar that doesn't exist. Every inner page inherits it, e.g. "Tools - Gsley Digital AI | Marketing | PR | Health".</p><p class="fix"><b>Fix</b>Set the site title to "GSLEY Digital" and the tagline to "Growth &amp; AI Studio". Use the title format "%page% — GSLEY Digital" and the homepage title "GSLEY Digital — Growth &amp; AI Studio".</p><span class="where">WP: Settings → General + SEO plugin</span></div>
+  <div class="item"><h3><span class="pri p0">P0</span>Pages contradict each other on numbers</h3><p>Home says "Eight diagnostics". Tools says "Ten tools" in the H1, "Eight free diagnostics" in the meta, and "the other seven" in the closing line. About says "eight free diagnostics". Services says "Nine doorways" but lists eight, numbered M-01 to M-04 then M-06, with no M-05. It also says "Thirteen" Market services, while eleven Market service pages exist.</p><p class="fix"><b>Fix</b>Never type counts into copy. In v2 they're calculated from one tools list (<em>data-count</em>). In WordPress, the plugin should output the count with a shortcode or block binding, e.g. [gsley_count type="free-tools"].</p><span class="where">WP: Home, Tools, About, Services copy · plugin</span></div>
+  <div class="item"><h3><span class="pri p0">P0</span>"Book a Discovery Call" doesn't book a call</h3><p>It appears about four times per page, and every instance goes to /contact, which only has a brief form. A visitor who expects a calendar gets a form, and many will leave at that point.</p><p class="fix"><b>Fix</b>Add a Cal.com or Calendly link once in settings. Every booking button then opens the scheduler, and Contact shows an embedded calendar. With no link set, the buttons go straight to the brief form, labelled honestly.</p><span class="where">site.js bookingUrl → plugin setting</span></div>
+  <div class="item"><h3><span class="pri p0">P0</span>Tool pages send no content without JavaScript</h3><p>The served HTML of /tools/brand-authority-audit has no H1, intro, or tool, just header and footer. Search engines and link previews see an empty page, and if the script fails, so does the visitor.</p><p class="fix"><b>Fix</b>Render the tool's title, one-paragraph description, time, output, and FAQ on the server. Let JavaScript add only the interactive part. Also check in a browser that all ten tools load and submit.</p><span class="where">Plugin tool block: render.php</span></div>
+  <div class="item"><h3><span class="pri p0">P0</span>Two "Skip to content" links on every page</h3><p>The theme and WordPress (or a plugin) each output one, so screen-reader users hear it twice.</p><p class="fix"><b>Fix</b>Keep the theme's <em>.skip-link</em> and remove the other.</p><span class="where">Theme header part</span></div>
+</div>
+
+<h2>4. Web and mobile experience (P1)</h2>
+<div class="items">
+  <div class="item"><h3><span class="pri p1">P1</span>The mobile menu is below standard</h3><p>The menu drops inline and pushes the page down. The page behind it still scrolls, Escape doesn't close it, tapping a link leaves it in a half-open state, and the toggle is about 38px, under the 44px minimum.</p><p class="fix"><b>Fix</b>v2 uses a full-height panel with scroll lock, Escape to close, close on navigation, a 44px toggle that turns into an X, focus moved into the menu, and both main actions at the bottom.</p><span class="where">gsley.css .mobile-nav · site.js</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>The WhatsApp button covers content on phones</h3><p>The 56px floating button sits over text, form fields, and the footer at 375px wide, and there's no persistent route to the main conversion action.</p><p class="fix"><b>Fix</b>On mobile, replace it with a bottom action bar after the first scroll: the primary call to action plus WhatsApp, with safe-area padding. Desktop keeps the floating button.</p><span class="where">gsley.css .action-bar</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>Contrast failures in key places</h3><p>The hero's key line "We engineer the gap." uses #8895A7 on #FAF9F5, about 2.8:1, which fails WCAG AA. The same token is used for tool meta, ladder numbers, and card numbers. Ghost-button borders (#E5E2D8) are almost invisible.</p><p class="fix"><b>Fix</b>The new --ink-400 (#5F6B7C, 5.1:1) is for small informational text, and the hero line uses --ink-500. --ink-300 is kept for decoration only. Ghost borders are now #CFCBBE, and a darker teal (#0E7A70) is used for teal text on paper.</p><span class="where">gsley.css tokens → theme.json palette</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>The homepage says the same thing three times</h3><p>§01 Architecture, §02 Pillars in detail, and §03 Capability map each present the two pillars. Twelve sections, plus a "§ 03.5", make the page long, especially on mobile. The capability cards also show filled bars (5 of 7, 6 of 7) that look like a score with nothing behind them, which goes against your own no-invented-statistics rule.</p><p class="fix"><b>Fix</b>v2 merges these into one "Two pillars" section where every service is a link. The bar graphics are gone, the founder and credentials sections are combined, and sections are numbered §00–§07. The page is about 35% shorter.</p><span class="where">Homepage v2.html</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>The brief form loses context and leads</h3><p>The dropdown lists 9 of 17 services. "Begin a sprint" links arrive with nothing selected. There's no phone field in a WhatsApp-first market, no inline validation, no visible success or error state, and no spam protection.</p><p class="fix"><b>Fix</b>The dropdown is now built from the services list, grouped by pillar. /contact?service=google-ads preselects the service, a phone field is added, and errors show per field. There are sending, success, and failure states (failure keeps the message and offers WhatsApp), plus a honeypot and source tracking. Inputs are 16px, which stops iOS zooming in on focus.</p><span class="where">Contact v2.html</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>Paid audits sit inside "free" messaging</h3><p>The Tools page is framed as free, instant, and no sign-up, but lists two audits that charge $10 and $20. Everywhere else, pricing is on request. The mix muddies the offer.</p><p class="fix"><b>Fix</b>v2 separates them under "Live audits · free score, paid detail". The free count excludes them automatically.</p><span class="where">Home, Tools</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>A stray language switcher</h3><p>TranslatePress outputs a floating "English" flag on every page, but only one language is published. It's unstyled and adds weight to the page.</p><p class="fix"><b>Fix</b>Deactivate TranslatePress until a second language is ready, or hide its floater and put a styled switcher in the footer.</p><span class="where">WP: Plugins</span></div>
+  <div class="item"><h3><span class="pri p1">P1</span>Footer gaps</h3><p>The footer has no Terms or Cookies links (both needed once analytics or cookies run), no social links, and many links have touch targets under 36px.</p><p class="fix"><b>Fix</b>Legal row in footer-bottom, socials under the contact details, and 36px minimum link height.</p><span class="where">Footer pattern</span></div>
+</div>
+
+<h2>5. SEO and content (P2)</h2>
+<div class="items">
+  <div class="item"><h3><span class="pri p2">P2</span>Meta descriptions are generated from breadcrumbs</h3><p>Service and Tools pages publish descriptions like "Home › Services › Digital › Automation &amp; RevOps ◇ One revenue spine…", and the Services index reuses the homepage OG image.</p><p class="fix"><b>Fix</b>Write a 155-character description for each page in the SEO panel and point each page's og:image at its own file.</p><span class="where">WP: SEO plugin per page</span></div>
+  <div class="item"><h3><span class="pri p2">P2</span>Pages are marked as articles</h3><p>Pages carry og:type "article" and "Est. reading time". That suits blog posts, not service pages.</p><p class="fix"><b>Fix</b>Set the Page post type to "website", turn off reading time for Pages, and add Service, FAQPage, and BreadcrumbList schema as specified in the handoff brief §5.</p><span class="where">SEO plugin settings</span></div>
+  <div class="item"><h3><span class="pri p2">P2</span>The Toolkit tier names products that don't exist</h3><p>The value ladder lists "B2B Growth Stack", "Reputation Playbook", and "Automation Architect Pack". None of them has a page or a way to buy it.</p><p class="fix"><b>Fix</b>Either publish them or change the tier's examples to existing offers. Copy is unchanged in v2 because this is your decision.</p><span class="where">Owner decision</span></div>
+</div>
+
+<h2>6. What I changed</h2>
+<p>All placeholder text is removed. Copy is carried over verbatim from the live site, except for the corrected counts and the section numbering.</p>
+<div class="files">
+  <a href="Homepage v2.html">Homepage v2 <span>Merged sections, contrast fixed, mobile menu and action bar, no placeholders</span></a>
+  <a href="Contact v2.html">Contact v2 <span>Booking, preselect, validation, form states, honeypot</span></a>
+  <a href="Health v2.html">Health v2 <span>New GSLEY Health pillar hub with three services</span></a>
+  <a href="gsley.css">gsley.css <span>One stylesheet for every page, maps to theme.json</span></a>
+  <a href="site.js">site.js <span>The single place to edit contact details, nav, services, and tools</span></a>
+  <a href="fix-tasks.md">fix-tasks.md <span>Prompts to apply all of this to the WordPress build with Claude Code</span></a>
+</div>
+
+<h2>7. Editing without coming back to the design</h2>
+<p>Three rules, enforced in the build, keep the site editable without design help:</p>
+<ol class="dec">
+  <li><strong>Every fact lives in one place.</strong> Email, phone, WhatsApp, booking link, socials, location, and hours go in a single "GSLEY Settings" screen in WP-admin. Header, footer, Contact, FAQ, and the WhatsApp button all read from it. Change the number once and it updates everywhere.</li>
+  <li><strong>Lists generate themselves.</strong> Services and tools are registered once. The footer, mobile menu, contact dropdown, tool grid, and every count are built from those registrations. Adding a tool adds it everywhere, and the "Eight diagnostics" line updates by itself.</li>
+  <li><strong>Layout is locked, words are open.</strong> Sections are synced, locked block patterns. You can edit any text or image in the block editor, but you can't break the grid, spacing, or mobile behaviour. New pages are built by inserting the existing patterns.</li>
+</ol>
+
+<h2>8. Decisions only you can make</h2>
+<ol class="dec">
+  <li><strong>Location wording.</strong> An earlier brief asked for Lagos to be removed in favour of a global position. The live site still says "headquartered in Lagos" in the hero answer block, FAQ, footer, and contact. Keep it as is ("Lagos-based, working worldwide"), or switch to a global-only line? It's one setting in site.js plus two copy blocks.</li>
+  <li><strong>Scheduler.</strong> Choose Cal.com or Calendly and paste the link into <em>bookingUrl</em>. Until then the booking buttons go to the brief form.</li>
+  <li><strong>Email.</strong> The live site uses brief@gsleydigital.com, and an earlier brief asked for gsleydigital@gmail.com. I've kept brief@ because a domain address carries more trust. Make sure it's monitored.</li>
+  <li><strong>Toolkit tier.</strong> Publish the three toolkits or change the examples.</li>
+  <li><strong>Claims.</strong> Confirm you stand behind "deployed in 4–8 weeks", "Pipeline within 30 days", and "reply within one working day".</li>
+  <li><strong>Founder portrait.</strong> Supply the image and approve the alt text.</li>
+</ol>
+</main>
+</body>
+</html>
