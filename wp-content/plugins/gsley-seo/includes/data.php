@@ -110,7 +110,7 @@ function gsley_seo_og_alias() {
 
 /** The request path relative to the site root, no leading/trailing slash. */
 function gsley_seo_current_path() {
-	$req  = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '/';
+	$req  = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ) : '/';
 	$base = wp_parse_url( home_url( '/' ), PHP_URL_PATH );
 	$req  = '/' . ltrim( (string) $req, '/' );
 	$base = '/' . trim( (string) $base, '/' ) . '/';

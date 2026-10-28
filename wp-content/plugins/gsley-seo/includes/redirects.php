@@ -34,7 +34,7 @@ function gsley_seo_do_redirects() {
 		if ( '/' === substr( $target, 0, 1 ) ) {
 			$target = home_url( $target );
 		}
-		wp_redirect( $target, 301 );
+		wp_safe_redirect( $target, 301 );
 		exit;
 	}
 }

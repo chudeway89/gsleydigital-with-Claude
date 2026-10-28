@@ -35,7 +35,7 @@ function gsley_seo_serve_files() {
 	if ( empty( $_SERVER['REQUEST_URI'] ) ) {
 		return;
 	}
-	$path = trim( (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ), '/' );
+	$path = trim( (string) wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ), '/' );
 
 	if ( 'sitemap.xml' === $path ) {
 		gsley_seo_output_sitemap();

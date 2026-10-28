@@ -22,12 +22,12 @@ function gsley_maybe_handle_contact() {
 	if ( empty( $_SERVER['REQUEST_METHOD'] ) || 'POST' !== $_SERVER['REQUEST_METHOD'] ) {
 		return;
 	}
-	$path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+	$path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), PHP_URL_PATH ) : '';
 	if ( trim( (string) $path, '/' ) !== 'api/contact' ) {
 		return;
 	}
 
-	$type = isset( $_SERVER['CONTENT_TYPE'] ) ? strtolower( (string) $_SERVER['CONTENT_TYPE'] ) : '';
+	$type = isset( $_SERVER['CONTENT_TYPE'] ) ? strtolower( sanitize_text_field( wp_unslash( $_SERVER['CONTENT_TYPE'] ) ) ) : '';
 	$json = false !== strpos( $type, 'application/json' );
 	if ( $json ) {
 		$raw  = (string) file_get_contents( 'php://input', false, null, 0, 32768 ); // briefs are small; cap the read
@@ -118,7 +118,7 @@ function gsley_handle_contact_submission( $f ) {
 			'need'         => $need_label,
 			'message'      => $message,
 			'ip'           => $ip,
-			'user_agent'   => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ), 255 ) : '',
+			'user_agent'   => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ), 255 ) : '',
 		)
 	);
 	if ( ! $lead_id ) {

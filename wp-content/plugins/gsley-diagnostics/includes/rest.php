@@ -82,7 +82,7 @@ function gsley_diagnostics_handle_submission( $request ) {
 		'name'       => isset( $body['name'] ) ? gsley_clean_name( $body['name'] ) : '',
 		'result'     => $result,
 		'ip'         => gsley_anonymize_ip( gsley_client_ip() ),
-		'user_agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ), 255 ) : '',
+		'user_agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ), 255 ) : '',
 		'created'    => current_time( 'mysql' ),
 	);
 

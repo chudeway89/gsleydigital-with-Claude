@@ -29,13 +29,11 @@ $gsley_faqs = array(
 		<!-- wp:group {"className":"faq reveal","layout":{"type":"default"}} -->
 		<div class="wp-block-group faq reveal">
 			<?php foreach ( $gsley_faqs as $faq ) :
-				list( $q, $a, $open ) = $faq;
-				$attr = $open ? ' {"showContent":true}' : '';
-				$open_attr = $open ? ' open' : ''; ?>
-			<!-- wp:details<?php echo $attr; ?> -->
-			<details class="wp-block-details"<?php echo $open_attr; ?>><summary><?php echo $q; ?></summary>
+				list( $q, $a, $open ) = $faq; ?>
+			<!-- wp:details<?php echo $open ? ' {"showContent":true}' : ''; ?> -->
+			<details class="wp-block-details"<?php echo $open ? ' open' : ''; ?>><summary><?php echo wp_kses_post( $q ); ?></summary>
 			<!-- wp:paragraph -->
-			<p><?php echo $a; ?></p>
+			<p><?php echo wp_kses_post( $a ); ?></p>
 			<!-- /wp:paragraph -->
 			</details>
 			<!-- /wp:details -->

@@ -42,7 +42,7 @@ $gsley_paid = array(
 		<!-- wp:html -->
 		<div class="tools-grid reveal">
 <?php foreach ( $gsley_free as $t ) : ?>
-			<a href="/tools/<?php echo $t[0]; ?>/" class="tool-row<?php echo $t[3] ? ' tool-row--flag' : ''; ?>"><span class="tool-row__name"><?php echo $t[1]; ?></span><span class="tool-row__meta"><?php echo $t[2]; ?></span></a>
+			<a href="/tools/<?php echo esc_attr( $t[0] ); ?>/" class="tool-row<?php echo $t[3] ? ' tool-row--flag' : ''; ?>"><span class="tool-row__name"><?php echo wp_kses_post( $t[1] ); ?></span><span class="tool-row__meta"><?php echo esc_html( $t[2] ); ?></span></a>
 <?php endforeach; ?>
 		</div>
 		<!-- /wp:html -->
@@ -54,7 +54,7 @@ $gsley_paid = array(
 		<!-- wp:html -->
 		<div class="tools-grid reveal">
 <?php foreach ( $gsley_paid as $t ) : ?>
-			<a href="/tools/<?php echo $t[0]; ?>/" class="tool-row"><span class="tool-row__name"><?php echo $t[1]; ?></span><span class="tool-row__meta"><?php echo $t[2]; ?></span></a>
+			<a href="/tools/<?php echo esc_attr( $t[0] ); ?>/" class="tool-row"><span class="tool-row__name"><?php echo wp_kses_post( $t[1] ); ?></span><span class="tool-row__meta"><?php echo esc_html( $t[2] ); ?></span></a>
 <?php endforeach; ?>
 		</div>
 		<p class="u-mt-8"><a href="/tools/" class="open-link">See all tools ↗</a></p>

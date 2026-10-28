@@ -76,7 +76,7 @@ function gsley_card( $label, $value, $sub = '' ) {
 }
 
 function gsley_render_dashboard() {
-	if ( isset( $_GET['view'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_GET['view'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only view, capability-checked by the menu.
 		gsley_render_lead_detail( (int) $_GET['view'] );
 		return;
 	}
@@ -85,7 +85,8 @@ function gsley_render_dashboard() {
 	$subs  = gsley_table_submissions();
 	$configs = gsley_diagnostics_configs();
 
-	// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.NotPrepared
+	// Table names are $wpdb->prefix + a fixed string, never request data.
+	// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	$total_leads = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $leads" );
 	$unique      = (int) $wpdb->get_var( "SELECT COUNT(DISTINCT email) FROM $leads" );
 	$contact_n   = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $leads WHERE source = %s", 'contact' ) );
@@ -113,10 +114,10 @@ function gsley_render_dashboard() {
 	}
 
 	echo '<div style="display:flex;flex-wrap:wrap;gap:12px;margin:16px 0">';
-	echo gsley_card( 'Leads captured', number_format_i18n( $total_leads ), $unique . ' unique emails' );
-	echo gsley_card( 'Contact briefs', number_format_i18n( $contact_n ) );
-	echo gsley_card( 'Tool completions', number_format_i18n( $tool_n ) );
-	echo gsley_card( 'Reports sent', number_format_i18n( $sent ), $rate . ' delivery · ' . $failed . ' failed' );
+	echo gsley_card( 'Leads captured', number_format_i18n( $total_leads ), $unique . ' unique emails' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- gsley_card() escapes its values.
+	echo gsley_card( 'Contact briefs', number_format_i18n( $contact_n ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- gsley_card() escapes its values.
+	echo gsley_card( 'Tool completions', number_format_i18n( $tool_n ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- gsley_card() escapes its values.
+	echo gsley_card( 'Reports sent', number_format_i18n( $sent ), $rate . ' delivery · ' . $failed . ' failed' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- gsley_card() escapes its values.
 	echo '</div>';
 
 	// Per-tool analytics.
@@ -162,7 +163,7 @@ function gsley_render_dashboard() {
 				. '<td>' . esc_html( $l->organisation ) . '</td>'
 				. '<td>' . esc_html( $what ) . '</td>'
 				. '<td><span style="color:' . esc_attr( $fcolour ) . ';font-weight:600;text-transform:capitalize">' . esc_html( $fstatus ) . '</span></td>'
-				. '<td>' . $badge . '</td>'
+				. '<td>' . $badge . '</td>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $badge is built from esc_html()/esc_attr() values.
 				. '<td><a class="button button-small" href="' . esc_url( $view ) . '">View</a></td>'
 				. '</tr>';
 			if ( 'contact' === $l->source && $l->message ) {

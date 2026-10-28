@@ -10,12 +10,12 @@
  */
 
 $gsley_start = array(
-	array( 'Market', '▲', '', 'Website Design &amp; Development', 'Conversion-engineered and AI-search ready.', '/services/market/website-design/', '' ),
-	array( 'Market', '▲', '', 'Google Ads', 'Productised search and performance media, measured against pipeline.', '/services/market/google-ads/', '' ),
-	array( 'Market', '▲', '', 'Email Marketing', 'Lifecycle systems, not blasts. Built on owned data.', '/services/market/email-marketing/', '' ),
-	array( 'Market', '▲', '', 'Social Media Marketing &amp; Management', 'Editorial cadence, paid amplification, governance baked in.', '/services/market/social-media-marketing/', '' ),
-	array( 'Market', '▲', '', 'Content Development', 'Thought-leadership content engineered for citation, not vanity metrics.', '/services/market/content-development/', '' ),
-	array( 'Digital', '◇', ' class="g--digital"', 'AI Agent Deployment', 'Agentic workflows wired into the back office, under explicit governance.', '/services/digital/ai-agent-deployment/', ' open-link--digital' ),
+	array( 'Market', '▲', false, 'Website Design &amp; Development', 'Conversion-engineered and AI-search ready.', '/services/market/website-design/', false ),
+	array( 'Market', '▲', false, 'Google Ads', 'Productised search and performance media, measured against pipeline.', '/services/market/google-ads/', false ),
+	array( 'Market', '▲', false, 'Email Marketing', 'Lifecycle systems, not blasts. Built on owned data.', '/services/market/email-marketing/', false ),
+	array( 'Market', '▲', false, 'Social Media Marketing &amp; Management', 'Editorial cadence, paid amplification, governance baked in.', '/services/market/social-media-marketing/', false ),
+	array( 'Market', '▲', false, 'Content Development', 'Thought-leadership content engineered for citation, not vanity metrics.', '/services/market/content-development/', false ),
+	array( 'Digital', '◇', true, 'AI Agent Deployment', 'Agentic workflows wired into the back office, under explicit governance.', '/services/digital/ai-agent-deployment/', true ),
 );
 ?>
 <!-- wp:group {"tagName":"section","className":"section","templateLock":"contentOnly","layout":{"type":"default"}} -->
@@ -36,7 +36,7 @@ $gsley_start = array(
 		<!-- wp:html -->
 		<div class="start-grid reveal">
 <?php foreach ( $gsley_start as $c ) : ?>
-			<a href="<?php echo $c[5]; ?>" class="card"><span class="card__meta"><span><?php echo $c[0]; ?></span><span aria-hidden="true"<?php echo $c[2]; ?>><?php echo $c[1]; ?></span></span><h3><?php echo $c[3]; ?></h3><p><?php echo $c[4]; ?></p><span class="open-link<?php echo $c[6]; ?>">Begin sprint ↗</span></a>
+			<a href="<?php echo esc_url( $c[5] ); ?>" class="card"><span class="card__meta"><span><?php echo esc_html( $c[0] ); ?></span><span aria-hidden="true"<?php echo $c[2] ? ' class="g--digital"' : ''; ?>><?php echo esc_html( $c[1] ); ?></span></span><h3><?php echo wp_kses_post( $c[3] ); ?></h3><p><?php echo esc_html( $c[4] ); ?></p><span class="open-link<?php echo $c[6] ? ' open-link--digital' : ''; ?>">Begin sprint ↗</span></a>
 <?php endforeach; ?>
 		</div>
 		<!-- /wp:html -->
