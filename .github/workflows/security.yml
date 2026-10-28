@@ -1,0 +1,81 @@
+# Static checks on every push and pull request.
+# - PHP syntax on the oldest and newest supported PHP versions
+# - WordPress security sniffs (escaping, nonces, input sanitising, SQL preparation)
+# - Semgrep SAST (PHP, JavaScript, OWASP Top 10)
+# - Secret scanning over the full git history (gitleaks)
+# The workflow only reads the repository; it has no write permissions or secrets.
+name: Security checks
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+  schedule:
+    - cron: '17 3 * * 1' # weekly, to pick up new Semgrep rules
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: none
+      - name: Lint every PHP file
+        run: find wp-content -name '*.php' -print0 | xargs -0 -n1 php -l
+
+  wordpress-sniffs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+      - name: Install WordPress Coding Standards
+        run: |
+          composer global config --no-interaction allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer global require --no-interaction "wp-coding-standards/wpcs:^3.1"
+      - name: Security sniffs
+        run: |
+          ~/.composer/vendor/bin/phpcs --standard=WordPress \
+            --sniffs=WordPress.Security.EscapeOutput,WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput,WordPress.DB.PreparedSQL,WordPress.DB.PreparedSQLPlaceholders,WordPress.Security.SafeRedirect \
+            --extensions=php wp-content
+
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Semgrep
+        run: semgrep scan --config p/php --config p/javascript --config p/owasp-top-ten --config p/secrets --metrics=off --error --exclude '*.html' wp-content
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --source . --redact --verbose

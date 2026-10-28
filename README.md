@@ -1,10 +1,44 @@
-# GSLEY Digital — redesign handoff
+# GSLEY Digital — website
 
-Put this folder in the repo at `/redesign`. It's the design reference and task list for the live WordPress build.
+The WordPress code that runs **gsleydigital.com**, plus the design reference and planning documents.
 
-- `GSLEY Site Review.html`: findings and what changed
-- `fix-tasks.md`: run these with Claude Code, one task per session, in order (WP-admin steps first, then Task A, B, C …)
-- `Homepage v2.html`, `Contact v2.html`, `Health v2.html`: pages to match exactly
-- `gsley.css`: tokens and components (→ theme.json + supplemental CSS)
-- `site.js`: seed data for contact details, services, and tools (→ GSLEY Settings + registry)
-- `assets/chukwudi-eze.jpg`: cleaned portrait (media library only, not placed on pages)
+## Repository layout
+
+| Path | What it is |
+|---|---|
+| `wp-content/themes/gsley-digital/` | The block theme (Full Site Editing): `theme.json` tokens, header/footer parts, templates, locked block patterns for every page. |
+| `wp-content/plugins/gsley-diagnostics/` | Application logic: GSLEY Settings (site facts), the services/tools registry, the ten tool blocks, lead capture (`/api/contact`), Resend email, Paystack, the lead dashboard and the one-click page importer. |
+| `wp-content/plugins/gsley-seo/` | JSON-LD schema, meta descriptions and Open Graph images, `sitemap.xml`, `robots.txt`, `llms.txt`, legacy redirects. |
+| `wp-content/plugins/gsley-security/` | Security headers/CSP, login throttling, two-factor for administrators, breached-password checks, security log and alerts. See `SECURITY.md`. |
+| `redesign/` | The October 2026 design reference (`Homepage v2.html`, `Contact v2.html`, `Health v2.html`, `gsley.css`, `site.js`) and `fix-tasks.md`. |
+| `deploy/` | Upload guide, static `robots.txt` / `sitemap.xml`, and `REDESIGN-CHANGES.md` (what changed and what needs the owner). |
+| `*.html`, `phase1-*.md`, `research*.md` | Phase 1 design reference and planning documents. |
+
+The theme holds content and design; the plugins hold logic. Changing one never requires changing the other.
+
+## Deploying from Git
+
+The live site runs on Namecheap EasyWP (no SSH or WP-CLI), so deployment is "build a zip from this
+repository and upload it in WP-admin". Each zip is a folder copied straight from `wp-content/`.
+
+1. **Build the zips** from a clean checkout of the branch you are deploying:
+
+   ```sh
+   cd wp-content/themes  && zip -r ../../gsley-digital.zip gsley-digital -x '*/.git*'
+   cd ../plugins         && zip -r ../../gsley-diagnostics.zip gsley-diagnostics -x '*/.git*'
+   zip -r ../../gsley-seo.zip gsley-seo -x '*/.git*'
+   zip -r ../../gsley-security.zip gsley-security -x '*/.git*'
+   ```
+
+2. **Upload** in WP-admin:
+   - Theme: **Appearance → Themes → Add New → Upload Theme** → `gsley-digital.zip` → **Replace active with uploaded**.
+   - Plugins: **Plugins → Add New → Upload Plugin** → `gsley-diagnostics.zip`, `gsley-seo.zip` and `gsley-security.zip` → **Replace current with uploaded** (activate GSLEY Security the first time).
+3. **GSLEY Leads → Setup → Import / update pages** — rebuilds every page from the theme's patterns
+   (this overwrites edits made to those pages in the editor).
+4. **Settings → Permalinks → Save Changes**, then **purge the EasyWP cache**.
+5. If the homepage looks unchanged, the front-page template was customised in the Site Editor:
+   **Appearance → Editor → Templates → Front Page → ⋮ → Reset**.
+
+Never commit secrets. Paystack and Resend keys go in `wp-config.php` or **GSLEY Leads → Settings**, not in this repository.
+
+See `deploy/README.md` for the full checklist and `deploy/REDESIGN-CHANGES.md` for what the October 2026 redesign changed.

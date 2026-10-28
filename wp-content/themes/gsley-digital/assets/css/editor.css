@@ -1,0 +1,23 @@
+/* GSLEY Digital — editor-only overrides.
+   Neutralises front-end behaviours that would hide or misplace content
+   inside the block editor, where the reveal JS does not run. */
+
+/* Scroll-reveal starts at opacity:0 on the front end; show it in the editor. */
+.editor-styles-wrapper .reveal{
+	opacity:1 !important;
+	transform:none !important;
+}
+
+/* The header is position:sticky and the WhatsApp FAB is position:fixed on the
+   front end; keep them in normal flow in the editor so they don't overlap. */
+.editor-styles-wrapper .site-header{position:static;}
+.editor-styles-wrapper .wa-fab{position:static;display:none;}
+
+/* Dark bands render white-on-ink/teal; make sure editor rich-text inherits colour. */
+.editor-styles-wrapper .section--ink,
+.editor-styles-wrapper .section--teal,
+.editor-styles-wrapper .page-hero,
+.editor-styles-wrapper :where(.section--ink,.section--teal,.page-hero) :where(h1,h2,h3,p,span,a){color:inherit;}
+
+/* v2 mobile panel + action bar are front-end only. */
+.editor-styles-wrapper .mobile-nav,.editor-styles-wrapper .action-bar{display:none;}
