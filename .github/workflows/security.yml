@@ -39,9 +39,6 @@ jobs:
 
   wordpress-sniffs:
     runs-on: ubuntu-latest
-    # Report-only until the first run's findings are reviewed (it has not run
-    # against this codebase yet). Remove this line to make it blocking.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:

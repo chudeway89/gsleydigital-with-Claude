@@ -77,7 +77,7 @@ function gsley_card( $label, $value, $sub = '' ) {
 
 function gsley_render_dashboard() {
 	if ( isset( $_GET['view'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only view, capability-checked by the menu.
-		gsley_render_lead_detail( (int) $_GET['view'] );
+		gsley_render_lead_detail( (int) $_GET['view'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only view; saving is nonce-checked.
 		return;
 	}
 	global $wpdb;
