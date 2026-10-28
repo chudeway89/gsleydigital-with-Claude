@@ -22,7 +22,7 @@ function gsley_diagnostics_register_routes() {
 		'/tools/(?P<id>[a-z0-9-]+)',
 		array(
 			'methods'             => 'POST',
-			'permission_callback' => '__return_true', // Public lead form; protected by honeypot + validation.
+			'permission_callback' => '__return_true', // Public lead form: honeypot, server-side scoring, rate limits.
 			'callback'            => 'gsley_diagnostics_handle_submission',
 			'args'                => array(
 				'id' => array( 'sanitize_callback' => 'sanitize_key' ),
@@ -42,6 +42,13 @@ function gsley_diagnostics_handle_submission( $request ) {
 		return new WP_Error( 'gsley_unknown_tool', 'Unknown tool.', array( 'status' => 404 ) );
 	}
 
+	if ( 'audit' === $configs[ $tool ]['engine'] ) {
+		return new WP_Error( 'gsley_engine', 'Use the audit endpoint for this tool.', array( 'status' => 400 ) );
+	}
+	if ( strlen( (string) $request->get_body() ) > 20000 ) {
+		return new WP_Error( 'gsley_too_large', 'Submission too large.', array( 'status' => 413 ) );
+	}
+
 	$body = $request->get_json_params();
 	if ( ! is_array( $body ) ) {
 		$body = array();
@@ -52,27 +59,30 @@ function gsley_diagnostics_handle_submission( $request ) {
 		return new WP_REST_Response( array( 'ok' => true ), 200 );
 	}
 
-	$email = isset( $body['email'] ) ? sanitize_email( $body['email'] ) : '';
+	$email = isset( $body['email'] ) ? sanitize_email( gsley_clip( $body['email'], 190 ) ) : '';
 	if ( ! is_email( $email ) ) {
 		return new WP_Error( 'gsley_bad_email', 'A valid email is required.', array( 'status' => 422 ) );
 	}
 
-	// Lightweight rate limit per IP (10 / 10 min) — defence in depth.
-	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
-	$key = 'gsley_diag_rl_' . md5( $ip );
-	$hits = (int) get_transient( $key );
-	if ( $hits >= 10 ) {
-		return new WP_Error( 'gsley_rate_limited', 'Too many submissions. Please try again shortly.', array( 'status' => 429 ) );
+	// Recompute the result on the server; never email what the browser claims.
+	$result = gsley_score_submission( $configs[ $tool ], $body );
+	if ( is_wp_error( $result ) ) {
+		return $result;
 	}
-	set_transient( $key, $hits + 1, 10 * MINUTE_IN_SECONDS );
+
+	// Per IP, per recipient (stops the form being used to email someone else repeatedly), and site-wide.
+	$limited = gsley_guard( 'report', $email );
+	if ( $limited ) {
+		return new WP_Error( 'gsley_rate_limited', 'Too many reports requested. Please try again later.', array( 'status' => 429 ) );
+	}
 
 	$submission = array(
 		'tool'       => $tool,
 		'email'      => $email,
-		'name'       => isset( $body['name'] ) ? sanitize_text_field( $body['name'] ) : '',
-		'result'     => $body, // full payload (answers/inputs/selections, score, priority…)
-		'ip'         => $ip,
-		'user_agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '',
+		'name'       => isset( $body['name'] ) ? gsley_clean_name( $body['name'] ) : '',
+		'result'     => $result,
+		'ip'         => gsley_anonymize_ip( gsley_client_ip() ),
+		'user_agent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ), 255 ) : '',
 		'created'    => current_time( 'mysql' ),
 	);
 

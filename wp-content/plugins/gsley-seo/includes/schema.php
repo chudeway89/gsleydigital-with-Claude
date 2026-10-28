@@ -129,7 +129,7 @@ function gsley_seo_output_schema() {
 	}
 
 	$doc = array( '@context' => 'https://schema.org', '@graph' => $graph );
-	echo "\n<script type=\"application/ld+json\">" . wp_json_encode( $doc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+	echo "\n<script type=\"application/ld+json\">" . wp_json_encode( $doc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP ) . "</script>\n";
 }
 
 function gsley_seo_listitem( $pos, $name, $url ) {

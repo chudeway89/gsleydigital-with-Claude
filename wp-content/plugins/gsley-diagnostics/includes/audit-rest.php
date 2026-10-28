@@ -39,24 +39,21 @@ function gsley_audit_rest_run( $request ) {
 		return new WP_REST_Response( array( 'ok' => false ), 200 );
 	}
 
-	// Rate limit (audits are heavier: 6 per 10 min per IP).
-	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
-	$key = 'gsley_audit_rl_' . md5( $ip );
-	$hits = (int) get_transient( $key );
-	if ( $hits >= 6 ) {
+	// Audits fetch third-party pages, so they are limited per IP and site-wide.
+	$limited = gsley_guard( 'audit' );
+	if ( $limited ) {
 		return new WP_Error( 'gsley_rate', 'Too many audits in a short time. Please wait a few minutes.', array( 'status' => 429 ) );
 	}
-	set_transient( $key, $hits + 1, 10 * MINUTE_IN_SECONDS );
 
 	$inputs = array(
-		'website'        => isset( $body['website'] ) ? sanitize_text_field( $body['website'] ) : '',
+		'website'        => isset( $body['website'] ) ? gsley_clip( $body['website'], 300 ) : '',
 		'socials'        => array(),
-		'google_rating'  => isset( $body['google_rating'] ) ? (float) $body['google_rating'] : 0,
-		'google_reviews' => isset( $body['google_reviews'] ) ? (int) $body['google_reviews'] : 0,
+		'google_rating'  => isset( $body['google_rating'] ) ? max( 0, min( 5, (float) $body['google_rating'] ) ) : 0,
+		'google_reviews' => isset( $body['google_reviews'] ) ? max( 0, min( 10000000, (int) $body['google_reviews'] ) ) : 0,
 	);
 	if ( isset( $body['socials'] ) && is_array( $body['socials'] ) ) {
-		foreach ( $body['socials'] as $s ) {
-			$s = sanitize_text_field( $s );
+		foreach ( array_slice( $body['socials'], 0, 8 ) as $s ) { // at most 8 profiles per audit
+			$s = gsley_clip( $s, 300 );
 			if ( '' !== trim( $s ) ) {
 				$inputs['socials'][] = $s;
 			}
@@ -73,7 +70,7 @@ function gsley_audit_rest_run( $request ) {
 			'overall'  => (int) $run['overall'],
 			'result'   => wp_json_encode( array( 'inputs' => $inputs, 'run' => $run ) ),
 			'amount'   => (int) $cfg['price'],
-			'currency' => $cfg['currency'],
+			'currency' => gsley_paystack_currency(), // the currency the checkout will charge in
 			'paid'     => 0,
 			'token'    => $token,
 		)
@@ -103,11 +100,14 @@ function gsley_audit_rest_pay_init( $request ) {
 	$body = $request->get_json_params();
 	$body = is_array( $body ) ? $body : array();
 	$id    = isset( $body['audit_id'] ) ? (int) $body['audit_id'] : 0;
-	$token = isset( $body['token'] ) ? sanitize_text_field( $body['token'] ) : '';
-	$email = isset( $body['email'] ) ? sanitize_email( $body['email'] ) : '';
+	$token = isset( $body['token'] ) ? gsley_clip( $body['token'], 64 ) : '';
+	$email = isset( $body['email'] ) ? sanitize_email( gsley_clip( $body['email'], 190 ) ) : '';
 
+	if ( gsley_guard( 'payinit', $email ) ) {
+		return new WP_Error( 'gsley_rate', 'Too many attempts. Please wait a few minutes.', array( 'status' => 429 ) );
+	}
 	$sub = gsley_get_submission( $id );
-	if ( ! $sub || ! hash_equals( (string) $sub->token, $token ) ) {
+	if ( ! $sub || '' === (string) $sub->token || ! hash_equals( (string) $sub->token, $token ) ) {
 		return new WP_Error( 'gsley_bad', 'Invalid audit reference.', array( 'status' => 403 ) );
 	}
 	if ( ! is_email( $email ) ) {
@@ -124,11 +124,8 @@ function gsley_audit_rest_pay_init( $request ) {
 	$ref  = 'gsleyaud_' . $id . '_' . wp_generate_password( 10, false );
 
 	// Validate the callback URL is on this site, else fall back to the tool page.
-	$callback = isset( $body['callback'] ) ? esc_url_raw( $body['callback'] ) : '';
-	$site_host = wp_parse_url( home_url(), PHP_URL_HOST );
-	if ( ! $callback || wp_parse_url( $callback, PHP_URL_HOST ) !== $site_host ) {
-		$callback = trailingslashit( home_url( '/tools/' . $sub->tool ) );
-	}
+	// The buyer always returns to this tool's page on this site (no caller-chosen URLs).
+	$callback = trailingslashit( home_url( '/tools/' . $sub->tool ) );
 
 	// Capture/refresh the lead now that we have an email + intent.
 	$lead_id = (int) $sub->lead_id;
@@ -141,10 +138,12 @@ function gsley_audit_rest_pay_init( $request ) {
 		(float) $sub->amount,
 		$ref,
 		$callback,
-		array( 'audit_id' => $id, 'tool' => $sub->tool )
+		array( 'audit_id' => $id, 'tool' => $sub->tool ),
+		$sub->currency
 	);
 	if ( ! $init['ok'] ) {
-		return new WP_Error( 'gsley_pay_init', $init['error'], array( 'status' => 502 ) );
+		do_action( 'gsley_security_event', 'payment_init_failed', array( 'audit' => $id, 'detail' => $init['error'] ) );
+		return new WP_Error( 'gsley_pay_init', 'We couldn’t start the checkout. Please try again in a moment.', array( 'status' => 502 ) );
 	}
 
 	gsley_update_submission( $id, array( 'payment_ref' => $init['reference'], 'lead_id' => $lead_id ) );
@@ -157,11 +156,14 @@ function gsley_audit_rest_pay_confirm( $request ) {
 	$body = $request->get_json_params();
 	$body = is_array( $body ) ? $body : array();
 	$id    = isset( $body['audit_id'] ) ? (int) $body['audit_id'] : 0;
-	$token = isset( $body['token'] ) ? sanitize_text_field( $body['token'] ) : '';
-	$ref   = isset( $body['reference'] ) ? sanitize_text_field( $body['reference'] ) : '';
+	$token = isset( $body['token'] ) ? gsley_clip( $body['token'], 64 ) : '';
+	$ref   = isset( $body['reference'] ) ? gsley_clip( $body['reference'], 100 ) : '';
 
+	if ( gsley_guard( 'payconf' ) ) {
+		return new WP_Error( 'gsley_rate', 'Too many attempts. Please wait a few minutes.', array( 'status' => 429 ) );
+	}
 	$sub = gsley_get_submission( $id );
-	if ( ! $sub || ! hash_equals( (string) $sub->token, $token ) ) {
+	if ( ! $sub || '' === (string) $sub->token || ! hash_equals( (string) $sub->token, $token ) ) {
 		return new WP_Error( 'gsley_bad', 'Invalid audit reference.', array( 'status' => 403 ) );
 	}
 
@@ -179,10 +181,11 @@ function gsley_audit_rest_pay_confirm( $request ) {
 
 	$v = gsley_paystack_verify( $ref );
 	if ( ! $v['ok'] || ! $v['success'] ) {
-		return new WP_REST_Response( array( 'paid' => false, 'error' => $v['ok'] ? 'Payment not completed.' : $v['error'] ), 200 );
+		return new WP_REST_Response( array( 'paid' => false, 'error' => 'Payment not completed.' ), 200 );
 	}
-	if ( (float) $v['amount_major'] + 0.001 < (float) $sub->amount ) {
-		return new WP_REST_Response( array( 'paid' => false, 'error' => 'Payment amount mismatch.' ), 200 );
+	if ( ! gsley_payment_matches( $sub, $v ) ) {
+		do_action( 'gsley_security_event', 'payment_mismatch', array( 'audit' => $id, 'reference' => $ref ) );
+		return new WP_REST_Response( array( 'paid' => false, 'error' => 'Payment could not be matched to this audit.' ), 200 );
 	}
 
 	gsley_audit_mark_paid_and_email( $sub, $v['email'] );
@@ -190,19 +193,31 @@ function gsley_audit_rest_pay_confirm( $request ) {
 	return new WP_REST_Response( array( 'paid' => true, 'recommendations' => isset( $run['recommendations'] ) ? $run['recommendations'] : array() ), 200 );
 }
 
+/** A verified payment must be for this audit's exact price and currency. */
+function gsley_payment_matches( $sub, $v ) {
+	$expected_currency = $sub->currency ? strtoupper( (string) $sub->currency ) : gsley_paystack_currency();
+	return abs( (float) $v['amount_major'] - (float) $sub->amount ) < 0.005
+		&& strtoupper( (string) $v['currency'] ) === $expected_currency;
+}
+
 /** Paystack webhook — durable backstop. */
 function gsley_audit_rest_webhook( $request ) {
 	$raw = $request->get_body();
 	$sig = $request->get_header( 'x-paystack-signature' );
 	if ( ! gsley_paystack_verify_signature( $raw, $sig ) ) {
+		do_action( 'gsley_security_event', 'webhook_bad_signature', array() );
 		return new WP_Error( 'gsley_sig', 'Invalid signature.', array( 'status' => 401 ) );
 	}
 	$data = json_decode( $raw, true );
 	if ( isset( $data['event'] ) && 'charge.success' === $data['event'] && ! empty( $data['data']['reference'] ) ) {
 		global $wpdb;
 		$ref = sanitize_text_field( $data['data']['reference'] );
-		$sub = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . gsley_table_submissions() . ' WHERE payment_ref = %s', $ref ) ); // phpcs:ignore WordPress.DB
-		if ( $sub && ! (int) $sub->paid ) {
+		$sub = '' === $ref ? null : $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . gsley_table_submissions() . ' WHERE payment_ref = %s', $ref ) ); // phpcs:ignore WordPress.DB
+		$v   = array(
+			'amount_major' => isset( $data['data']['amount'] ) ? ( (int) $data['data']['amount'] ) / 100 : 0,
+			'currency'     => isset( $data['data']['currency'] ) ? (string) $data['data']['currency'] : '',
+		);
+		if ( $sub && ! (int) $sub->paid && gsley_payment_matches( $sub, $v ) ) {
 			$email = isset( $data['data']['customer']['email'] ) ? sanitize_email( $data['data']['customer']['email'] ) : '';
 			gsley_audit_mark_paid_and_email( $sub, $email );
 		}

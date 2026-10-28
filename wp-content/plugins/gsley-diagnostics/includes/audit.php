@@ -25,31 +25,16 @@ function gsley_audit_norm_url( $u ) {
 	if ( ! preg_match( '#^https?://#i', $u ) ) {
 		$u = 'https://' . $u;
 	}
-	$u = esc_url_raw( $u );
+	if ( strlen( $u ) > 300 ) {
+		return '';
+	}
+	$u = esc_url_raw( $u, array( 'http', 'https' ) );
 	return ( $u && wp_http_validate_url( $u ) ) ? $u : '';
 }
 
-/** Fetch a URL. Returns { ok, code, body, error }. */
+/** Fetch a URL. Returns { ok, code, body, error }. Public hosts only — see gsley_safe_fetch(). */
 function gsley_audit_fetch( $url ) {
-	$r = wp_remote_get(
-		$url,
-		array(
-			'timeout'     => 15,
-			'redirection' => 5,
-			'sslverify'   => true,
-			'user-agent'  => 'Mozilla/5.0 (compatible; GSLEYAudit/1.0; +https://gsleydigital.com)',
-			'headers'     => array( 'Accept' => 'text/html,application/xhtml+xml' ),
-		)
-	);
-	if ( is_wp_error( $r ) ) {
-		return array( 'ok' => false, 'code' => 0, 'body' => '', 'error' => $r->get_error_message() );
-	}
-	return array(
-		'ok'    => true,
-		'code'  => (int) wp_remote_retrieve_response_code( $r ),
-		'body'  => (string) wp_remote_retrieve_body( $r ),
-		'error' => '',
-	);
+	return gsley_safe_fetch( $url );
 }
 
 /** Build a DOMXPath from HTML (size-capped). */
@@ -60,7 +45,7 @@ function gsley_audit_xpath( $html ) {
 	$html = substr( $html, 0, 600000 );
 	libxml_use_internal_errors( true );
 	$doc = new DOMDocument();
-	$doc->loadHTML( '<?xml encoding="UTF-8">' . $html );
+	$doc->loadHTML( '<?xml encoding="UTF-8">' . $html, LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING );
 	libxml_clear_errors();
 	return new DOMXPath( $doc );
 }
@@ -95,7 +80,7 @@ function gsley_audit_website( $url ) {
 	$res = gsley_audit_fetch( $url );
 	$checks = array();
 	if ( ! $res['ok'] || $res['code'] >= 400 || '' === $res['body'] ) {
-		$checks[] = gsley_audit_check( 'reachable', 'Website reachable', 'fail', $res['error'] ? $res['error'] : ( 'HTTP ' . $res['code'] ), 5 );
+		$checks[] = gsley_audit_check( 'reachable', 'Website reachable', 'fail', $res['code'] ? ( 'HTTP ' . $res['code'] ) : ( $res['error'] ? $res['error'] : 'Could not connect' ), 5 );
 		return array( 'ok' => false, 'checks' => $checks, 'signals' => array(), 'error' => 'Could not load the website.' );
 	}
 	$checks[] = gsley_audit_check( 'reachable', 'Website reachable', 'pass', 'Loaded (HTTP ' . $res['code'] . ')', 5 );

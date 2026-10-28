@@ -45,7 +45,7 @@ function gsley_paystack_ready() {
  * @param array  $metadata     Extra metadata.
  * @return array { ok, authorization_url, reference, error }
  */
-function gsley_paystack_init( $email, $amount_major, $reference, $callback_url, $metadata = array() ) {
+function gsley_paystack_init( $email, $amount_major, $reference, $callback_url, $metadata = array(), $currency = '' ) {
 	$secret = gsley_paystack_secret();
 	if ( ! $secret ) {
 		return array( 'ok' => false, 'authorization_url' => '', 'reference' => '', 'error' => 'Payments are not configured yet.' );
@@ -53,7 +53,7 @@ function gsley_paystack_init( $email, $amount_major, $reference, $callback_url, 
 	$body = array(
 		'email'        => $email,
 		'amount'       => (int) round( (float) $amount_major * 100 ), // subunit (cents/kobo)
-		'currency'     => gsley_paystack_currency(),
+		'currency'     => $currency ? strtoupper( $currency ) : gsley_paystack_currency(),
 		'reference'    => $reference,
 		'callback_url' => $callback_url,
 		'metadata'     => $metadata,
@@ -129,6 +129,6 @@ function gsley_paystack_verify_signature( $raw_body, $signature ) {
 	if ( ! $secret || ! $signature ) {
 		return false;
 	}
-	$computed = hash_hmac( 'sha512', $raw_body, $secret );
-	return hash_equals( $computed, (string) $signature );
+	$computed = hash_hmac( 'sha512', (string) $raw_body, $secret );
+	return hash_equals( $computed, strtolower( trim( (string) $signature ) ) );
 }

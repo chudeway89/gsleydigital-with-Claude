@@ -30,7 +30,8 @@ function gsley_maybe_handle_contact() {
 	$type = isset( $_SERVER['CONTENT_TYPE'] ) ? strtolower( (string) $_SERVER['CONTENT_TYPE'] ) : '';
 	$json = false !== strpos( $type, 'application/json' );
 	if ( $json ) {
-		$body = json_decode( (string) file_get_contents( 'php://input' ), true );
+		$raw  = (string) file_get_contents( 'php://input', false, null, 0, 32768 ); // briefs are small; cap the read
+		$body = json_decode( $raw, true );
 		$in   = is_array( $body ) ? $body : array();
 	} else {
 		$in = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.NonceVerification -- public form; honeypot + rate limit.
@@ -55,7 +56,7 @@ function gsley_maybe_handle_contact() {
 
 	if ( $json ) {
 		nocache_headers();
-		wp_send_json( array( 'ok' => $result['ok'], 'error' => $result['error'] ), $result['ok'] ? 200 : ( 'rate' === $result['error'] ? 429 : 400 ) );
+		wp_send_json( array( 'ok' => $result['ok'], 'error' => $result['error'] ), $result['ok'] ? 200 : ( in_array( $result['error'], array( 'rate', 'busy' ), true ) ? 429 : 400 ) );
 	}
 
 	$contact_url = home_url( '/contact/' );
@@ -76,9 +77,9 @@ function gsley_handle_contact_submission( $f ) {
 		return array( 'ok' => true, 'error' => '' );
 	}
 
-	$email   = sanitize_email( $f['email'] );
-	$name    = sanitize_text_field( $f['name'] );
-	$message = sanitize_textarea_field( $f['message'] );
+	$email   = sanitize_email( gsley_clip( $f['email'], 190 ) );
+	$name    = gsley_clip( $f['name'], 120 );
+	$message = sanitize_textarea_field( mb_substr( (string) $f['message'], 0, 5000 ) );
 	if ( ! is_email( $email ) ) {
 		return array( 'ok' => false, 'error' => 'email' );
 	}
@@ -86,18 +87,16 @@ function gsley_handle_contact_submission( $f ) {
 		return array( 'ok' => false, 'error' => 'required' );
 	}
 
-	$ip   = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
-	$key  = 'gsley_contact_rl_' . md5( $ip );
-	$hits = (int) get_transient( $key );
-	if ( $hits >= 8 ) {
-		return array( 'ok' => false, 'error' => 'rate' );
+	$limited = gsley_guard( 'contact' );
+	if ( $limited ) {
+		return array( 'ok' => false, 'error' => $limited );
 	}
-	set_transient( $key, $hits + 1, 10 * MINUTE_IN_SECONDS );
+	$ip = gsley_anonymize_ip( gsley_client_ip() ); // stored truncated
 
-	$org    = sanitize_text_field( $f['org'] );
-	$phone  = substr( sanitize_text_field( $f['phone'] ), 0, 64 );
-	$need   = sanitize_key( $f['need'] );
-	$source = substr( sanitize_text_field( $f['source'] ), 0, 200 );
+	$org    = gsley_clip( $f['org'], 190 );
+	$phone  = preg_replace( '/[^\d+()\s.-]/', '', gsley_clip( $f['phone'], 40 ) );
+	$need   = substr( sanitize_key( $f['need'] ), 0, 80 );
+	$source = gsley_clip( $f['source'], 200 );
 
 	// Human label for the chosen service.
 	$need_label = $need;
@@ -119,7 +118,7 @@ function gsley_handle_contact_submission( $f ) {
 			'need'         => $need_label,
 			'message'      => $message,
 			'ip'           => $ip,
-			'user_agent'   => isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '',
+			'user_agent'   => isset( $_SERVER['HTTP_USER_AGENT'] ) ? gsley_clip( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ), 255 ) : '',
 		)
 	);
 	if ( ! $lead_id ) {

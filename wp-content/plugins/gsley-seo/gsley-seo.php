@@ -3,7 +3,7 @@
  * Plugin Name:       GSLEY SEO & AI-Search
  * Plugin URI:        https://gsleydigital.com
  * Description:       The GSLEY SEO/AI-search layer: JSON-LD schema, per-page Open Graph images, sitemap.xml, robots.txt (search + AI crawlers), llms.txt, and the legacy-URL 301 redirects. Kept in a plugin so it survives theme changes.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            GSLEY Digital
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GSLEY_SEO_VER', '0.2.0' );
+define( 'GSLEY_SEO_VER', '0.2.1' );
 define( 'GSLEY_SEO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GSLEY_SEO_URL', plugin_dir_url( __FILE__ ) );
 

@@ -38,7 +38,7 @@ function gsley_build_report_email( $tool, $submission ) {
 	if ( 'likert' === $engine ) {
 		$overall = isset( $r['overall'] ) ? (int) $r['overall'] : 0;
 		$band    = isset( $r['band'] ) ? $r['band'] : '';
-		$subject = sprintf( 'Your %s: %s (%d/100)', $title, $band, $overall );
+		$subject = sprintf( '%s: %s (%d/100)', 0 === strpos( $title, 'The ' ) ? $title : 'Your ' . $title, $band, $overall );
 		$headline = sprintf( '<strong style="font-size:32px;color:#0F1B2D">%d<span style="font-size:16px;color:#4A5568">/100</span></strong> &nbsp; <span style="font-family:Georgia,serif;font-size:22px">%s</span>', $overall, esc_html( $band ) );
 
 		$band_obj = null;
@@ -56,10 +56,12 @@ function gsley_build_report_email( $tool, $submission ) {
 		$rows = '';
 		if ( ! empty( $r['dimensions'] ) && is_array( $r['dimensions'] ) ) {
 			foreach ( $r['dimensions'] as $d ) {
-				$lab = isset( $labels[ $d['id'] ] ) ? $labels[ $d['id'] ] : $d['id'];
+				if ( ! isset( $labels[ $d['id'] ] ) ) {
+					continue;
+				}
 				$pct = (int) $d['pct'];
 				$is_low = ( isset( $r['priority'] ) && $r['priority'] === $d['id'] );
-				$rows .= gsley_report_bar( $lab . ( $is_low ? ' &middot; priority' : '' ), $pct . '%', $pct, $is_low ? '#B7791F' : '#16B8A6' );
+				$rows .= gsley_report_bar( $labels[ $d['id'] ] . ( $is_low ? ' · priority' : '' ), $pct . '%', $pct, $is_low ? '#B7791F' : '#16B8A6' );
 			}
 		}
 		$breakdown = $rows;
@@ -81,7 +83,10 @@ function gsley_build_report_email( $tool, $submission ) {
 		$rows = '';
 		if ( ! empty( $r['components'] ) ) {
 			foreach ( $r['components'] as $c ) {
-				$lab = isset( $labels[ $c['id'] ] ) ? $labels[ $c['id'] ] : $c['id'];
+				if ( ! isset( $labels[ $c['id'] ] ) ) {
+					continue;
+				}
+				$lab = $labels[ $c['id'] ];
 				$rows .= gsley_report_bar( $lab, html_entity_decode( gsley_money( $c['amount'] ) ), (int) round( $c['amount'] / $max * 100 ), '#16B8A6' );
 			}
 		}
@@ -134,7 +139,7 @@ function gsley_build_report_email( $tool, $submission ) {
 		. $plan
 		. '<div style="margin-top:28px;padding-top:20px;border-top:1px solid #E5E2D8">'
 		. '<a href="https://gsleydigital.com/contact/" style="display:inline-block;background:#16B8A6;color:#0F1B2D;text-decoration:none;padding:12px 22px;border-radius:6px;font-weight:600">Book a discovery call &#8599;</a>'
-		. ' &nbsp; <a href="https://wa.me/2349024767079" style="color:#0F1B2D">or WhatsApp us</a></div>'
+		. ' &nbsp; <a href="' . esc_url( function_exists( 'gsley_site' ) ? gsley_site( 'whatsapp_url' ) : 'https://wa.me/2349024767079' ) . '" style="color:#0F1B2D">or WhatsApp us</a></div>'
 		. '<p style="font-size:12px;color:#8895A7;margin-top:24px">You received this because you requested it from a GSLEY diagnostic. '
 		. 'Unsubscribe anytime &mdash; see our <a href="https://gsleydigital.com/legal/privacy/" style="color:#8895A7">privacy policy</a>.</p>'
 		. '</div></div>';
@@ -145,8 +150,8 @@ function gsley_build_report_email( $tool, $submission ) {
 function gsley_report_bar( $label, $value, $pct, $color ) {
 	$pct = max( 0, min( 100, (int) $pct ) );
 	return '<div style="margin:10px 0">'
-		. '<div style="display:flex;justify-content:space-between;font-size:14px"><span>' . wp_kses_post( $label ) . '</span>'
-		. '<span style="font-family:monospace;color:#4A5568">' . wp_kses_post( $value ) . '</span></div>'
+		. '<div style="display:flex;justify-content:space-between;font-size:14px"><span>' . esc_html( $label ) . '</span>'
+		. '<span style="font-family:monospace;color:#4A5568">' . esc_html( $value ) . '</span></div>'
 		. '<div style="height:8px;background:#F1EFE7;border-radius:999px;overflow:hidden;margin-top:4px">'
 		. '<div style="height:8px;width:' . $pct . '%;background:' . esc_attr( $color ) . ';border-radius:999px"></div></div></div>';
 }

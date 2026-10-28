@@ -24,7 +24,9 @@ for how to rebuild them.
 
 1. **Back up first** (EasyWP dashboard → Backups → Create backup).
 2. **Plugins → Add New → Upload Plugin** → `gsley-diagnostics.zip` → **Replace current with uploaded**.
-   Do the same with `gsley-seo.zip`. (Plugins first: the theme reads site facts and counts from them.)
+   Do the same with `gsley-seo.zip` and `gsley-security.zip`, and activate **GSLEY Security**.
+   (Plugins first: the theme reads site facts and counts from them.) Then follow `SECURITY.md` §3:
+   set up two-factor on your profile and save the backup codes.
 3. **Appearance → Themes → Add New → Upload Theme** → `gsley-digital.zip` → **Replace active with uploaded**.
 4. **GSLEY Leads → Setup → Import / update pages** — rebuilds all 42 pages and creates the four new
    GSLEY Health pages. (This overwrites manual edits made to those pages in the editor.)

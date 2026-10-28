@@ -21,12 +21,50 @@ function gsley_diagnostics_admin_menu() {
 
 add_action( 'admin_init', 'gsley_diagnostics_register_settings' );
 function gsley_diagnostics_register_settings() {
-	register_setting( 'gsley_diagnostics_settings', 'gsley_resend_api_key', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_resend_api_key', array( 'sanitize_callback' => 'gsley_sanitize_secret_resend', 'default' => '' ) );
 	register_setting( 'gsley_diagnostics_settings', 'gsley_resend_from', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'GSLEY Digital <brief@gsleydigital.com>' ) );
 	register_setting( 'gsley_diagnostics_settings', 'gsley_notify_email', array( 'sanitize_callback' => 'sanitize_email', 'default' => 'brief@gsleydigital.com' ) );
-	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_secret', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_secret', array( 'sanitize_callback' => 'gsley_sanitize_secret_paystack', 'default' => '' ) );
 	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_public', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
-	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_currency', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'USD' ) );
+	register_setting( 'gsley_diagnostics_settings', 'gsley_paystack_currency', array( 'sanitize_callback' => 'gsley_sanitize_currency', 'default' => 'USD' ) );
+}
+
+/**
+ * Secret fields are never printed back into the page. An empty submission keeps
+ * the stored value; typing "clear" removes it.
+ */
+function gsley_sanitize_secret( $option, $value ) {
+	$value = trim( sanitize_text_field( (string) $value ) );
+	if ( '' === $value ) {
+		return (string) get_option( $option, '' );
+	}
+	if ( 'clear' === strtolower( $value ) ) {
+		return '';
+	}
+	do_action( 'gsley_security_event', 'secret_changed', array( 'option' => $option ) );
+	return $value;
+}
+function gsley_sanitize_secret_resend( $v ) {
+	return gsley_sanitize_secret( 'gsley_resend_api_key', $v );
+}
+function gsley_sanitize_secret_paystack( $v ) {
+	return gsley_sanitize_secret( 'gsley_paystack_secret', $v );
+}
+function gsley_sanitize_currency( $v ) {
+	$v = strtoupper( preg_replace( '/[^A-Za-z]/', '', (string) $v ) );
+	return 3 === strlen( $v ) ? $v : 'USD';
+}
+
+/** "set (ends …ab12)" or "not set", shown in place of a secret. */
+function gsley_secret_hint( $value ) {
+	$value = (string) $value;
+	return '' === $value ? 'not set' : 'set (ends …' . substr( $value, -4 ) . ')';
+}
+
+/** Neutralise spreadsheet formulas in exported cells (CSV injection). */
+function gsley_csv_cell( $v ) {
+	$v = (string) $v;
+	return ( '' !== $v && false !== strpos( "=+-@\t\r", $v[0] ) ) ? "'" . $v : $v;
 }
 
 function gsley_card( $label, $value, $sub = '' ) {
@@ -102,7 +140,7 @@ function gsley_render_dashboard() {
 		$status_colours = array( 'new' => '#2271b1', 'contacted' => '#B7791F', 'qualified' => '#16B8A6', 'won' => '#15803D', 'lost' => '#8c8f94' );
 		echo '<table class="widefat striped"><thead><tr><th>When</th><th>Source</th><th>Name</th><th>Email</th><th>Organisation</th><th>Tool / Need</th><th>Follow-up</th><th>Email status</th><th></th></tr></thead><tbody>';
 		foreach ( $recent as $l ) {
-			$when = esc_html( mysql2date( 'Y-m-d H:i', $l->created ) );
+			$when = mysql2date( 'Y-m-d H:i', $l->created );
 			$src  = 'tool' === $l->source ? '◇ Tool' : '▲ Contact';
 			$what = 'tool' === $l->source
 				? ( isset( $configs[ $l->tool ] ) ? $configs[ $l->tool ]['title'] : $l->tool )
@@ -116,8 +154,8 @@ function gsley_render_dashboard() {
 			$fstatus = isset( $l->status ) && $l->status ? $l->status : 'new';
 			$fcolour = isset( $status_colours[ $fstatus ] ) ? $status_colours[ $fstatus ] : '#2271b1';
 			$view    = admin_url( 'admin.php?page=gsley-leads&view=' . (int) $l->id );
-			echo '<tr>'
-				. '<td>' . $when . '</td>'
+			echo '<tr>' // nosemgrep: echoed-request -- every value is esc_*()-escaped or cast to int.
+				. '<td>' . esc_html( $when ) . '</td>'
 				. '<td>' . esc_html( $src ) . '</td>'
 				. '<td>' . esc_html( $l->name ) . '</td>'
 				. '<td><a href="mailto:' . esc_attr( $l->email ) . '">' . esc_html( $l->email ) . '</a></td>'
@@ -136,11 +174,11 @@ function gsley_render_dashboard() {
 		if ( $max_page > 1 ) {
 			echo '<p style="margin-top:12px">';
 			if ( $paged > 1 ) {
-				echo '<a class="button" href="' . esc_url( add_query_arg( 'paged', $paged - 1 ) ) . '">‹ Newer</a> ';
+				echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=gsley-leads&paged=' . ( $paged - 1 ) ) ) . '">‹ Newer</a> '; // nosemgrep: echoed-request -- every value is esc_*()-escaped or cast to int.
 			}
-			echo '<span style="margin:0 8px">Page ' . (int) $paged . ' of ' . (int) $max_page . '</span>';
+			printf( '<span style="margin:0 8px">Page %d of %d</span>', (int) $paged, (int) $max_page );
 			if ( $paged < $max_page ) {
-				echo '<a class="button" href="' . esc_url( add_query_arg( 'paged', $paged + 1 ) ) . '">Older ›</a>';
+				echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=gsley-leads&paged=' . ( $paged + 1 ) ) ) . '">Older ›</a>'; // nosemgrep: echoed-request -- every value is esc_*()-escaped or cast to int.
 			}
 			echo '</p>';
 		}
@@ -162,8 +200,8 @@ function gsley_render_settings() {
 	settings_fields( 'gsley_diagnostics_settings' );
 	echo '<table class="form-table" role="presentation"><tbody>';
 	echo '<tr><th scope="row"><label for="gsley_resend_api_key">Resend API key</label></th>'
-		. '<td><input type="password" autocomplete="off" id="gsley_resend_api_key" name="gsley_resend_api_key" value="' . esc_attr( get_option( 'gsley_resend_api_key', '' ) ) . '" class="regular-text">'
-		. '<p class="description">From the Resend dashboard. For production, prefer setting <code>GSLEY_RESEND_API_KEY</code> in <code>wp-config.php</code>.</p></td></tr>';
+		. '<td><input type="password" autocomplete="new-password" id="gsley_resend_api_key" name="gsley_resend_api_key" value="" placeholder="' . esc_attr( gsley_secret_hint( get_option( 'gsley_resend_api_key', '' ) ) ) . '" class="regular-text">'
+			. '<p class="description">Currently ' . esc_html( gsley_secret_hint( get_option( 'gsley_resend_api_key', '' ) ) ) . '. Leave blank to keep it; type <code>clear</code> to remove it. From the Resend dashboard. For production, prefer setting <code>GSLEY_RESEND_API_KEY</code> in <code>wp-config.php</code>.</p></td></tr>';
 	echo '<tr><th scope="row"><label for="gsley_resend_from">From address</label></th>'
 		. '<td><input type="text" id="gsley_resend_from" name="gsley_resend_from" value="' . esc_attr( get_option( 'gsley_resend_from', 'GSLEY Digital <brief@gsleydigital.com>' ) ) . '" class="regular-text">'
 		. '<p class="description">Must be a verified domain/sender in Resend.</p></td></tr>';
@@ -171,13 +209,16 @@ function gsley_render_settings() {
 		. '<td><input type="email" id="gsley_notify_email" name="gsley_notify_email" value="' . esc_attr( get_option( 'gsley_notify_email', 'brief@gsleydigital.com' ) ) . '" class="regular-text">'
 		. '<p class="description">Where new contact briefs are sent. Tool reports go to the person who took the diagnostic.</p></td></tr>';
 	echo '<tr><th scope="row"><label for="gsley_paystack_secret">Paystack secret key</label></th>'
-		. '<td><input type="password" autocomplete="off" id="gsley_paystack_secret" name="gsley_paystack_secret" value="' . esc_attr( get_option( 'gsley_paystack_secret', '' ) ) . '" class="regular-text">'
-		. '<p class="description">For the paid audit tools. Prefer <code>GSLEY_PAYSTACK_SECRET_KEY</code> in <code>wp-config.php</code>. Set your webhook URL in Paystack to <code>' . esc_html( rest_url( 'gsley/v1/pay/webhook' ) ) . '</code>.</p></td></tr>';
+		. '<td><input type="password" autocomplete="new-password" id="gsley_paystack_secret" name="gsley_paystack_secret" value="" placeholder="' . esc_attr( gsley_secret_hint( get_option( 'gsley_paystack_secret', '' ) ) ) . '" class="regular-text">'
+			. '<p class="description">Currently ' . esc_html( gsley_secret_hint( get_option( 'gsley_paystack_secret', '' ) ) ) . '. Leave blank to keep it; type <code>clear</code> to remove it. For the paid audit tools. Prefer <code>GSLEY_PAYSTACK_SECRET_KEY</code> in <code>wp-config.php</code>. Set your webhook URL in Paystack to <code>' . esc_html( rest_url( 'gsley/v1/pay/webhook' ) ) . '</code>.</p></td></tr>';
 	echo '<tr><th scope="row"><label for="gsley_paystack_public">Paystack public key</label></th>'
 		. '<td><input type="text" id="gsley_paystack_public" name="gsley_paystack_public" value="' . esc_attr( get_option( 'gsley_paystack_public', '' ) ) . '" class="regular-text"></td></tr>';
 	echo '<tr><th scope="row"><label for="gsley_paystack_currency">Payment currency</label></th>'
 		. '<td><input type="text" id="gsley_paystack_currency" name="gsley_paystack_currency" value="' . esc_attr( get_option( 'gsley_paystack_currency', 'USD' ) ) . '" class="small-text" maxlength="3">'
 		. '<p class="description">Must be enabled on your Paystack account (e.g. USD or NGN).</p></td></tr>';
+	echo '<tr><th scope="row"><label for="gsley_retention_months">Keep leads for</label></th>'
+		. '<td><input type="number" min="0" max="120" id="gsley_retention_months" name="gsley_retention_months" value="' . esc_attr( (int) get_option( 'gsley_retention_months', 24 ) ) . '" class="small-text"> months'
+		. '<p class="description">Leads and tool results older than this are deleted automatically (0 = keep). IP addresses and browser strings are always cleared after 30 days.</p></td></tr>';
 	echo '</tbody></table>';
 	submit_button();
 	echo '</form></div>';
@@ -401,6 +442,7 @@ function gsley_export_leads_csv() {
 	if ( ! current_user_can( 'manage_options' ) || ! check_admin_referer( 'gsley_export_leads' ) ) {
 		wp_die( 'Not allowed.' );
 	}
+	do_action( 'gsley_security_event', 'leads_exported', array() );
 	global $wpdb;
 	$leads = gsley_table_leads();
 	$subs  = gsley_table_submissions();
@@ -418,9 +460,12 @@ function gsley_export_leads_csv() {
 		}
 		fputcsv(
 			$out,
-			array(
-				$l->created, $l->source, $l->status, $l->name, $l->email, $l->phone ?? '', $l->organisation, $l->need, $l->tool,
-				$sub->overall ?? '', $sub->band ?? '', $sub->priority ?? '', $l->delivery_status, $l->notes,
+			array_map(
+				'gsley_csv_cell',
+				array(
+					$l->created, $l->source, $l->status, $l->name, $l->email, $l->phone ?? '', $l->organisation, $l->need, $l->tool,
+					$sub->overall ?? '', $sub->band ?? '', $sub->priority ?? '', $l->delivery_status, $l->notes,
+				)
 			)
 		);
 	}

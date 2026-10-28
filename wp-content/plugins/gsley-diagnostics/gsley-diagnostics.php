@@ -3,7 +3,7 @@
  * Plugin Name:       GSLEY Diagnostics
  * Plugin URI:        https://gsleydigital.com/tools/
  * Description:       The ten GSLEY diagnostic tools (eight question-based, two live audits), each as an editor block; GSLEY Settings and the services/tools registry; lead capture, Paystack, and Resend delivery. Application logic lives here, never in the theme.
- * Version:           0.2.1
+ * Version:           0.3.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            GSLEY Digital
@@ -17,11 +17,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GSLEY_DIAGNOSTICS_VER', '0.2.1' );
+define( 'GSLEY_DIAGNOSTICS_VER', '0.3.0' );
 define( 'GSLEY_DIAGNOSTICS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GSLEY_DIAGNOSTICS_URL', plugin_dir_url( __FILE__ ) );
 
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/configs.php';
+// Abuse limits, safe outbound fetch, input helpers.
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/guard.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/scoring.php';
 // Site facts (GSLEY Settings) + services/tools registry + bindings.
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/site.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/render.php';
@@ -34,6 +37,7 @@ require_once GSLEY_DIAGNOSTICS_DIR . 'includes/leads.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/report.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/submissions.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/contact.php';
+require_once GSLEY_DIAGNOSTICS_DIR . 'includes/privacy.php';
 // Paid audit tools: payments + owned analysis engine.
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/paystack.php';
 require_once GSLEY_DIAGNOSTICS_DIR . 'includes/audit.php';
@@ -47,6 +51,9 @@ if ( is_admin() ) {
 
 // Create the custom tables on activation.
 register_activation_hook( __FILE__, 'gsley_install_tables' );
+register_deactivation_hook( __FILE__, function () {
+	wp_clear_scheduled_hook( 'gsley_privacy_purge' );
+} );
 
 /**
  * Register front-end assets (enqueued on demand by the render callback).
