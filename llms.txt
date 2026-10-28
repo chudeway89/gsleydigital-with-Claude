@@ -1,27 +1,29 @@
 # GSLEY Digital
 
-> A productised growth and AI studio headquartered in Lagos, Nigeria, serving institutions and ambitious B2B and B2C scale-ups worldwide. GSLEY operates two pillars — GSLEY Market (predictable demand, brand authority, commercial systems) and GSLEY Digital (AI-native operating systems, agent deployment, workflow architecture) — delivered as one commercial system. Its method is documented as named archetypes under The Archetype System™ rather than opinion-based consulting, and every engagement ships with AI-native delivery and a transferable operating manual the client keeps.
+> A productised growth and AI studio with offices in Lagos and Enugu, Nigeria, serving institutions, ambitious B2B and B2C scale-ups, and healthcare brands worldwide. GSLEY operates three pillars — GSLEY Market (predictable demand, brand authority, commercial systems), GSLEY Digital (AI-native operating systems, agent deployment, workflow architecture), and GSLEY Health (public relations, marketing, revenue, and thought leadership for healthcare brands) — delivered as one commercial system. Its method is documented as named archetypes under The Archetype System™ rather than opinion-based consulting, and every engagement ships with AI-native delivery and a transferable operating manual the client keeps.
 
-Contact: brief@gsleydigital.com · +234 902 476 7079 (calls + WhatsApp) · Lagos, Nigeria.
-Founder: Chukwudi Kingsley Eze, MCIPR — commercial and communications leader.
+Contact: brief@gsleydigital.com · +234 902 476 7079 (calls + WhatsApp) · Lagos · Enugu, Nigeria · working worldwide.
 Brand voice: "Engineered Precision" — documented methodology over opinion.
 
 ## Core
 
-- [Home](https://gsleydigital.com/): The thesis, the two pillars, the value ladder, and The Archetype System™.
-- [About](https://gsleydigital.com/about/): The studio thesis, the four-phase method, founder, and operating principles.
+- [Home](https://gsleydigital.com/): The thesis, the three pillars, the value ladder, and The Archetype System™.
+- [About](https://gsleydigital.com/about/): The studio thesis, the four-phase method, the three pillars, and operating principles.
+- [Services](https://gsleydigital.com/services/): The three pillars and every front-line Sprint.
 - [Contact](https://gsleydigital.com/contact/): Start a conversation by WhatsApp, brief, or discovery call.
 
 ## The method
 
 - The Archetype System™: every engagement runs on a documented, named archetype with defined inputs, sequence, and outputs, transferred to the client at the end. Four phases: Diagnose, Architect, Deploy, Transfer.
+- Engagement tiers: Free (diagnostics), Sprint (fixed scope), Retainer (ongoing). Pricing on request.
 
 ## Services — GSLEY Market (demand, brand, commercial)
 
-- [Website Design & Development](https://gsleydigital.com/services/market/website-design/): Conversion-engineered, AI-search-ready sites in 4–8 weeks. The Conversion Architecture Archetype™.
+- [Website Design & Development](https://gsleydigital.com/services/market/website-design/): Conversion-engineered, AI-search-ready sites. The Conversion Architecture Archetype™.
 - [Google Ads](https://gsleydigital.com/services/market/google-ads/): Productised search and performance media. The Intent-Capture Archetype™.
 - [Email Marketing](https://gsleydigital.com/services/market/email-marketing/): Lifecycle systems on owned data. The Lifecycle Compounding Archetype™.
-- [Social Media Marketing & Management](https://gsleydigital.com/services/market/social-media-marketing/): Editorial cadence, paid amplification, governance. The Authority Cadence Archetype™.
+- [Social Media Marketing](https://gsleydigital.com/services/market/social-media-marketing/): Named-account targeting and paid amplification. The Authority Cadence Archetype™.
+- [Social Media Management](https://gsleydigital.com/services/market/social-media-management/): Editorial cadence, community, and governance. The Owned-Channel Archetype™.
 - [Content Development](https://gsleydigital.com/services/market/content-development/): Thought-leadership content engineered for citation. The Citation Engine Archetype™.
 - [Demand Generation Systems](https://gsleydigital.com/services/market/demand-generation/): Compounding demand against named accounts. The Named-Account Demand Archetype™.
 - [B2B Sales Enablement & Commercialisation](https://gsleydigital.com/services/market/b2b-sales-enablement/): CRM, playbooks, pricing. The Commercial Spine Archetype™.
@@ -33,14 +35,24 @@ Brand voice: "Engineered Precision" — documented methodology over opinion.
 ## Services — GSLEY Digital (AI-native systems)
 
 - [AI Agent Deployment](https://gsleydigital.com/services/digital/ai-agent-deployment/): Governed agentic workflows in the back office. The Governed Agent Archetype™.
+- [Automation & RevOps](https://gsleydigital.com/services/digital/automation-and-revops/): Revenue operations and automation built on the data model. The RevOps Spine Archetype™.
+- [AI Adoption Programmes](https://gsleydigital.com/services/digital/ai-adoption-programmes/): Governed rollout of AI across teams. The Governed Adoption Archetype™.
 - [Digital Transformation](https://gsleydigital.com/services/digital/digital-transformation/): Operating model first, then technology. The Operating Model Archetype™.
 - [Data Infrastructure](https://gsleydigital.com/services/digital/data-infrastructure/): Unified, governed data foundation. The Data Foundation Archetype™.
 - [Revenue Optimisation](https://gsleydigital.com/services/digital/revenue-optimisation/): Pricing, retention, lifecycle economics. The Revenue Engine Archetype™.
 
+## Services — GSLEY Health (healthcare growth)
+
+- [GSLEY Health](https://gsleydigital.com/services/health/): PR, marketing, revenue, and thought leadership for hospitals, clinics, diagnostic centres, HMOs, health-tech, and pharma.
+- [Healthcare PR, Marketing & Communications](https://gsleydigital.com/services/health/pr-marketing-communications/): Positioning, a standing press office, and a rehearsed crisis plan. The Clinical Trust Archetype™.
+- [Revenue & Tariff Optimisation](https://gsleydigital.com/services/health/revenue-and-tariff-optimisation/): Tariffs, payer contracts, and the claims cycle. The Tariff Integrity Archetype™.
+- [Healthcare Thought Leadership](https://gsleydigital.com/services/health/thought-leadership/): Clinician and executive positioning, checked for clinical accuracy. The Clinical Voice Archetype™.
+
 ## Free diagnostics
 
-- [Tools](https://gsleydigital.com/tools/): Eight free diagnostics, each ending in a scored read-out and a recommendation.
+- [Tools](https://gsleydigital.com/tools/): Ten free diagnostics, each ending in a scored read-out and one clear recommendation.
 - [The Gsley Growth Diagnostic™](https://gsleydigital.com/tools/growth-diagnostic/): A whole-system read across demand, conversion, retention, and capacity.
+- [Social Media Audit](https://gsleydigital.com/tools/social-media-audit/) and [Digital Presence & ORM Audit](https://gsleydigital.com/tools/digital-presence-orm-audit/): live checks with a free score; the detailed report is paid.
 
 ## Governance
 
@@ -49,3 +61,5 @@ Brand voice: "Engineered Precision" — documented methodology over opinion.
 ## Optional
 
 - [Privacy Policy](https://gsleydigital.com/legal/privacy/)
+- [Terms of Service](https://gsleydigital.com/legal/terms/)
+- [Cookie Policy](https://gsleydigital.com/legal/cookies/)

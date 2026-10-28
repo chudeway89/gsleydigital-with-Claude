@@ -7,7 +7,7 @@ replacing any existing copies:
 | File | Purpose |
 |---|---|
 | `robots.txt` | Lets search engines and AI assistants (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…) crawl the site; blocks admin/cart/search noise; points to the sitemap. |
-| `sitemap.xml` | All 38 public pages with their canonical trailing-slash URLs. |
+| `sitemap.xml` | All 42 public pages (including the four GSLEY Health pages) with their canonical trailing-slash URLs. |
 
 The SEO plugin serves identical versions automatically, so the site stays correct even if these
 files are removed later. If you add pages, the plugin's `/sitemap.xml` updates itself — delete the
@@ -16,13 +16,32 @@ static `sitemap.xml` at that point, or regenerate it.
 After uploading, submit `https://gsleydigital.com/sitemap.xml` in Google Search Console
 (Sitemaps → Add). You can leave Yoast's `sitemap_index.xml` submitted too.
 
-## Re-deploy the theme and plugins
-1. Re-upload the `gsley-digital` theme, `gsley-diagnostics` plugin and `gsley-seo` plugin folders
-   (Plugins → Add New → Upload → "Replace current with uploaded").
-2. **GSLEY Leads → Setup → Import / update pages** — rewrites page content with the fixed links.
-   (This overwrites manual edits made to those pages in the editor.)
-3. **Settings → Permalinks → Save Changes.**
-4. **Purge the EasyWP cache.**
+## Re-deploy the theme and plugins (October 2026 redesign)
+
+The three zips are built from this repository (`wp-content/themes/gsley-digital`,
+`wp-content/plugins/gsley-diagnostics`, `wp-content/plugins/gsley-seo`). See the root `README.md`
+for how to rebuild them.
+
+1. **Back up first** (EasyWP dashboard → Backups → Create backup).
+2. **Plugins → Add New → Upload Plugin** → `gsley-diagnostics.zip` → **Replace current with uploaded**.
+   Do the same with `gsley-seo.zip`. (Plugins first: the theme reads site facts and counts from them.)
+3. **Appearance → Themes → Add New → Upload Theme** → `gsley-digital.zip` → **Replace active with uploaded**.
+4. **GSLEY Leads → Setup → Import / update pages** — rebuilds all 42 pages and creates the four new
+   GSLEY Health pages. (This overwrites manual edits made to those pages in the editor.)
+5. **GSLEY Leads → GSLEY Settings** — check email, phone, WhatsApp and socials; add the booking link
+   and verified office addresses when you have them.
+6. **Settings → Permalinks → Save Changes**, then **purge the EasyWP cache**.
+7. If the homepage still shows the old sections, the front-page template was customised in the
+   Site Editor: **Appearance → Editor → Templates → Front Page → ⋮ → Reset**. Do the same for the
+   Header and Footer template parts if they look old.
+8. Upload the new `sitemap.xml` and `robots.txt` from this folder to the site root (replace the old ones).
+
+### WP-admin settings to change by hand (fix-tasks.md, "Before Claude Code")
+- **Settings → General:** Site Title `GSLEY Digital`, Tagline `Growth & AI Studio`.
+- **Yoast → Settings:** the plugin now sets page titles, descriptions, og:type `website` and removes
+  "Est. reading time" on pages automatically. A description you type into a page's Yoast panel wins.
+- **Plugins:** deactivate TranslatePress (single language). Its floating switcher is hidden on mobile either way.
+- **Media:** upload `redesign/assets/chukwudi-eze.jpg` when you have it (not placed on any page).
 
 ## Paystack keys (never commit keys to this repository)
 Add to `wp-config.php`, above `/* That's all, stop editing! */`:

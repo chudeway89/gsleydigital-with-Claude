@@ -4,7 +4,7 @@ GSLEY OG image generator
 -------------------------
 Generates 1200x630 Open Graph / social-share images, one per page, in the
 "Engineered Precision" system: ink-on-paper or teal band per pillar, GSLEY
-wordmark, a section-marker, and the page title in the display serif.
+wordmark, the pillar glyph, and the page title in the display serif.
 
 Usage:
     pip install pillow --break-system-packages
@@ -23,19 +23,23 @@ INK   = (15, 27, 45)      # #0F1B2D
 PAPER = (250, 249, 245)   # #FAF9F5
 TEAL  = (11, 79, 73)      # #0B4F49
 ACCENT= (22, 184, 166)    # #16B8A6  (digital accent)
-MUTE  = (136, 149, 167)   # #8895A7
+MUTE  = (170, 180, 194)   # muted label on dark bands
+HEALTH= (90, 34, 25)      # #5A2219  (health band)
+HEALTH_ACCENT = (242, 184, 174)  # #F2B8AE
 W, H  = 1200, 630
 PAD   = 80
-FONT_DIR = os.path.join(os.path.dirname(__file__), "fonts")
+FONT_DIR = os.environ.get("GSLEY_OG_FONTS", os.path.join(os.path.dirname(__file__), "fonts"))
 
-# slug, title, pillar ("market" | "digital" | "neutral")
+# slug, title, pillar ("market" | "digital" | "health" | "neutral")
 MANIFEST = [
     ("home",                          "Capability is common. Commercial outcomes are not.", "neutral"),
     ("about",                         "A commercial systems studio. Engineered, not opinionated.", "neutral"),
     ("contact",                       "Start a conversation.", "digital"),
+    ("services",                      "Three pillars. One commercial system.", "neutral"),
     ("services-market",               "GSLEY Market — predictable demand, engineered.", "market"),
     ("services-digital",              "GSLEY Digital — AI-native operating systems.", "digital"),
-    ("tools",                         "Eight diagnostics. One scored read-out each.", "neutral"),
+    ("services-health",               "GSLEY Health — healthcare growth, engineered for trust.", "health"),
+    ("tools",                         "Ten tools. One clear read-out each.", "neutral"),
     ("website-design",                "Website Design & Development", "market"),
     ("google-ads",                    "Google Ads", "market"),
     ("email-marketing",               "Email Marketing", "market"),
@@ -48,10 +52,24 @@ MANIFEST = [
     ("thought-leadership",            "Thought-Leadership Programmes", "market"),
     ("marketing-automation",          "Marketing Automation", "market"),
     ("ai-agent-deployment",           "AI Agent Deployment", "digital"),
+    ("automation-and-revops",         "Automation & RevOps", "digital"),
+    ("ai-adoption-programmes",        "AI Adoption Programmes", "digital"),
     ("digital-transformation",        "Digital Transformation", "digital"),
     ("data-infrastructure",           "Data Infrastructure", "digital"),
     ("revenue-optimisation",          "Revenue Optimisation", "digital"),
+    ("pr-marketing-communications",   "Healthcare PR, Marketing & Communications", "health"),
+    ("revenue-and-tariff-optimisation","Revenue & Tariff Optimisation", "health"),
+    ("thought-leadership-health",     "Healthcare Thought Leadership", "health"),
     ("growth-diagnostic",             "The Gsley Growth Diagnostic\u2122", "neutral"),
+    ("ai-adoption-assessment-organisation", "AI Adoption Assessment — Organisation", "neutral"),
+    ("ai-adoption-assessment-individual",   "AI Adoption Assessment — Individual", "neutral"),
+    ("brand-authority-audit",         "Brand Authority Audit", "neutral"),
+    ("revenue-leakage-calculator",    "Revenue Leakage Calculator", "neutral"),
+    ("marketing-maturity-scorecard",  "Marketing Maturity Scorecard", "neutral"),
+    ("automation-opportunity-finder", "Automation Opportunity Finder", "neutral"),
+    ("partnership-readiness-quiz",    "Partnership Readiness Quiz", "neutral"),
+    ("social-media-audit",            "Social Media Audit", "neutral"),
+    ("digital-presence-orm-audit",    "Digital Presence & ORM Audit", "neutral"),
 ]
 
 def load_font(candidates, size):
@@ -70,7 +88,8 @@ def load_font(candidates, size):
 def palette(pillar):
     if pillar == "digital": return TEAL, PAPER, ACCENT, "\u25C7"   # ◇
     if pillar == "market":  return INK,  PAPER, ACCENT, "\u25B2"   # ▲
-    return INK, PAPER, ACCENT, "\u00A7"                            # §
+    if pillar == "health":  return HEALTH, PAPER, HEALTH_ACCENT, "\u271A"  # ✚
+    return INK, PAPER, ACCENT, "G"
 
 def wrap(draw, text, font, max_w):
     words, lines, cur = text.split(), [], ""
@@ -91,12 +110,17 @@ def render(slug, title, pillar, outdir):
 
     serif = load_font(["SourceSerif4-Regular.ttf", "SourceSerif4.ttf"], 64)
     mono  = load_font(["JetBrainsMono-Regular.ttf"], 24)
+    glyphf= load_font(["DejaVuSans.ttf"], 24)
     brand = load_font(["Inter-SemiBold.ttf", "Inter-Bold.ttf"], 30)
 
     # top hairline + section marker
-    marker = f"{glyph}  GSLEY DIGITAL" if pillar == "neutral" else f"{glyph}  GSLEY \u00B7 {pillar.upper()}"
     d.line([(PAD, 150), (PAD + 60, 150)], fill=accent, width=2)
-    d.text((PAD + 76, 138), marker, font=mono, fill=MUTE)
+    if pillar == "neutral":
+        d.text((PAD + 76, 138), "GSLEY DIGITAL", font=mono, fill=MUTE)
+    else:
+        # glyph in a font that has it (DejaVu), label in the mono face
+        d.text((PAD + 76, 137), glyph, font=glyphf, fill=accent)
+        d.text((PAD + 110, 138), f"GSLEY \u00B7 {pillar.upper()}", font=mono, fill=MUTE)
 
     # title (display serif, wrapped, bottom-left)
     lines = wrap(d, title, serif, W - 2 * PAD)

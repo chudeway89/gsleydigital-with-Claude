@@ -44,7 +44,7 @@ confirm).
 - **Done (fallback) / Owner** — OG images generated (DejaVu fallback) and bundled
   with the SEO plugin. **Owner** — drop Source Serif 4 + Inter `.ttf` into
   `./fonts/`, re-run `python generate-og-images.py`, and copy the PNGs into
-  `plugin/gsley-seo/assets/og/` for brand-font versions.
+  `wp-content/plugins/gsley-seo/assets/og/` for brand-font versions.
 - **Verify on hosting** — Lighthouse ≥ 90 (performance, a11y, SEO, best-practices).
 
 ## Backend / lead capture
